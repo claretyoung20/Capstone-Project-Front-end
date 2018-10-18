@@ -1,13 +1,10 @@
 import { Routes } from '@angular/router';
 
-import { DashboardComponent }   from './dashboard/dashboard.component';
-import { UserComponent }   from './user/user.component';
-import { TableComponent }   from './table/table.component';
-import { TypographyComponent }   from './typography/typography.component';
-import { IconsComponent }   from './icons/icons.component';
-import { MapsComponent }   from './maps/maps.component';
-import { NotificationsComponent }   from './notifications/notifications.component';
-import { UpgradeComponent }   from './upgrade/upgrade.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserComponent } from './user/user.component';
+import { TableComponent } from './table/table.component';
+import { SocialMediaComponent } from './Containers/Config/SocialMedia/social-media/social-media.component';
+import { CustomerComponent } from './Containers/Customers/customer/customer.component';
 
 export const AppRoutes: Routes = [
     {
@@ -28,23 +25,11 @@ export const AppRoutes: Routes = [
         component: TableComponent
     },
     {
-        path: 'typography',
-        component: TypographyComponent
+        path: 'cofig',
+        component: SocialMediaComponent
     },
     {
-        path: 'icons',
-        component: IconsComponent
-    },
-    {
-        path: 'maps',
-        component: MapsComponent
-    },
-    {
-        path: 'notifications',
-        component: NotificationsComponent
-    },
-    {
-        path: 'upgrade',
-        component: UpgradeComponent
+        path: 'customers',
+        component: CustomerComponent
     }
 ]
