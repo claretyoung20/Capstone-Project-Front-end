@@ -13,14 +13,14 @@ export const ROUTES: RouteInfo[] = [
     { path: 'dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
     // { path: 'user', title: 'User Profile',  icon: 'ti-user', class: '' },
     // { path: 'table', title: 'Table List',  icon: 'ti-view-list-alt', class: '' },
-    { path: 'cofig', title: 'Manage Configuration',  icon: 'ti-settings', class: '' },
-    { path: 'account', title: 'Manage Account',  icon: 'ti-user', class: '' },
-    { path: 'statistics', title: 'Statistics',  icon: 'ti-stats-up', class: '' },
-    { path: 'promotion', title: 'Manage Promotion',  icon: 'ti-plus ', class: '' },
-    { path: 'category', title: 'Manage Category',  icon: 'ti-view-list-alt', class: '' },
-    { path: 'menu', title: 'Manage Menu',  icon: 'ti-menu-alt', class: '' },
-    { path: 'Order', title: 'Process Order',  icon: 'ti-shopping-cart-full', class: '' },
-    { path: 'reservation', title: 'Process Reservation',  icon: 'ti-crown', class: '' }
+    { path: '/cofig', title: 'Manage Configuration',  icon: 'ti-settings', class: '' },
+    { path: '/account', title: 'Manage Account',  icon: 'ti-user', class: '' },
+    { path: '/statistics', title: 'Statistics',  icon: 'ti-stats-up', class: '' },
+    { path: '/promotion', title: 'Manage Promotion',  icon: 'ti-plus ', class: '' },
+    { path: '/category', title: 'Manage Category',  icon: 'ti-view-list-alt', class: '' },
+    { path: '/menu', title: 'Manage Menu',  icon: 'ti-menu-alt', class: '' },
+    { path: '/Order', title: 'Process Order',  icon: 'ti-shopping-cart-full', class: '' },
+    { path: '/reservation', title: 'Process Reservation',  icon: 'ti-crown', class: '' }
 ];
 
 @Component({
