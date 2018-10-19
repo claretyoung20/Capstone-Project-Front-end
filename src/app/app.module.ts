@@ -25,7 +25,6 @@ import { CategoryComponent } from './Containers/category/category.component';
 import { MenuComponent } from './Containers/menu/menu.component';
 import { OrderComponent } from './Containers/order/order.component';
 import { ReservationComponent } from './Containers/reservation/reservation.component';
-import * as customerContainersComponent from './customer-containers/customer-containers.component';
 import { HomeComponent } from './customer-containers/home/home.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
@@ -46,7 +45,6 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
     MenuComponent,
     OrderComponent,
     ReservationComponent,
-    customerContainersComponent.CustomerContainersComponent,
     HomeComponent,
     SiteLayoutComponent,
     AppLayoutComponent
