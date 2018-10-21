@@ -9,6 +9,8 @@ import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 import { NguiMapModule} from '@ngui/map';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {MatDialogModule} from '@angular/material'
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
@@ -23,6 +25,9 @@ import { CategoryComponent } from './Containers/category/category.component';
 import { MenuComponent } from './Containers/menu/menu.component';
 import { OrderComponent } from './Containers/order/order.component';
 import { ReservationComponent } from './Containers/reservation/reservation.component';
+import { HomeComponent } from './customer-containers/home/home.component';
+import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
+import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,10 @@ import { ReservationComponent } from './Containers/reservation/reservation.compo
     CategoryComponent,
     MenuComponent,
     OrderComponent,
-    ReservationComponent
+    ReservationComponent,
+    HomeComponent,
+    SiteLayoutComponent,
+    AppLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +56,13 @@ import { ReservationComponent } from './Containers/reservation/reservation.compo
     NavbarModule,
     FooterModule,
     FixedPluginModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
