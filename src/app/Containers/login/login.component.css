@@ -1,0 +1,45 @@
+.container {
+    background-image: url('../../../assets/img/loginBg.png');
+    width: 100%;
+    background-size: cover;
+    text-align: center;
+}
+
+.example-card {
+    width: 40%;
+    margin: 5% auto;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.example-form {
+    min-width: 60%;
+    max-width: 60%;
+    width: 100%;
+    margin: auto;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+input:focus {
+    border: 0px;
+}
+
+.loginBtn {
+    text-align: center;
+    background-color: black;
+}
+
+.loginTitle[_ngcontent-c1] {
+    text-align: center;
+    font-family: -webkit-body;
+    font-size: xx-large;
+    font-weight: 600;
+}

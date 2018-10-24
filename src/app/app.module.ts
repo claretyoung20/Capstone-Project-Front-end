@@ -10,7 +10,6 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 import { NguiMapModule} from '@ngui/map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import {MatDialogModule} from '@angular/material'
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
@@ -28,6 +27,8 @@ import { ReservationComponent } from './Containers/reservation/reservation.compo
 import { HomeComponent } from './customer-containers/home/home.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
+import { LoginComponent } from './Containers/login/login.component';
+import { MaterialModule } from './material/material.module'
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
     ReservationComponent,
     HomeComponent,
     SiteLayoutComponent,
-    AppLayoutComponent
+    AppLayoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -57,8 +59,8 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
     FooterModule,
     FixedPluginModule,
     FormsModule,
-    MatDialogModule,
     ReactiveFormsModule,
+    MaterialModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
 
   ],
