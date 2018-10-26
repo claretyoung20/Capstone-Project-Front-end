@@ -17,6 +17,7 @@ import { HomeComponent } from './customer-containers/home/home.component';
 import { AppComponent } from './app.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
+import { LoginComponent } from './Containers/login/login.component';
 
 
 
@@ -37,7 +38,7 @@ export const AppRoutes: Routes = [
     },
 
     {
-        path: '',
+        path: 'admin',
         component: AppLayoutComponent,
         children: [
             {
@@ -85,6 +86,10 @@ export const AppRoutes: Routes = [
                 component: ReservationComponent
             }
         ]
+    },
+    {
+        path: 'admin/login',
+        component: LoginComponent,
     },
     // no layout routes
     // { path: 'login', component: LoginComponent},
