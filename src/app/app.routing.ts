@@ -1,3 +1,4 @@
+import { SocialMediaModule } from './Containers/config/SocialMedia/social-media.module';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -54,8 +55,17 @@ export const AppRoutes: Routes = [
                 component: TableComponent
             },
             {
-                path: 'cofig',
-                component: ConfigComponent
+                path: 'config',
+                component: ConfigComponent,
+                children: [
+                    {
+                        path: 'social',
+                        loadChildren: 'app/Containers/config/SocialMedia/social-media.module#SocialMediaModule'
+                    }
+                ],
+                data: {
+                    authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+                }
             },
             {
                 path: 'account',
