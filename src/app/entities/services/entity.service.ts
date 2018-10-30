@@ -58,9 +58,9 @@ export class EntityService<T extends Entity> {
     const url = this.buildQueryUrl(option);
     return this.http.get<T>(url, reqOptions).pipe(
       tap(this.onResponse.bind(this)
-      .map(this.extractResponse.bind(this))
-      .map(this.convertListResponse.bind(this))
-      .catch(error => this.handleError(error))
+      // .map(this.extractResponse.bind(this))
+      // .map(this.convertListResponse.bind(this))
+      // .catch(error => this.handleError(error))
       ));
   }
 

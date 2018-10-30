@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { LoginServiceService } from './service/LoginServiceService';
+import { IAccount } from 'app/entities/model/user/iaccount.interface';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -23,8 +25,22 @@ export class LoginComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor() { }
+  accounts: IAccount[] = [];
+
+  constructor(private loginServices: LoginServiceService) { }
 
   ngOnInit() {
+    this.getAll()
+  }
+  getAll() {
+    this.loginServices.findAll().subscribe(res => {
+      this.accounts = res;
+      console.log(this.accounts);
+    });
+  }
+
+  processToShow(res) {
+    this.accounts = res.content;
+    return res;
   }
 }

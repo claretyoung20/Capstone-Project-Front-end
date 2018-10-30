@@ -23,6 +23,7 @@ import {AppInjector} from './app.injector';
 
 
 import { HomeComponent } from './customer-containers/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { HomeComponent } from './customer-containers/home/home.component';
     MaterialModule,
     BrowserAnimationsModule,
     SharedModule,
+    HttpClientModule,
     ContainersModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
 
@@ -56,5 +58,5 @@ entryComponents: [DialogContentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
- // constructor (appInjector: AppInjector) {}
+ constructor (appInjector: AppInjector) {}
  }

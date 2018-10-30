@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HhSocialService } from './services/hh-social/hh-social.service';
+import { LoginServiceService } from 'app/Containers/login/service/LoginServiceService';
+
 
 @NgModule({
   imports: [
@@ -8,7 +9,7 @@ import { HhSocialService } from './services/hh-social/hh-social.service';
   ],
   declarations: [],
   providers: [
-    HhSocialService,
+    LoginServiceService,
   ]
 })
 export class EntitiesModule { }
