@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { SERVER_API_URL } from './../../../static/constants/api.contants'
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IUser } from './user.model';
+import { SERVER_API_URL } from 'app/static/constants/api.contants';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

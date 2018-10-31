@@ -1,6 +1,6 @@
 import { createRequestOption } from './../../../shared/util/request-util';
 import { IHHSocialMedia } from './../../model/hh-social-media.model';
-import { BASE_API_URL } from './../../../static/constants/api.contants';
+import { SERVER_API_URL } from './../../../static/constants/api.contants';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,8 +10,8 @@ type EntityArrayResponseType = HttpResponse<IHHSocialMedia[]>;
 
 @Injectable({ providedIn: 'root' })
 export class HhSocialService {
-    private resourceUrl = BASE_API_URL + 'api/hh-social-medias';
-    private resourceSearchUrl = BASE_API_URL + 'api/_search/hh-social-medias';
+    private resourceUrl = SERVER_API_URL + 'api/hh-social-medias';
+    private resourceSearchUrl = SERVER_API_URL + 'api/_search/hh-social-medias';
 
     constructor(private http: HttpClient) {}
 

@@ -24,6 +24,7 @@ import {AppInjector} from './app.injector';
 
 import { HomeComponent } from './customer-containers/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthServerProvider } from './core';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { HttpClientModule } from '@angular/common/http';
 
   ],
 entryComponents: [DialogContentComponent],
-  providers: [AppInjector],
+  providers: [AppInjector, AuthServerProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

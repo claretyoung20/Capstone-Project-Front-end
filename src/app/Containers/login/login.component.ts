@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { LoginServiceService } from './service/LoginServiceService';
 import { IAccount } from 'app/entities/model/user/iaccount.interface';
+import { LoginService } from 'app/core/login/login.service';
+import { Router } from '@angular/router';
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -26,8 +28,9 @@ export class LoginComponent implements OnInit {
   accounts: IAccount[] = [];
 
   constructor(
-    private loginServices: LoginServiceService,
-    private fb: FormBuilder
+    private loginService: LoginService,
+    private fb: FormBuilder,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -42,19 +45,36 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getAll() {
-    this.loginServices.findAll().subscribe(res => {
-      this.accounts = res;
-      console.log(this.accounts);
-    });
-  }
   login() {
-    const data = this.loginForm.value;
-    data.rememberMe =  true;
-    console.log(data);
-  }
-  processToShow(res) {
-    this.accounts = res.content;
-    return res;
-  }
+    const data =  this.loginForm.value;
+    this.loginService
+        .login({
+            username: data.login,
+            password: data.password,
+            rememberMe: true
+        })
+        .then(() => {
+           console.log('successful');
+           this.router.navigateByUrl('/admin/dashboard');
+        })
+        .catch(() => {
+          console.log(' not successful');
+        });
+}
+
+  // getAll() {
+  //   this.loginServices.findAll().subscribe(res => {
+  //     this.accounts = res;
+  //     console.log(this.accounts);
+  //   });
+  // }
+  // login() {
+  //   const data = this.loginForm.value;
+  //   data.rememberMe =  true;
+  //   console.log(data);
+  // }
+  // processToShow(res) {
+  //   this.accounts = res.content;
+  //   return res;
+  // }
 }

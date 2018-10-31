@@ -6,7 +6,7 @@ import {tap} from 'rxjs/internal/operators'
 import { Entity } from '../interfaces/entity.interface';
 import {HttpParams, HttpClient, HttpHeaders} from '@angular/common/http';
 import {HttpParamsOptions} from '@angular/common/http/src/params';
-import { BASE_API_URL } from 'app/static/constants/api.contants';
+import { SERVER_API_URL } from 'app/static/constants/api.contants';
 
 export interface QueryOption {
   limit?: number;
@@ -50,7 +50,7 @@ export class EntityService<T extends Entity> {
         '&submit=Login';
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-    return this.http.post(BASE_API_URL + 'api/authentication', data, { headers });
+    return this.http.post(SERVER_API_URL + 'api/authentication', data, { headers });
   }
 
   public create(data: T): Observable<T> {
