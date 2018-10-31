@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from './../material/material.module';
 import { SidebarModule } from './../sidebar/sidebar.module';
 import { AppRoutes } from './../app.routing';
-
+import { AddressComponent } from './config/address/address.component';
 
 @NgModule({
   imports: [
@@ -42,7 +42,8 @@ import { AppRoutes } from './../app.routing';
     ReservationComponent,
     LoginComponent,
     TimeManagerComponent,
-    SocialMediaComponent
+    SocialMediaComponent,
+    AddressComponent
   ]
 })
 export class ContainersModule { }
