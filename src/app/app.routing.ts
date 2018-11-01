@@ -1,11 +1,8 @@
-import { SocialMediaModule } from './Containers/config/SocialMedia/social-media.module';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { TableComponent } from './table/table.component';
-import { SocialMediaComponent } from './Containers/config/SocialMedia/social-media.component';
-import { CustomerComponent } from './Containers/Customers/customer/customer.component';
 import { ConfigComponent } from './Containers/config/config.component';
 import { AccountComponent } from './Containers/account/account.component';
 import { StatisticsComponent } from './Containers/statistics/statistics.component';
@@ -15,10 +12,13 @@ import { MenuComponent } from './Containers/menu/menu.component';
 import { OrderComponent } from './Containers/order/order.component';
 import { ReservationComponent } from './Containers/reservation/reservation.component';
 import { HomeComponent } from './customer-containers/home/home.component';
-import { AppComponent } from './app.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { LoginComponent } from './Containers/login/login.component';
+import { StaffComponent } from './Containers/account/staff/staff.component';
+import { ListStaffComponent } from './Containers/account/staff/list-staff/list-staff.component';
+import { CustomerListComponent } from './Containers/account/customer/customer-list/customer-list.component';
+import { CustomerComponent } from './Containers/account/customer/customer.component';
 
 
 
@@ -68,8 +68,35 @@ export const AppRoutes: Routes = [
                 }
             },
             {
-                path: 'account',
-                component: AccountComponent
+                path: '',
+                children: [
+                    {
+                        path: 'account',
+                        component: AccountComponent,
+                    },
+                    {
+                        path: '',
+                        children: [
+                            {
+                                path: 'account/staff',
+                                component: StaffComponent
+                            },
+                            {
+                                path: 'account/staff/list',
+                                component: ListStaffComponent
+                            },
+                            {
+                                path: 'account/customer',
+                                component: CustomerComponent
+                            },
+                            {
+                                path: 'account/customer/list',
+                                component: CustomerListComponent
+                            }
+                        ]
+
+                    }
+                ]
             },
             {
                 path: 'statistics',

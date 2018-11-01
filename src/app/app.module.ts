@@ -25,6 +25,7 @@ import {AppInjector} from './app.injector';
 import { HomeComponent } from './customer-containers/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServerProvider } from './core';
+import { StaffComponent } from './Containers/account/staff/staff.component';
 
 @NgModule({
   declarations: [

@@ -1,9 +1,7 @@
 import { TimeManagerComponent } from './config/time-manager/time-manager.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomerComponent } from './Customers/customer/customer.component';
 import { ConfigComponent } from './config/config.component';
-import { AccountComponent } from './account/account.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { CategoryComponent } from './category/category.component';
@@ -19,6 +17,9 @@ import { MaterialModule } from './../material/material.module';
 import { SidebarModule } from './../sidebar/sidebar.module';
 import { AppRoutes } from './../app.routing';
 import { AddressComponent } from './config/address/address.component';
+import { AccountModule } from './account/account.module';
+import { StaffModule } from './account/staff/staff.module';
+import { CustomerComponent } from './Customers/customer/customer.component';
 
 @NgModule({
   imports: [
@@ -29,11 +30,10 @@ import { AddressComponent } from './config/address/address.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    AccountModule
   ],
   declarations: [
-    CustomerComponent,
     ConfigComponent,
-    AccountComponent,
     StatisticsComponent,
     PromotionComponent,
     CategoryComponent,
@@ -43,7 +43,8 @@ import { AddressComponent } from './config/address/address.component';
     LoginComponent,
     TimeManagerComponent,
     SocialMediaComponent,
-    AddressComponent
+    AddressComponent,
+    CustomerComponent
   ]
 })
 export class ContainersModule { }
