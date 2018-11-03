@@ -47,3 +47,6 @@ input:focus {
 .loginFooter {
     margin-bottom: -20%;
 }
+.auth-error{
+    color: red;
+}

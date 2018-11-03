@@ -24,8 +24,9 @@ import {AppInjector} from './app.injector';
 
 import { HomeComponent } from './customer-containers/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthServerProvider } from './core';
+import { AuthServerProvider, LoginService } from './core';
 import { StaffComponent } from './Containers/account/staff/staff.component';
+import { LoginComponent } from './Containers/login/login.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { StaffComponent } from './Containers/account/staff/staff.component';
 
   ],
 entryComponents: [DialogContentComponent],
-  providers: [AppInjector, AuthServerProvider],
+  providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

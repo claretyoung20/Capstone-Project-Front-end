@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private app: LoginService
     ) { }
 
   ngOnInit() {
@@ -58,23 +59,11 @@ export class LoginComponent implements OnInit {
            this.router.navigateByUrl('/admin/dashboard');
         })
         .catch(() => {
+          this.router.navigateByUrl('/admin/login');
           console.log(' not successful');
         });
 }
 
-  // getAll() {
-  //   this.loginServices.findAll().subscribe(res => {
-  //     this.accounts = res;
-  //     console.log(this.accounts);
-  //   });
-  // }
-  // login() {
-  //   const data = this.loginForm.value;
-  //   data.rememberMe =  true;
-  //   console.log(data);
-  // }
-  // processToShow(res) {
-  //   this.accounts = res.content;
-  //   return res;
-  // }
+authenticated() { return this.app.authenticated; }
+
 }
