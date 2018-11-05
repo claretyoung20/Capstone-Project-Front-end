@@ -16,7 +16,7 @@ export class AppLayoutComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.app.authenticated);
-   this.authenticated();
+  //  this.authenticated();
   }
   authenticated() {
     if (!this.app.authenticated) {

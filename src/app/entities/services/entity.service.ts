@@ -33,9 +33,9 @@ export class EntityService<T extends Entity> {
     const url = this.buildFindingUrl(id);
     return this.http.get<T>(url).pipe(
       tap(this.onResponse.bind(this)
-      .map(this.extractResponse.bind(this))
-      .map(this.convertSingleResponse.bind(this))
-      .catch(error => this.handleError(error))
+      // .map(this.extractResponse.bind(this))
+      // .map(this.convertSingleResponse.bind(this))
+      // .catch(error => this.handleError(error))
     ));
   }
 
@@ -58,8 +58,8 @@ export class EntityService<T extends Entity> {
     const option = this.buildCreateOption(data);
     return this.http.post<T>(url, option).pipe(
       tap(this.onResponse.bind(this)
-      .map(this.extractResponse.bind(this))
-      .catch(error => this.handleError(error))
+      // .map(this.extractResponse.bind(this))
+      // .catch(error => this.handleError(error))
       ));
   }
 
@@ -79,42 +79,46 @@ export class EntityService<T extends Entity> {
       ));
   }
 
-  // public searchApi(searchValue:  string, option: QueryOption): Observable<any> {
-  //   const reqOptions = this.buildQueryRequestOption(option);
-  //   const url = this.buildSearchUrl(searchValue);
-  //   return this.http.get<any>(url, reqOptions)
-  //     .do(this.onResponse.bind(this))
-  //     .map(this.extractResponse.bind(this))
-  //     .map(this.convertListResponse.bind(this))
-  //     .catch(error => this.handleError(error));
-  // }
+  public searchApi(searchValue:  string, option: QueryOption): Observable<any> {
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = this.buildSearchUrl(searchValue);
+    return this.http.get<any>(url, reqOptions).pipe(
+      tap(this.onResponse.bind(this)
+      // .map(this.extractResponse.bind(this))
+      // .map(this.convertListResponse.bind(this))
+      // .catch(error => this.handleError(error))
+    ));
+  }
 
-  // public delete(id: number): Observable<any> {
-  //   const url = this.buildDeleteUrl(id);
-  //   return this.http.delete(url)
-  //     .do(this.onResponse.bind(this))
-  //     .map(this.extractResponse.bind(this))
-  //     .catch(error => {
-  //       return Observable.of({ok: true});
-  //     });
-  // }
+  public delete(id: number): Observable<any> {
+    const url = this.buildDeleteUrl(id);
+    return this.http.delete(url).pipe(
+       tap(this.onResponse.bind(this)
+      // .map(this.extractResponse.bind(this))
+      // .catch(error => {
+      //   // return Observable.of({ok: true});
+      // })
+       ));
+  }
 
-  // public deleteResponseType(id: number): Observable<any> {
-  //   const url = this.buildDeleteUrl(id);
-  //   return this.http.delete(url, { responseType: 'text' })
-  //     .do(this.onResponse.bind(this))
-  //     .map(this.extractResponse.bind(this))
-  //     .catch(error => this.handleError(error));
-  // }
+  public deleteResponseType(id: number): Observable<any> {
+    const url = this.buildDeleteUrl(id);
+    return this.http.delete(url, { responseType: 'text' }).pipe(
+      tap(this.onResponse.bind(this)
+      // .map(this.extractResponse.bind(this))
+      // .catch(error => this.handleError(error))
+      ));
+  }
 
-  // public update(data: T): Observable<T> {
-  //   const url = this.buildUpdateUrl(data);
-  //   const option = this.buildUpdateOption(data);
-  //   return this.http.put<T>(url, option)
-  //     .do(this.onResponse.bind(this))
-  //     .map(this.extractResponse.bind(this))
-  //     .catch(error => this.handleError(error));
-  // }
+  public update(data: T): Observable<T> {
+    const url = this.buildUpdateUrl(data);
+    const option = this.buildUpdateOption(data);
+    return this.http.put<T>(url, option).pipe(
+      tap(this.onResponse.bind(this)
+      // .map(this.extractResponse.bind(this))
+      // .catch(error => this.handleError(error))
+      ));
+  }
 
   protected buildCreateUrl(data: T): string {
     return this.baseUrl;

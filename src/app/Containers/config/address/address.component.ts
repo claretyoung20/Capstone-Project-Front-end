@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
-import { DialogContentComponent } from 'app/shared/Dialog/dialog-content/dialog-content.component';
-
-export interface PeriodicElement {
-  id: number,
-  street: string;
-  city: string;
-  country: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, street: '18 Cau giay', city: 'Hanoi', country: 'Vietnam' },
-];
+import { AddressDialogComponent } from './address-dialog/address-dialog.component';
+import { AddressService } from 'app/entities/services/address/address.service';
+import { Address } from 'app/entities/interfaces/address';
 
 @Component({
   selector: 'app-address',
@@ -20,29 +11,67 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AddressComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'street', 'city', 'country', 'edit' ];
+  allAddress: Address[] = [];
+  displayedColumns: string[] = ['id', 'city', 'country', 'restaurantId', 'street', 'edit'];
   dataSource;
+
+  haveAddress = false;
+  title = '';
 
   constructor(
     public dialog: MatDialog,
-    ) { }
+    private addressService: AddressService
+  ) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    // this.getAllSocialMedia() ;
+    this.getRestaurantAddress();
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  openDialog(id) {
-    const dialogRef = this.dialog.open(DialogContentComponent);
+
+  editAddress(id) {
+    const title = 'Edit';
+    const dialogRef = this.dialog.open(AddressDialogComponent, {
+      data: {
+        addressId: id,
+        title: title
+      }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.getRestaurantAddress();
     });
   }
-  edit(id) {
 
+  addAddress() {
+    const title = 'Add';
+    const dialogRef = this.dialog.open(AddressDialogComponent, {
+      data: {
+        title: title
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getRestaurantAddress();
+    });
   }
 
+  getRestaurantAddress() {
+    this.addressService.findAll().subscribe(res => {
+      this.processToShow(res);
+    });
+  }
+
+  processToShow(res) {
+    if (Object.keys(res).length === 0) {
+      this.haveAddress = false;
+    } else {
+      this.haveAddress = true;
+      this.allAddress = res;
+      this.dataSource = new MatTableDataSource(this.allAddress);
+    }
+  }
 }
