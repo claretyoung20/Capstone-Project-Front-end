@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerComponent } from './customer.component';
-import { CustomerListComponent } from './customer-list/customer-list.component'
 import { MaterialModule } from 'app/material/material.module';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomerAddComponent } from './customer-add/customer-add.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CustomerComponent,
-    CustomerListComponent
+    CustomerEditComponent,
+    CustomerAddComponent
   ]
 })
 export class CustomerModule { }

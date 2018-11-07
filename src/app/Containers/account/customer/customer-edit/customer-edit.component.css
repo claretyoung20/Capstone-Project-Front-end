@@ -1,0 +1,15 @@
+.example-card {
+    max-width: 100%;
+    margin-left: 2%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 40%;
+}
+.left{
+    margin-left: 10%;
+}
+.btn-success{
+    background-color: green;
+    color: white;
+}

@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CustomerListComponent } from './customer-list.component';
+import { ConformDeleteDialogComponent } from './conform-delete-dialog.component';
 
-describe('CustomerListComponent', () => {
-  let component: CustomerListComponent;
-  let fixture: ComponentFixture<CustomerListComponent>;
+describe('ConformDeleteDialogComponent', () => {
+  let component: ConformDeleteDialogComponent;
+  let fixture: ComponentFixture<ConformDeleteDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomerListComponent ]
+      declarations: [ ConformDeleteDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomerListComponent);
+    fixture = TestBed.createComponent(ConformDeleteDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

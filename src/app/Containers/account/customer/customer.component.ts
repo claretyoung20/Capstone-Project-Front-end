@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { CustomerService } from 'app/entities/services/customer/customer.service';
+import { Customer } from 'app/entities/interfaces/customer';
+import { PaginationService } from 'app/shared/pagination/pagination.service';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { ConformDeleteDialogComponent } from './conform-delete-dialog/conform-delete-dialog.component';
 
 @Component({
   selector: 'app-customer',
@@ -8,84 +13,84 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'imageurl', 'createdDate', 'code', 'email', 'activated', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'dateOfBirth', 'address', 'phoneNumber',
+    'email', 'status', 'edit', 'delete'];
 
-  constructor(private router: Router) { }
+  dataSource;
+
+  customers: Customer[] = [];
+  /* paganation */
+  pageSize = 10;
+  currentPage = 0;
+  pager: any = {};
+  totalItems: any = 0;
+
+  constructor(
+    private router: Router,
+    private customerService: CustomerService,
+    private pagination: PaginationService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.getAllCustomer();
+  }
+
+  getAllCustomer() {
+    const query = {
+      size: this.pageSize,
+      page: this.currentPage
+    }
+    this.customerService.query(query).subscribe(res => {
+      this.processToShow(res);
+    });
+  }
+
+  processToShow(res) {
+    this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
+    console.log('pager', this.pager);
+    this.dataSource = new MatTableDataSource(res);
+    this.customers = res;
+    this.totalItems = res.totalElements;
+  }
+
+  setPage(number) {
+    this.currentPage = number;
+    this.getAllCustomer();
+  }
+
+  changePageSize(value) {
+    console.log('Page size to show ' + value);
+    this.pageSize = value;
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  editStaff(id) {
 
+  // open dialog for add, edit and delete
+  addNewCustomer() {
+    this.router.navigate(['admin/account/customer/add/']);
   }
 
-  cirnfirmDelete() {
+  editCustomer(id) {
+    this.router.navigate(['admin/account/customer/edit/', id]);
   }
 
-  openCustomerList() {
-    this.router.navigate(['admin/account/customer/list']);
-  }
+  confirmDelete(id) {
+    const title = 'Delete';
+    const dialogRef = this.dialog.open(ConformDeleteDialogComponent, {
+      data: {
+        customerId: id,
+        title: title
+      }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllCustomer();
+    });
+
+  }
 }
-
-
-export interface PeriodicElement {
-  id: number;
-  firstName: string;
-  lastName: string;
-  imageurl: string;
-  createdDate: string;
-  code: string;
-  email: string;
-  activated: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 1,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 2,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH002', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 3,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH003', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 4,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH004', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 5,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH004', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 6,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 7,  firstName: 'Nnenna', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 8,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 9,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 10, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 11, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 12, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 13, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 14, firstName: 'Ihechi', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 15, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 16, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 17, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 18, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 19, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 20, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-];
