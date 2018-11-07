@@ -95,5 +95,7 @@ export class AddressDialogComponent implements OnInit {
       this.dialogRef.close();
     })
   }
+  delete() {
 
+  }
 }

@@ -4,13 +4,15 @@ import { AccountComponent } from './account.component';
 import { StaffModule } from './staff/staff.module';
 import { CustomerModule } from './customer/customer.module';
 import { MaterialModule } from 'app/material/material.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     StaffModule,
     CustomerModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   declarations: [
     AccountComponent

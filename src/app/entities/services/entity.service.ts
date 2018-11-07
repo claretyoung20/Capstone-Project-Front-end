@@ -1,29 +1,26 @@
 import {AppInjector} from '../../app.injector';
-// import {AppInjector} from '@app/app.injector';
 import { Observable } from 'rxjs';
 import {tap} from 'rxjs/internal/operators'
-// import {Entity} from '@app/entities/interfaces/entity.interface';
 import { Entity } from '../interfaces/entity.interface';
 import {HttpParams, HttpClient, HttpHeaders} from '@angular/common/http';
-import {HttpParamsOptions} from '@angular/common/http/src/params';
 import { SERVER_API_URL } from 'app/static/constants/api.contants';
 
 export interface QueryOption {
-  limit?: number;
   size?: number;
+  page?: number;
   pageNumber?: number;
 }
 
 export const defaultQueryOption: QueryOption = {
-  limit: 10,
-  size: 20,
-  pageNumber: 1
+  size: 10,
+  pageNumber: 1,
+  page: 0
 
 }
 
 export class EntityService<T extends Entity> {
   protected http: HttpClient;
-  protected baseUrl: string
+  protected baseUrl: string;
 
   constructor() {
     this.http = AppInjector.get(HttpClient);

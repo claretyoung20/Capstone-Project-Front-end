@@ -34,3 +34,8 @@
     width: 90px;
     border-radius: 20px;
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}

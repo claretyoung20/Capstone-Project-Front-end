@@ -28,6 +28,17 @@ export const HH_TIME_MANAGER = {
     BASE: `${SERVER_API_URL}/api/time-managers`
 }
 
-export const HH_TIME_STAFF = {
+export const HH_STAFF = {
     BASE: `${SERVER_API_URL}/api/staff`
 }
+
+export const HH_STAFF_ACCOUNT = {
+    BASE: `${SERVER_API_URL}/api/staff/account`
+}
+
+export const HH_ACCOUNT = {
+    BASE: `${SERVER_API_URL}/api/user`
+}
+
+
+

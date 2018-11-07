@@ -16,9 +16,10 @@ import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { LoginComponent } from './Containers/login/login.component';
 import { StaffComponent } from './Containers/account/staff/staff.component';
-import { ListStaffComponent } from './Containers/account/staff/list-staff/list-staff.component';
-import { CustomerListComponent } from './Containers/account/customer/customer-list/customer-list.component';
 import { CustomerComponent } from './Containers/account/customer/customer.component';
+import { CustomerEditComponent } from './Containers/account/customer/customer-edit/customer-edit.component';
+import { CustomerAddComponent } from './Containers/account/customer/customer-add/customer-add.component';
+import { StaffEditComponent } from './Containers/account/staff/staff-edit/staff-edit.component';
 
 
 
@@ -82,16 +83,24 @@ export const AppRoutes: Routes = [
                                 component: StaffComponent
                             },
                             {
-                                path: 'account/staff/list',
-                                component: ListStaffComponent
+                                path: 'account/staff/add',
+                                component: StaffEditComponent
+                            },
+                            {
+                                path: 'account/staff/edit/:id',
+                                component: StaffEditComponent
                             },
                             {
                                 path: 'account/customer',
                                 component: CustomerComponent
                             },
                             {
-                                path: 'account/customer/list',
-                                component: CustomerListComponent
+                                path: 'account/customer/edit/:id',
+                                component: CustomerEditComponent
+                            },
+                            {
+                                path: 'account/customer/add',
+                                component: CustomerAddComponent
                             }
                         ]
 

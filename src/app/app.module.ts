@@ -21,15 +21,13 @@ import { MaterialModule } from './material/material.module';
 import { DialogContentComponent } from './shared/Dialog/dialog-content/dialog-content.component';
 import { AppInjector } from './app.injector';
 
-
 import { HomeComponent } from './customer-containers/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServerProvider, LoginService } from './core';
-import { StaffComponent } from './Containers/account/staff/staff.component';
-import { LoginComponent } from './Containers/login/login.component';
 import { SocialDialogComponent } from './Containers/config/SocialMedia/socialDialog/socialDialog.component';
 import { TimeManagerDialogComponent } from './Containers/config/time-manager/time-manager-dialog/time-manager-dialog.component';
 import { AddressDialogComponent } from './Containers/config/address/address-dialog/address-dialog.component';
+import { ConformDeleteDialogComponent } from './Containers/account/customer/conform-delete-dialog/conform-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +41,7 @@ import { AddressDialogComponent } from './Containers/config/address/address-dial
     SocialDialogComponent,
     TimeManagerDialogComponent,
     AddressDialogComponent,
+    ConformDeleteDialogComponent,
     HomeComponent
   ],
   imports: [
@@ -66,7 +65,8 @@ import { AddressDialogComponent } from './Containers/config/address/address-dial
     DialogContentComponent,
     SocialDialogComponent,
     TimeManagerDialogComponent,
-    AddressDialogComponent
+    AddressDialogComponent,
+    ConformDeleteDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
