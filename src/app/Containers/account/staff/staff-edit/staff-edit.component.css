@@ -1,0 +1,13 @@
+.form-control {
+    /* background-color: #a0874b; */
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    font-size: 14px;
+    transition: background-color 0.3s ease 0s;
+    padding: 7px 18px;
+    height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: white;
+}

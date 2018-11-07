@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { User } from 'app/core';
+import { StaffService } from 'app/entities/services/staff/staff.service';
+import { PaginationService } from 'app/shared/pagination/pagination.service';
 
 @Component({
   selector: 'app-staff',
@@ -8,83 +11,67 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'imageurl', 'createdDate', 'code', 'email', 'activated', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'activated', 'edit', 'delete'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+    dataSource;
+    user: User[] = [];
+    /* paganation */
+    pageSize = 10;
+    currentPage = 0;
+    pager: any = {};
+    totalItems: any = 0;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private staffService: StaffService,
+    private pagination: PaginationService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.getAllStaffs();
+  }
+
+  getAllStaffs() {
+    const query = {
+      size: this.pageSize,
+      page: this.currentPage
+    }
+    this.staffService.getStaffAccount(query).subscribe(res => {
+      this.processToShow(res);
+    });
+  }
+
+  processToShow(res) {
+    this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
+    console.log('pager', this.pager);
+    this.dataSource = new MatTableDataSource(res);
+    this.user = res;
+    this.totalItems = res.totalElements;
+  }
+
+  setPage(number) {
+    this.currentPage = number;
+    this.getAllStaffs();
+  }
+
+  changePageSize(value) {
+    console.log('Page size to show ' + value);
+    this.pageSize = value;
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openStaffList() {
-    this.router.navigate(['admin/account/staff/list']);
+
+  addNewStaff() {
+    this.router.navigate(['admin/account/staff/add']);
   }
-
   editStaff(id) {
-
+    this.router.navigate(['admin/account/staff/edit', id]);
   }
 
   cirnfirmDelete() {
   }
 }
-
-export interface PeriodicElement {
-  id: number;
-  firstName: string;
-  lastName: string;
-  imageurl: string;
-  createdDate: string;
-  code: string;
-  email: string;
-  activated: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 1,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 2,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH002', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 3,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH003', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 4,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH004', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 5,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH004', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 6,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 7,  firstName: 'Nnenna', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 8,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 9,  firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 10, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 11, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 12, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 13, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 14, firstName: 'Ihechi', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 15, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 16, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 17, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 18, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 19, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-  { id: 20, firstName: 'Gold', lastName: 'Ihesiaba', imageurl: 'ss', createdDate: '2018-10-30'
-  , code: 'SHH001', email: 'shh001@happy.com', activated: 'activited' },
-];

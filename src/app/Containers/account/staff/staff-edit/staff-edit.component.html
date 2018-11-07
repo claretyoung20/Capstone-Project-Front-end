@@ -1,0 +1,51 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Edit Customer</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+      <div class="form-group" [hidden]="!user.id">
+        <label>ID</label>
+        <input type="text" class="form-control" name="id" [(ngModel)]="user.id" readonly>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label class="form-control-label">User Name</label>
+          <input type="text" placeholder="Enter User Name" class="form-control" name="login" #loginInput="ngModel"
+            [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label class="form-control-label">First Name</label>
+          <input type="text" class="form-control" name="firstName" #firstNameInput="ngModel" [(ngModel)]="user.firstName"
+            maxlength="50">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Last Name</label>
+          <input type="text" class="form-control" name="lastName" #lastNameInput="ngModel" [(ngModel)]="user.lastName"
+            maxlength="50">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label class="form-control-label">Email</label>
+          <input type="email" class="form-control" name="email" #emailInput="ngModel" [(ngModel)]="user.email"
+            minlength="5" required maxlength="254" email>
+        </div>
+
+        <div class="form-check col-md-6">
+          <label class="form-check-label" for="activated">
+            <input class="form-check-input" [disabled]="user.id === null" type="checkbox" id="activated" name="activated"
+              [(ngModel)]="user.activated">
+            <span>Activated</span>
+          </label>
+        </div>
+      </div>
+      <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
+        Save 
+    </button>
+    </form>
+  </mat-card-content>
+</mat-card>
