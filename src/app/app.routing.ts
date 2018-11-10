@@ -20,6 +20,7 @@ import { CustomerComponent } from './Containers/account/customer/customer.compon
 import { CustomerEditComponent } from './Containers/account/customer/customer-edit/customer-edit.component';
 import { CustomerAddComponent } from './Containers/account/customer/customer-add/customer-add.component';
 import { StaffEditComponent } from './Containers/account/staff/staff-edit/staff-edit.component';
+import { RegisterCustomerComponent } from './customer-containers/register-customer/register-customer.component';
 
 
 
@@ -34,6 +35,10 @@ export const AppRoutes: Routes = [
                 path: '',
                 component: HomeComponent,
                 pathMatch: 'full'
+            },
+            {
+                path: 'register',
+                component: RegisterCustomerComponent
             }
             // { path: 'about', component: AboutComponent }
         ]
