@@ -8,7 +8,6 @@ import { AccountComponent } from './Containers/account/account.component';
 import { StatisticsComponent } from './Containers/statistics/statistics.component';
 import { PromotionComponent } from './Containers/promotion/promotion.component';
 import { CategoryComponent } from './Containers/category/category.component';
-import { MenuComponent } from './Containers/menu/menu.component';
 import { OrderComponent } from './Containers/order/order.component';
 import { ReservationComponent } from './Containers/reservation/reservation.component';
 import { HomeComponent } from './customer-containers/home/home.component';
@@ -21,6 +20,8 @@ import { CustomerEditComponent } from './Containers/account/customer/customer-ed
 import { CustomerAddComponent } from './Containers/account/customer/customer-add/customer-add.component';
 import { StaffEditComponent } from './Containers/account/staff/staff-edit/staff-edit.component';
 import { RegisterCustomerComponent } from './customer-containers/register-customer/register-customer.component';
+import { CustomerMenuComponent } from './customer-containers/customer-menu/customer-menu.component';
+import { MenuComponent } from './Containers/menu/menu.component';
 
 
 
@@ -39,6 +40,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'register',
                 component: RegisterCustomerComponent
+            },
+            {
+                path: 'menu',
+                component: CustomerMenuComponent
             }
             // { path: 'about', component: AboutComponent }
         ]
