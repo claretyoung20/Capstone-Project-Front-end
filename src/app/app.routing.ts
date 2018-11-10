@@ -22,7 +22,7 @@ import { StaffEditComponent } from './Containers/account/staff/staff-edit/staff-
 import { RegisterCustomerComponent } from './customer-containers/register-customer/register-customer.component';
 import { CustomerMenuComponent } from './customer-containers/customer-menu/customer-menu.component';
 import { MenuComponent } from './Containers/menu/menu.component';
-
+import { CustomerLoginComponent } from './customer-containers/customer-login/customer-login.component';
 
 
 
@@ -44,6 +44,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'menu',
                 component: CustomerMenuComponent
+            },
+            {
+                path: 'login',
+                component: CustomerLoginComponent
             }
             // { path: 'about', component: AboutComponent }
         ]
