@@ -28,6 +28,7 @@ import { TimeManagerDialogComponent } from './Containers/config/time-manager/tim
 import { AddressDialogComponent } from './Containers/config/address/address-dialog/address-dialog.component';
 import { ConformDeleteDialogComponent } from './Containers/account/customer/conform-delete-dialog/conform-delete-dialog.component';
 import { CustomerContainersModule } from './customer-containers/customer-containers.module';
+import { EditCustomerAccountComponent } from './customer-containers/customer-profile/edit-customer-account/edit-customer-account.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { CustomerContainersModule } from './customer-containers/customer-contain
     SocialDialogComponent,
     TimeManagerDialogComponent,
     AddressDialogComponent,
-    ConformDeleteDialogComponent
+    ConformDeleteDialogComponent,
+    EditCustomerAccountComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

@@ -23,6 +23,7 @@ import { RegisterCustomerComponent } from './customer-containers/register-custom
 import { CustomerMenuComponent } from './customer-containers/customer-menu/customer-menu.component';
 import { MenuComponent } from './Containers/menu/menu.component';
 import { CustomerLoginComponent } from './customer-containers/customer-login/customer-login.component';
+import { CustomerProfileComponent } from './customer-containers/customer-profile/customer-profile.component';
 
 
 
@@ -48,6 +49,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'login',
                 component: CustomerLoginComponent
+            },
+            {
+                path: 'profile',
+                component: CustomerProfileComponent
             }
             // { path: 'about', component: AboutComponent }
         ]
