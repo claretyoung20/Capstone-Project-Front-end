@@ -10,6 +10,10 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { ListOrderComponentComponent } from './customer-profile/list-order-component/list-order-component.component';
 import { ListReservationComponentComponent } from './customer-profile/list-reservation-component/list-reservation-component.component';
 import { EditCustomerAccountComponent } from './customer-profile/edit-customer-account/edit-customer-account.component';
+import { TableMapComponent } from './table-map/table-map.component';
+import { TableDisplayComponent } from './table-map/table-display/table-display.component';
+import { BookTableFormComponent } from './table-map/book-table-form/book-table-form.component';
+import { BookPolicyComponent } from './table-map/book-policy/book-policy.component';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { EditCustomerAccountComponent } from './customer-profile/edit-customer-a
     CustomerProfileComponent,
     ListOrderComponentComponent,
     ListReservationComponentComponent,
-    EditCustomerAccountComponent
+    EditCustomerAccountComponent,
+    TableMapComponent,
+    TableDisplayComponent,
+    BookTableFormComponent,
+    BookPolicyComponent
   ]
 })
 export class CustomerContainersModule { }

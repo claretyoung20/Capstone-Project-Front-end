@@ -24,6 +24,7 @@ import { CustomerMenuComponent } from './customer-containers/customer-menu/custo
 import { MenuComponent } from './Containers/menu/menu.component';
 import { CustomerLoginComponent } from './customer-containers/customer-login/customer-login.component';
 import { CustomerProfileComponent } from './customer-containers/customer-profile/customer-profile.component';
+import { TableMapComponent } from './customer-containers/table-map/table-map.component';
 
 
 
@@ -53,6 +54,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'profile',
                 component: CustomerProfileComponent
+            },
+            {
+                path: 'reservation',
+                component: TableMapComponent
             }
             // { path: 'about', component: AboutComponent }
         ]
