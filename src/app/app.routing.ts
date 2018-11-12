@@ -26,6 +26,7 @@ import { CustomerLoginComponent } from './customer-containers/customer-login/cus
 import { CustomerProfileComponent } from './customer-containers/customer-profile/customer-profile.component';
 import { TableMapComponent } from './customer-containers/table-map/table-map.component';
 import { CheckoutPageComponent } from './customer-containers/checkout-page/checkout-page.component';
+import { ContactUsComponent } from './customer-containers/contact-us/contact-us.component';
 
 
 
@@ -63,6 +64,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'checkout',
                 component: CheckoutPageComponent
+            },
+            {
+                path: 'contactus',
+                component: ContactUsComponent
             }
             // { path: 'about', component: AboutComponent }
         ]
