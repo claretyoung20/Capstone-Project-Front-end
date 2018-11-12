@@ -14,6 +14,7 @@ import { TableMapComponent } from './table-map/table-map.component';
 import { TableDisplayComponent } from './table-map/table-display/table-display.component';
 import { BookTableFormComponent } from './table-map/book-table-form/book-table-form.component';
 import { BookPolicyComponent } from './table-map/book-policy/book-policy.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BookPolicyComponent } from './table-map/book-policy/book-policy.compone
     TableMapComponent,
     TableDisplayComponent,
     BookTableFormComponent,
-    BookPolicyComponent
+    BookPolicyComponent,
+    CheckoutPageComponent
   ]
 })
 export class CustomerContainersModule { }
