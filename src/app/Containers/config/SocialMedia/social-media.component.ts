@@ -1,24 +1,9 @@
+import { IHHSocialMedia } from './../../../entities/model/hh-social-media.model';
+import { HhSocialService } from './../../../entities/services/hh-social/hh-social.service';
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
-import { DialogContentComponent } from '../../../shared/Dialog/dialog-content/dialog-content.component'
-import {MatDialog} from '@angular/material';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  logo: string;
-  edit: string;
-  delete: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Facebook', logo: '../../../../assets/img/socialMedia.jpg', edit: '', delete: ''},
-  {position: 2, name: 'Instagram', logo: '../../../../assets/img/socialMedia.jpg', edit: '', delete: ''},
-  {position: 3, name: 'Twitter', logo: '../../../../assets/img/socialMedia.jpg', edit: '', delete: ''},
-  {position: 4, name: 'YouTube', logo: '../../../../assets/img/socialMedia.jpg', edit: '', delete: ''},
-  {position: 5, name: 'Skype', logo: '../../../../assets/img/socialMedia.jpg', edit: '', delete: ''},
-  {position: 6, name: 'SnapChat', logo: '../../../../assets/img/socialMedia.jpg', edit: '', delete: ''}
-];
+import { MatTableDataSource } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { SocialDialogComponent } from './socialDialog/socialDialog.component';
 
 @Component({
   selector: 'app-social-media',
@@ -28,24 +13,79 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class SocialMediaComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'logo', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'link', 'name', 'restaurantId', 'edit', 'delete'];
   dataSource;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private socialSevice: HhSocialService
+  ) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.getAllSocialMedia();
+  }
+
+  getAllSocialMedia() {
+    this.socialSevice.findAll().subscribe(res => {
+      this.processToShow(res);
+    });
+  }
+  processToShow(res) {
+    this.dataSource = new MatTableDataSource(res);
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentComponent);
+
+  // Add new Social Media
+  addSocialMedia() {
+    const title = 'Add';
+    const dialogRef = this.dialog.open(SocialDialogComponent, {
+      data: {
+        title: title
+      }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.getAllSocialMedia()
     });
   }
+
+
+  // Edit Social Media
+  editSocialMedia(id) {
+    const title = 'Edit';
+    const dialogRef = this.dialog.open(SocialDialogComponent, {
+      data: {
+        socialMediaId: id,
+        title: title
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllSocialMedia()
+    });
+  }
+
+
+  // Delete Social Media
+  deleteSocialMedia(id): void {
+    const title = 'Delete';
+    const dialogRef = this.dialog.open(SocialDialogComponent, {
+      data: {
+        socialMediaId: id,
+        title: title
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllSocialMedia()
+    });
+  }
+
 }

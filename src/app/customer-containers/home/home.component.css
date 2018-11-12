@@ -1,0 +1,30 @@
+.bgText{
+    margin-top: 50px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 300;
+    color: rgb(249, 249, 249);
+    text-align: center;
+    visibility: inherit;
+}
+.bgText-wel{
+    margin-top: 250px;
+    font-size: 54px;
+    line-height: 54px;
+    text-align: center;
+    visibility: inherit;
+    color: #e93e21;
+    font-family: "Lilita One";
+}
+
+@media screen and (max-width: 900px)
+{
+    .bgText-wel{
+        margin-top: 100px;
+        font-size: 20px;
+    }
+    .bgText{
+        margin-top: 50px;
+        font-size: 15px;
+    }
+}

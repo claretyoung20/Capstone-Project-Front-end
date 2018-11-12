@@ -58,3 +58,7 @@ table {
     max-height: 100%;
     top: 5%;
 }
+.btn-confi-mat {
+    background-color: #5c5cc3;
+    color: white;
+}

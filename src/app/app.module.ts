@@ -1,59 +1,48 @@
+import { ContainersModule } from './Containers/containers.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
-import { NavbarModule} from './shared/navbar/navbar.module';
-import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
-import { NguiMapModule} from '@ngui/map';
+import { NavbarModule } from './shared/navbar/navbar.module';
+import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { SharedModule } from './shared/shared.module'
+import { NguiMapModule } from '@ngui/map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { TableComponent } from './table/table.component';
-import { CustomerComponent } from './Containers/Customers/customer/customer.component';
-import { SocialMediaComponent } from './Containers/config/SocialMedia/social-media.component';
-import { ConfigComponent } from './Containers/config/config.component';
-import { AccountComponent } from './Containers/account/account.component';
-import { StatisticsComponent } from './Containers/statistics/statistics.component';
-import { PromotionComponent } from './Containers/promotion/promotion.component';
-import { CategoryComponent } from './Containers/category/category.component';
-import { MenuComponent } from './Containers/menu/menu.component';
-import { OrderComponent } from './Containers/order/order.component';
-import { ReservationComponent } from './Containers/reservation/reservation.component';
-import { HomeComponent } from './customer-containers/home/home.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
-import { LoginComponent } from './Containers/login/login.component';
 import { MaterialModule } from './material/material.module';
-import { TimeManagerComponent } from './Containers/config/time-manager/time-manager.component';
 import { DialogContentComponent } from './shared/Dialog/dialog-content/dialog-content.component';
+import { AppInjector } from './app.injector';
+
+import { HttpClientModule } from '@angular/common/http';
+import { AuthServerProvider, LoginService } from './core';
+import { SocialDialogComponent } from './Containers/config/SocialMedia/socialDialog/socialDialog.component';
+import { TimeManagerDialogComponent } from './Containers/config/time-manager/time-manager-dialog/time-manager-dialog.component';
+import { AddressDialogComponent } from './Containers/config/address/address-dialog/address-dialog.component';
+import { ConformDeleteDialogComponent } from './Containers/account/customer/conform-delete-dialog/conform-delete-dialog.component';
+import { CustomerContainersModule } from './customer-containers/customer-containers.module';
+import { EditCustomerAccountComponent } from './customer-containers/customer-profile/edit-customer-account/edit-customer-account.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UserComponent,
     TableComponent,
-    CustomerComponent,
-    SocialMediaComponent,
-    ConfigComponent,
-    AccountComponent,
-    StatisticsComponent,
-    PromotionComponent,
-    CategoryComponent,
-    MenuComponent,
-    OrderComponent,
-    ReservationComponent,
-    HomeComponent,
     SiteLayoutComponent,
     AppLayoutComponent,
-    LoginComponent,
-    TimeManagerComponent,
-    DialogContentComponent
+    DialogContentComponent,
+    SocialDialogComponent,
+    TimeManagerDialogComponent,
+    AddressDialogComponent,
+    ConformDeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,11 +55,24 @@ import { DialogContentComponent } from './shared/Dialog/dialog-content/dialog-co
     ReactiveFormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
+    SharedModule,
+    HttpClientModule,
+    ContainersModule,
+    CustomerContainersModule,
+    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE' })
 
   ],
-entryComponents: [DialogContentComponent],
-  providers: [],
+  entryComponents: [
+    DialogContentComponent,
+    SocialDialogComponent,
+    TimeManagerDialogComponent,
+    AddressDialogComponent,
+    ConformDeleteDialogComponent,
+    EditCustomerAccountComponent
+  ],
+  providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(appInjector: AppInjector) { }
+}

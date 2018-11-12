@@ -1,0 +1,19 @@
+.acc-manage{
+    width: 100%;
+    margin: 10px auto;
+    height: 150px;
+    text-align: center;
+    padding: 50px;
+    font-size: xx-large;
+    background-color: #3d8ba7;
+    font-weight: 800;
+    color: aliceblue;
+}
+.list-acc{
+    width: 100%;
+    margin: 10px auto;
+}
+.acc-staff-table{
+    width: 100%;
+    margin: auto;
+}
