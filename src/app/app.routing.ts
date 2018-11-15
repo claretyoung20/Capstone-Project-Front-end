@@ -27,6 +27,7 @@ import { CustomerProfileComponent } from './customer-containers/customer-profile
 import { TableMapComponent } from './customer-containers/table-map/table-map.component';
 import { CheckoutPageComponent } from './customer-containers/checkout-page/checkout-page.component';
 import { ContactUsComponent } from './customer-containers/contact-us/contact-us.component';
+import { LogoutComponent } from './customer-containers/logout/logout.component';
 
 
 
@@ -68,6 +69,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'contactus',
                 component: ContactUsComponent
+            },
+            {
+                path: 'logout',
+                component: LogoutComponent
             }
             // { path: 'about', component: AboutComponent }
         ]

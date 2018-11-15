@@ -28,27 +28,27 @@
       </div>
       <div class="row">
         <div class="col-lg-10  col-lg-offset-1">
-          <form class="form-horizontal" id="contactform">
+          <form [formGroup]="customerForm" class="form-horizontal">
             <div class="contact-form">
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field">
                     <i class="fa fa-pencil"></i>
-                    <input class="web placeholder" type="text" placeholder="First Name" name="firstName">
+                    <input class="web placeholder" type="text" placeholder="First Name" formControlName="firstName">
                   </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field">
                     <i class="fa fa-pencil"></i>
-                    <input class="web placeholder" type="text" placeholder="Last Name" name="lastName">
+                    <input class="web placeholder" type="text" placeholder="Last Name" formControlName="lastName">
                   </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field">
                     <i class="fa fa-phone"></i>
-                    <input class="web placeholder" type="tel" placeholder="Phone Number" name="phoneNumber">
+                    <input class="web placeholder" type="tel" placeholder="Phone Number" formControlName="phoneNumber">
                   </div>
                 </div>
               </div>
@@ -56,39 +56,50 @@
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field">
                     <i class="fa fa-envelope-o"></i>
-                    <input class="web placeholder" type="email" placeholder="Your Email" name="email">
+                    <input class="web placeholder" type="email" placeholder="Email" formControlName="email">
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field" id="datepicker" placeholder="Date of Birth">
                     <i class="fa fa-calendar add-on"></i>
                     <input data-format="yyyy-MM-dd" type="text" placeholder="Date of Birth">
                   </div>
-                </div>
+                </div> -->
+
+                <mat-form-field class="left col-lg-4 col-md-4 col-sm-4">
+                  <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth" formControlName="dateOfBirth">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field">
                     <i class="fa fa-address-book-o" aria-hidden="true"></i>
-                    <input type="text" placeholder="Addresss">
+                    <input type="text" placeholder="Address" formControlName="address">
                   </div>
                 </div>
-
               </div>
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="form-field">
-                    <div class="selected-box" placeholder="Country">
-                      <select>
-                        <option value="vietnam">Vietnam</option>
-                      </select>
-                    </div>
+                    <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                    <input type="password" placeholder="Password" formControlName="password">
                   </div>
                 </div>
+
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="form-field">
+                      <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                      <input type="password" placeholder="Confirm Password" formControlName="passwordConfirm">
+                    </div>
+                  </div> -->
+
               </div>
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-submit mt-10 mb-30 text-center">
 
-                    <button id="submit" name="Submit" type="submit" onclick="return false;" class="button uppercase">
+                    <button id="submit" name="Submit" (click)="addCustomer()" class="button uppercase">
                       Register</button>
                   </div>
                 </div>
