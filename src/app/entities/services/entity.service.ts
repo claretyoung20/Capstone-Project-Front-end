@@ -12,10 +12,6 @@ export interface QueryOption {
 }
 
 export const defaultQueryOption: QueryOption = {
-  size: 10,
-  pageNumber: 1,
-  page: 0
-
 }
 
 export class EntityService<T extends Entity> {

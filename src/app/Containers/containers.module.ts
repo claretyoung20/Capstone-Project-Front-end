@@ -18,7 +18,6 @@ import { SidebarModule } from './../sidebar/sidebar.module';
 import { AppRoutes } from './../app.routing';
 import { AddressComponent } from './config/address/address.component';
 import { AccountModule } from './account/account.module';
-import { StaffModule } from './account/staff/staff.module';
 import { CustomerComponent } from './Customers/customer/customer.component';
 
 @NgModule({

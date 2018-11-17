@@ -41,5 +41,20 @@ export const HH_ACCOUNT = {
     BASE: `${SERVER_API_URL}/api/user`
 }
 
+export const HH_PRODUCT = {
+    BASE: `${SERVER_API_URL}/api/products`,
+    BYCATEGORY: `${SERVER_API_URL}/api/products/category`
+}
+export const HH_PRODUCT_TYPE = {
+    BASE: `${SERVER_API_URL}/api/product-types`
+}
+export const HH_CATEGORY = {
+    BASE: `${SERVER_API_URL}/api/categories`,
+    BYPRODUCTYPE: `${SERVER_API_URL}/api/categories/ptype`
+}
 
-
+export const HH_CART = {
+    BASE: `${SERVER_API_URL}/api/carts`,
+    CHECKCART: `${SERVER_API_URL}/api/carts/exist`,
+    BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`
+}
