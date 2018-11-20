@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/cor
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { CURRENTSTAFFORADMINID, CURRENTADMINROLE } from 'app/static/constants/site.constants';
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
     @ViewChild('navbar-cmp') button;
 
-    constructor(location: Location, private renderer: Renderer, private element: ElementRef) {
+    constructor(location: Location, private renderer: Renderer, private element: ElementRef, private router: Router) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -45,7 +46,7 @@ export class NavbarComponent implements OnInit {
         const body = document.getElementsByTagName('body')[0];
 
         if (this.sidebarVisible === false) {
-            setTimeout(function(){
+            setTimeout(function() {
                 toggleButton.classList.add('toggled');
             }, 500);
             body.classList.add('nav-open');
@@ -56,4 +57,11 @@ export class NavbarComponent implements OnInit {
             body.classList.remove('nav-open');
         }
     }
+
+    logout() {
+        localStorage.clear();
+        localStorage.removeItem(CURRENTSTAFFORADMINID);
+        this.router.navigate(['/admin/login']);
+    }
+
 }

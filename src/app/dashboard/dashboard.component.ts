@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { CURRENTADMINROLE } from 'app/static/constants/site.constants';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -10,7 +12,21 @@ declare var $:any;
 })
 
 export class DashboardComponent implements OnInit{
-    ngOnInit(){
+
+  userRole: string;
+
+  constructor (
+    private router: Router
+    ) { }
+
+    ngOnInit() {
+
+      this.userRole = localStorage.getItem(CURRENTADMINROLE) || 'non';
+        console.log('currently' + this.userRole);
+
+        if (this.userRole === 'non') {
+          this.router.navigate(['/admin/login']);
+        }
         var dataSales = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
           series: [

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'app/core';
 import { AppLayoutComponent } from 'app/_layout/app-layout/app-layout.component';
+import { CURRENTADMINROLE } from 'app/static/constants/site.constants';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -13,17 +15,19 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    {user: 'admin', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
-    {user: 'staff', path: 'user', title: 'User Profile',  icon: 'ti-user', class: '' },
-    {user: 'admin', path: '/admin/config', title: 'Manage Configuration',  icon: 'ti-settings', class: '' },
-    {user: 'admin', path: '/admin/account', title: 'Manage Account',  icon: 'ti-user', class: '' },
-    {user: 'manager', path: 'table', title: 'Table List',  icon: 'ti-view-list-alt', class: '' },
-    {user: 'manager', path: '/admin/promotion', title: 'Manage Promotion',  icon: 'ti-plus ', class: '' },
-    {user: 'manager', path: '/admin/category', title: 'Manage Category',  icon: 'ti-view-list-alt', class: '' },
-    {user: 'manager', path: '/admin/menu', title: 'Manage Menu',  icon: 'ti-menu-alt', class: '' },
-    {user: 'staff', path: '/admin/statistics', title: 'Statistics',  icon: 'ti-stats-up', class: '' },
-    {user: 'staff', path: '/admin/Order', title: 'Process Order',  icon: 'ti-shopping-cart-full', class: '' },
-    {user: 'staff', path: '/admin/reservation', title: 'Process Reservation',  icon: 'ti-crown', class: '' }
+    {user: 'ROLE_ADMIN', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
+    {user: 'ROLE_ADMIN', path: '/admin/config', title: 'Manage Configuration',  icon: 'ti-settings', class: '' },
+    {user: 'ROLE_ADMIN', path: '/admin/account', title: 'Manage Account',  icon: 'ti-user', class: '' },
+    {user: 'ROLE_MANAGER', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
+    {user: 'ROLE_MANAGER', path: 'table', title: 'Table List',  icon: 'ti-view-list-alt', class: '' },
+    {user: 'ROLE_MANAGER', path: '/admin/promotion', title: 'Manage Promotion',  icon: 'ti-plus ', class: '' },
+    {user: 'ROLE_MANAGER', path: '/admin/category', title: 'Manage Category',  icon: 'ti-view-list-alt', class: '' },
+    {user: 'ROLE_MANAGER', path: '/admin/menu', title: 'Manage Menu',  icon: 'ti-menu-alt', class: '' },
+    {user: 'ROLE_STAFF', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
+    {user: 'ROLE_STAFF', path: 'user', title: 'User Profile',  icon: 'ti-user', class: '' },
+    {user: 'ROLE_STAFF', path: '/admin/statistics', title: 'Statistics',  icon: 'ti-stats-up', class: '' },
+    {user: 'ROLE_STAFF', path: '/admin/Order', title: 'Process Order',  icon: 'ti-shopping-cart-full', class: '' },
+    {user: 'ROLE_STAFF', path: '/admin/reservation', title: 'Process Reservation',  icon: 'ti-crown', class: '' }
 ];
 
 @Component({
@@ -35,10 +39,24 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
-    constructor(private app: AppLayoutComponent) {
+
+    userRole: string;
+    constructor(
+        private app: AppLayoutComponent,
+        private router: Router
+    ) {
     }
     ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.userRole = localStorage.getItem(CURRENTADMINROLE) || 'non';
+        console.log('currently' + this.userRole);
+
+        if (this.userRole !== 'non') {
+            this.menuItems = ROUTES.filter(menuItem => menuItem.user === this.userRole);
+            console.log('menu => ' + this.menuItems);
+        } else {
+             // return to home page
+            this.router.navigate(['/admin/login']);
+        }
     }
     isNotMobileMenu() {
         if ($(window).width() > 991) {

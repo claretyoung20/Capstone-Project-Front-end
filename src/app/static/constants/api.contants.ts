@@ -30,7 +30,8 @@ export const HH_TIME_MANAGER = {
 }
 
 export const HH_STAFF = {
-    BASE: `${SERVER_API_URL}/api/staff`
+    BASE: `${SERVER_API_URL}/api/staff`,
+    BYUSERID: `${SERVER_API_URL}/api/staff/user`
 }
 
 export const HH_STAFF_ACCOUNT = {
