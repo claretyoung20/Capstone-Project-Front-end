@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { EntityService } from '../entity.service';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
-import { Cart, ICart } from 'app/entities/interfaces/cart';
+import { ICart } from 'app/entities/interfaces/cart';
 import { HH_CART } from 'app/static/constants/api.contants';
 import { tap, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import * as moment from 'moment';
 
-type EntityResponseType = HttpResponse<Cart>;
+type EntityResponseType = HttpResponse<ICart>;
 @Injectable({
   providedIn: 'root'
 })
@@ -27,11 +27,11 @@ export class CartService extends EntityService<ICart> {
   }
 
   public findAllByCustomerId(id: number | string): Observable<any> {
-    const url = HH_CART.BYCUTOMERID + '/' + id;
     const option = this.buildFindAllOption();
     const reqOptions = this.buildQueryRequestOption(option);
-    return this.http.get<ICart>(url, reqOptions).pipe(
-      tap(this.onResponse.bind(this)));
+    const url = HH_CART.BYCUTOMERID + '/' + id;
+      return this.http.get<ICart>(url, reqOptions).pipe(
+        tap(this.onResponse.bind(this)));
   }
 
   private convertDateFromServer(res: EntityResponseType): EntityResponseType {

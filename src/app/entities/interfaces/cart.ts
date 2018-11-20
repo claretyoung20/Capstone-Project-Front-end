@@ -8,14 +8,3 @@ export interface ICart extends Entity {
     productId?: number;
     customerId?: number;
 }
-
-export class Cart implements ICart {
-    constructor(
-        public dateCreated?: Moment,
-        public dateUpdated?: Moment,
-        public totalItem?: number,
-        public productId?: number,
-        public customerId?: number
-    ) {}
-}
-

@@ -5,15 +5,12 @@ import { CategoryService } from 'app/entities/services/category/category.service
 import { Category } from 'app/entities/interfaces/category';
 import { Product } from 'app/entities/interfaces/product';
 import { ProductType } from 'app/entities/interfaces/productType';
-import * as moment from 'moment';
 import { LOCALSTORAGEFORCUSTOMER, ISCUSTOMERLOGGED } from 'app/static/constants/site.constants';
 import { MatDialog } from '@angular/material';
 import { MenuAddCartComponent } from './menu-add-cart/menu-add-cart.component';
-import { Router } from '@angular/router';
 import { CartService } from 'app/entities/services/cart/cart.service';
-import { Cart, ICart } from 'app/entities/interfaces/cart';
+import { ICart } from 'app/entities/interfaces/cart';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-customer-menu',
@@ -113,18 +110,17 @@ export class CustomerMenuComponent implements OnInit {
           // open dialog
           this.openCartDialog('message');
         })
-      }, (res: HttpErrorResponse) => {
-        const cartData: ICart = {
-          totalItem: 1,
-          productId: productId,
-          customerId: custmId
-        }
-
-        this.cartServices.create(cartData).subscribe(result => {
-          console.log(result);
-          this.openCartDialog('message');
-        })
-      });
+      }, () => {
+          const cartData: ICart = {
+            totalItem: 1,
+            productId: productId,
+            customerId: custmId
+          };
+          this.cartServices.create(cartData).subscribe(result => {
+            console.log(result);
+            this.openCartDialog('message');
+          });
+        });
     }
 
   }
