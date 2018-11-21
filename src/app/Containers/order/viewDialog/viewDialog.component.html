@@ -1,0 +1,58 @@
+<!-- Order status -->
+<div [hidden]="!isOrderStatus">
+    <h4>Current Order Status</h4>
+    <p>Status Id: <span class="data">{{orderStatus.id}}</span></p>
+    <p>State: <span class="data">{{orderStatus.name}}</span></p>
+</div>
+
+<!--  Customer detail -->
+<div class="row justify-content-center" [hidden]="!isCustomer">
+    <div class="col-8">
+        <div *ngIf="customer">
+            <h2>Customer Detail</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Address: </span><span class="data">{{customer.address}}</span></dt>
+                <dt><span>Date Created: </span><span class="data">{{customer.dateCreated}}</span></dt>
+                <dt><span>Date Updated: </span><span class="data">{{customer.dateUpdated}}</span></dt>
+                <dt><span>Date Of Birth: </span><span class="data">{{customer.dateOfBirth}}</span></dt>
+                <dt><span>Email: </span><span class="data">{{customer.email}}</span></dt>
+                <dt><span>First Name: </span><span class="data">{{customer.firstName}}</span></dt>
+                <dt><span>Last Name: </span><span class="data">{{customer.lastName}}</span></dt>
+                <dt><span>Phone Number: </span><span class="data">{{customer.phoneNumber}}</span></dt>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!-- Staff -->
+<div [hidden]="!isStaff">
+    <div *ngIf="staff">
+        <h4>Staff Detail</h4>
+        <p>Status Id: {{staff.id}}</p>
+        <p>State: {{staff.staffCode}}</p>
+    </div>
+</div>
+
+<!-- coupon -->
+<div class="row justify-content-center" [hidden]="!isCoupon">
+    <div class="col-8">
+        <div *ngIf="coupon">
+            <h2>Coupon Detail</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Code: </span><span class="data">{{coupon.code}}</span></dt>
+                <dt><span>Start Created: </span><span class="data">{{coupon.startFromDate}}</span></dt>
+                <dt><span>End Updated: </span><span class="data">{{coupon.endDate}}</span></dt>
+                <dt><span>Price: </span><span class="data">{{coupon.price}}</span></dt>
+                <dt><span>maxAmountToApply: </span><span class="data">{{coupon.maxAmountToApply}}</span></dt>
+                <dt><span>Number Per User: </span><span class="data">{{coupon.noPerUser}}</span></dt>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT DATA OF ORDER -->
+<div [hidden]="!isEditStatus">
+    <p>hELLO THERE </p>
+</div>

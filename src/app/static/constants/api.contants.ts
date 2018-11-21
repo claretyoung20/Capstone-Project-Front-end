@@ -59,3 +59,17 @@ export const HH_CART = {
     CHECKCART: `${SERVER_API_URL}/api/carts/exist`,
     BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`
 }
+// order
+export const HH_ORDER = {
+    BASE: `${SERVER_API_URL}/api/happy-orders`
+}
+
+// Status
+export const HH_COUPON = {
+    BASE: `${SERVER_API_URL}/api/coupons`
+}
+
+// ORDER STATUS
+export const HH_ORDER_STATUS = {
+    BASE: `${SERVER_API_URL}/api/order-statuses`
+}

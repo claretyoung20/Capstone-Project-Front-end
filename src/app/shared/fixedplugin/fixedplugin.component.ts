@@ -22,7 +22,7 @@ export class FixedPluginComponent implements OnInit {
 
         }
 
-        $('.fixed-plugin a').click(function(event){
+        $('.fixed-plugin a').click(function(event) {
           // tslint:disable-next-line:max-line-length
           // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
             if ($(this).hasClass('switch-trigger')) {
@@ -34,7 +34,7 @@ export class FixedPluginComponent implements OnInit {
             }
         });
 
-        $('.fixed-plugin .background-color span').click(function(){
+        $('.fixed-plugin .background-color span').click(function() {
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
 
@@ -49,7 +49,7 @@ export class FixedPluginComponent implements OnInit {
             }
         });
 
-        $('.fixed-plugin .active-color span').click(function(){
+        $('.fixed-plugin .active-color span').click(function() {
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
 
