@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-2" *ngFor="let item of allOrderStatus">
-        <mat-card class="staff-order" (click)="waitingOrder(item.id)">{{item.name}} Order</mat-card>
+        <mat-card class="staff-order" (click)="viewOrderByStatus(item.id)">{{item.name}} Order</mat-card>
     </div>
 
     <div class="col-md-2">
@@ -13,9 +13,9 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <mat-form-field class="filter-staffa">
+        <!-- <mat-form-field class="filter-staffa">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
+        </mat-form-field> -->
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource">
 
@@ -47,25 +47,25 @@
                 <!-- Address Column -->
                 <ng-container matColumnDef="orderStatus">
                     <th mat-header-cell *matHeaderCellDef> orderStatusId </th>
-                    <td mat-cell *matCellDef="let element"><a (click)="getOrderStatus(element.id)">{{ element.orderStatusId }}</a></td>
+                    <td mat-cell *matCellDef="let element"><a (click)="getOrderStatus(element.orderStatusId)">{{ element.orderStatusId }}</a></td>
                 </ng-container>
 
                 <!-- Phone Number Column -->
                 <ng-container matColumnDef="customer">
                     <th mat-header-cell *matHeaderCellDef>customerId </th>
-                    <td mat-cell *matCellDef="let element"><a (click)="getCustomerById(element.id)">{{ element.customerId}} </a></td>
+                    <td mat-cell *matCellDef="let element"><a (click)="getCustomerById(element.customerId)">{{ element.customerId}} </a></td>
                 </ng-container>
 
                 <!-- email Column -->
                 <ng-container matColumnDef="coupon">
                     <th mat-header-cell *matHeaderCellDef> couponId </th>
-                    <td mat-cell *matCellDef="let element"><a (click)="getCouponById(element.id)">{{ element.couponId}}</a></td>
+                    <td mat-cell *matCellDef="let element"><a (click)="getCouponById(element.couponId)">{{ element.couponId}}</a></td>
                 </ng-container>
 
                 <!-- status Column -->
                 <ng-container matColumnDef="staff">
                     <th mat-header-cell *matHeaderCellDef> staffId </th>
-                    <td mat-cell *matCellDef="let element"> <a (click)="getCouponById(element.id)">{{ element.staffId}} </a></td>
+                    <td mat-cell *matCellDef="let element"> <a (click)="getStaffById(element.staffId)">{{ element.staffId}} </a></td>
                 </ng-container>
 
                 <!-- Edit Column -->

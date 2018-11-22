@@ -10,4 +10,4 @@ export const ORDERCUSTOMERSDIALOG = 'customer';
 export const ORDERSSTAFFDIALOG = 'staff';
 export const ORDERCOUPONDIALOG = 'coupon';
 export const ORDERVIEWSUBORDERDIALOG = 'subOrder';
-export const ORDEREDITDIALOG = ' edit';
+export const ORDEREDITDIALOG = 'edit';

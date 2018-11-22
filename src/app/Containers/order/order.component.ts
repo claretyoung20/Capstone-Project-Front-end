@@ -1,3 +1,5 @@
+import { ORDERVIEWSUBORDERDIALOG } from './../../static/constants/site.constants';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from './../../entities/interfaces/order';
 import { Customer } from './../../entities/interfaces/customer';
 import { CustomerService } from './../../entities/services/customer/customer.service';
@@ -22,6 +24,7 @@ import { Staff } from 'app/entities/interfaces/staff';
 import { OrderStatus } from 'app/entities/interfaces/orderStatus';
 import { OrderStatusService } from 'app/entities/services/orderStatus/orderStatus.service';
 import { ViewDialogComponent } from './viewDialog/viewDialog.component';
+import { SaleOrderService } from 'app/entities/services/saleOrder/sale-order.service';
 
 @Component({
   selector: 'app-order',
@@ -67,7 +70,8 @@ export class OrderComponent implements OnInit {
     private couponService: CouponService,
     private customerService: CustomerService,
     private staffServices: StaffService,
-    private orderStatusService: OrderStatusService
+    private orderStatusService: OrderStatusService,
+    private saleServices: SaleOrderService
   ) {}
 
   ngOnInit() {
@@ -181,17 +185,21 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  viewSubOrder(id) {}
+  viewSubOrder(id) {
+    this.saleServices.getbyOrderId(id).subscribe(res => {
+      this.opendialog(res, ORDERVIEWSUBORDERDIALOG);
+    });
+  }
 
-  waitingOrder() {}
-
-  processingOrder() {}
-
-  completeOrder() {}
-
-  closedOrder() {}
-
-  cancelOrder() {}
-
-  allOrder() {}
+  viewOrderByStatus(id) {
+    this.orderService.getbyStatusId(id).subscribe(res => {
+      this.processToShow(res)
+    },
+    (error: HttpErrorResponse) => {
+      console.log('jjdjdjdj' + error.message);
+    })
+  }
+  allOrder() {
+    this.getAllOrder();
+  }
 }

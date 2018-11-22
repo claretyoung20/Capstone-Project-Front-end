@@ -31,6 +31,7 @@ import { CustomerContainersModule } from './customer-containers/customer-contain
 import { EditCustomerAccountComponent } from './customer-containers/customer-profile/edit-customer-account/edit-customer-account.component';
 import { MenuAddCartComponent } from './customer-containers/customer-menu/menu-add-cart/menu-add-cart.component';
 import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.component';
+import { ViewProductDetailComponent } from './Containers/order/viewProductDetail/viewProductDetail.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.co
     AddressDialogComponent,
     ConformDeleteDialogComponent,
     MenuAddCartComponent,
-    ViewDialogComponent
+    ViewDialogComponent,
+    ViewProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.co
     ConformDeleteDialogComponent,
     EditCustomerAccountComponent,
     MenuAddCartComponent,
-    ViewDialogComponent
+    ViewDialogComponent,
+    ViewProductDetailComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

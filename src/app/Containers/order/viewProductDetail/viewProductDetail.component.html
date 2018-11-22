@@ -1,0 +1,13 @@
+<div class="row justify-content-center" *ngIf="product">
+    <div class="col-8">
+        <div>
+            <h2>Product Detail</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name: </span><span class="data">{{product.name}}</span></dt>
+                <dt><span>Description: </span><span class="data">{{product.description}}</span></dt>
+                <dt><span>Price: </span><span class="data">{{product.price | currency:'$'}}</span></dt>
+            </dl>
+        </div>
+    </div>
+</div>
