@@ -81,3 +81,18 @@ export const HH_SALE_ORDER = {
     BASE: `${SERVER_API_URL}/api/sale-orders`,
     BYORDERID: `${SERVER_API_URL}/api/sale-orders/order`
 }
+
+// TABLE
+export const HH_TABLE = {
+    BASE: `${SERVER_API_URL}/api/book-tables`
+}
+
+// reservation
+export const HH_RESERVATION = {
+    BASE: `${SERVER_API_URL}/api/reservations`,
+    BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
+    // BYRESERVEDATE: `${SERVER_API_URL}/api/reservations/table`,
+    // BYSTARTIME: `${SERVER_API_URL}/api/reservations/table`,
+    // BYENDTIME: `${SERVER_API_URL}/api/reservations/table`,
+    // BYSTATUS: `${SERVER_API_URL}/api/reservations/table`,
+}

@@ -11,3 +11,6 @@ export const ORDERSSTAFFDIALOG = 'staff';
 export const ORDERCOUPONDIALOG = 'coupon';
 export const ORDERVIEWSUBORDERDIALOG = 'subOrder';
 export const ORDEREDITDIALOG = 'edit';
+export const TABLEDETAIL = 'tableDetail';
+export const EDITRESERVATIONDSTATUS = 'editTableStatus';
+
