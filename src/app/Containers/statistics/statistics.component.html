@@ -1,3 +1,131 @@
-<p>
-  statistics works!
-</p>
+<div>
+    <p class="fiter">Filter Sales</p>
+    <br>
+    <br>
+    <form>
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card class="staff-order">
+                    <mat-form-field class="datePicker">
+                        <input matInput [matDatepicker]="picker" placeholder="Created date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </mat-card>
+            </div>
+            <div class="col-md-3">
+                <mat-card class="staff-order">
+                    <mat-form-field class="datePicker">
+                        <input matInput [matDatepicker]="picker1" placeholder="Updated date">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </mat-card>
+            </div>
+        </div>
+        <button (click)="searchValue()" mat-raised-button color="primary" class="btnSearch"><i class="ti-plus"> Filter</i></button>
+    </form>
+</div>
+
+<!-- DISPLAY ORDER  -->
+<button (click)="searchValue()" mat-raised-button color="primary" class="report"><i class="ti-plus"> Export Sale Report</i></button>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <mat-form-field class="filter-staffa">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by any value">
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <p class="fiter">SALES</p>
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
+                </ng-container>
+
+                <!-- basePrice Column -->
+                <ng-container matColumnDef="basePrice">
+                    <th mat-header-cell *matHeaderCellDef> basePrice </th>
+                    <td mat-cell *matCellDef="let element"> {{element.basePrice }} </td>
+                </ng-container>
+
+                <!-- discountAmount Column -->
+                <ng-container matColumnDef="discountAmount">
+                    <th mat-header-cell *matHeaderCellDef> discountAmount </th>
+                    <td mat-cell *matCellDef="let element"> {{element.discountAmount | currency: '$' }} </td>
+                </ng-container>
+
+                <!-- originalPrice Column -->
+                <ng-container matColumnDef="originalPrice">
+                    <th mat-header-cell *matHeaderCellDef> originalPrice </th>
+                    <td mat-cell *matCellDef="let element"> {{element.originalPrice | currency: '$'}} </td>
+                </ng-container>
+
+                <!--  -->
+                <ng-container matColumnDef="dateCreated">
+                    <th mat-header-cell *matHeaderCellDef> dateCreated </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateCreated }} </td>
+                </ng-container>
+                <!--  -->
+                <ng-container matColumnDef="dateUpdated">
+                    <th mat-header-cell *matHeaderCellDef> dateUpdated </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateUpdated }} </td>
+                </ng-container>
+
+
+                <!-- status Column -->
+                <ng-container matColumnDef="productId">
+                    <th mat-header-cell *matHeaderCellDef> productId </th>
+                    <td mat-cell *matCellDef="let element"> <a (click)="getProductById(element.productId)">{{
+              element.productId}} </a></td>
+                </ng-container>
+
+                <!-- Phone Number Column -->
+                <ng-container matColumnDef="happyOrderId">
+                    <th mat-header-cell *matHeaderCellDef>happyOrderId </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="getOrderById(element.happyOrderId)">{{
+              element.happyOrderId}} </a></td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <!-- pagination -->
+
+            <div class="box-footer clearfix" *ngIf="pager.pages && pager.pages.length">
+                <span class="pull-left">Showing 1 to {{saleOrders.length < pageSize ? saleOrders.length : pageSize}} of
+            {{totalItems}} entries</span>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li [ngClass]="{disabled:pager.currentPage === 0}" title="First Page">
+                        <a aria-label="First" (click)="(pager.currentPage !== 0) && setPage(0)" class="page-link">
+                            <i class="fa fa-step-backward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 0}" title="Previous Page">
+                        <a aria-label="Previous" (click)="(pager.currentPage !== 0) && setPage(pager.currentPage - 1)" class="page-link">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page - 1}">
+                        <a (click)="setPage(page-1)" class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage + 1 === pager.totalPages}" title="Next Page">
+                        <a aria-label="Next" (click)="(pager.currentPage + 1 !== pager.totalPages) && setPage(pager.currentPage + 1)" class="page-link">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage + 1 === pager.totalPages}" title="Last Page">
+                        <a aria-label="Last" (click)="(pager.currentPage + 1 !== pager.totalPages) && setPage(pager.totalPages - 1)" class="page-link">
+                            <i class="fa fa-step-forward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
