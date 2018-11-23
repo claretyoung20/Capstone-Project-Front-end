@@ -24,8 +24,12 @@ export class CheckoutPageComponent implements OnInit {
   customerId: number;
   isCustomerLoggedIn: Boolean;
   iCart: ICart[] = [];
-  ELEMENT_DATA: PeriodicElement[] = [];
+  ELEMENT_DATA = [];
   testCart = 0;
+
+  products: Product[] = [];
+
+  cartTable: CartTable[] = [];
 
   constructor(
     private router: Router,
@@ -41,11 +45,10 @@ export class CheckoutPageComponent implements OnInit {
     if (this.customerId === 0 && this.isCustomerLoggedIn) {
       this.router.navigate(['/login']);
     } else {
+      this.getAllCartItemsByCustomerId(this.customerId)
       this.getCartByCustomerId(this.customerId);
-      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     }
   }
-
 
 
   applyFilter(filterValue: string) {
@@ -59,82 +62,64 @@ export class CheckoutPageComponent implements OnInit {
   confirmCancel(id) {
   }
 
-  // get the cart item
+  getAllCartItemsByCustomerId(id) {
+    this.cartServices.findAllByCustomerId(id).subscribe(res => {
+      this.showCart(res);
+    })
+  }
+
+  showCart(res) {
+    this.iCart = res;
+    console.log('carts -> ' + this.iCart)
+  }
+
   getCartByCustomerId(id) {
-    this.cartServices.findAllByCustomerId(id).subscribe(
-      response => {
-       // tslint:disable-next-line:forin
-       for (const c in response) {
-        this.iCart[c] = response[c];
-        console.log('dadad' + this.iCart[c]);
-       }
-       console.log('b4');
-       console.log(this.iCart);
-       this.getCartByProductId();
-       console.log('after');
-     }
-    );
+    this.cartServices.findAllProcuctFromCartByCustomerId(id).subscribe(res => {
+      this.show(res);
+    })
   }
 
-  processToShow(res) {
-    console.log('result from server' + res);
+  show(res) {
+    this.products = res;
+    console.log(this.products)
+    this.showCartOnTable();
   }
 
 
-  getCartByProductId() {
-    let iCartNew: ICart = {};
-    let cart: any = {};
-    console.log('current cart items=> ' + this.iCart);
+  showCartOnTable() {
+    let cartT:  CartTable = {};
+    let i;
     // tslint:disable-next-line:forin
-    if (this.iCart !== null) {
-      // tslint:disable-next-line:forin
-      for (cart in this.iCart) {
-        // get the cuurent item on cart
-        iCartNew = this.iCart[cart];
-        let currntProduct: Product = {};
-        console.log('currwnt cart => ' + iCartNew);
-        // use the cuurent cart product id to get the product
-        this.getProductById(iCartNew.productId).subscribe((res: Product) => {
-          currntProduct = res;
-          console.log('currwnt Product => ' + currntProduct);
-          const pId = currntProduct.id;
-          const name = currntProduct.name;
-          const totalItem = iCartNew.totalItem;
-          const price = totalItem * currntProduct.price;
-
-          const periodicElement: PeriodicElement = {};
-          periodicElement.dishId = pId;
-          periodicElement.name = name;
-          periodicElement.price = price;
-          console.log('periodicElement---' + periodicElement.name);
-          this.ELEMENT_DATA[cart] = periodicElement;
-          console.log(' Element => ' + this.ELEMENT_DATA[cart]);
-        });
-      }
+    for (i in this.iCart) {
+        let j
+        // tslint:disable-next-line:forin
+        for (j in this.products) {
+          cartT = {};
+            if (this.products[j].id === this.iCart[i].productId) {
+              cartT.cartId = this.iCart[i].id;
+              cartT.price = this.products[j].price;
+              cartT.qty = this.iCart[i].totalItem;
+              cartT.totalPrice = this.iCart[i].totalItem * this.products[j].price;
+              cartT.id = this.products[j].id;
+            }
+        }
+        this.cartTable[i] = cartT;
     }
 
+    console.log(this.cartTable);
   }
 
-  getProductById(id) {
-    return this.productServices.find(id);
-  }
 
-  test() {
-    console.log('result from server' + this.iCart);
-  }
+  test() {}
 
 }
 
-
-export interface PeriodicElement {
+export interface CartTable {
+  id?: number;
   name?: string;
-  dishId?: string;
   price?: number;
-}
+  qty?: number;
+  totalPrice?: number
+  cartId?: number;
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   { dishId: 'd01', name: 'Rice', price: 10.79 },
-//   { dishId: 'd02', name: 'Rice', price: 10.79 },
-//   { dishId: 'd03', name: 'Rice', price: 10.79 },
-//   { dishId: 'd04', name: 'Rice', price: 10.79 },
-// ];
+}

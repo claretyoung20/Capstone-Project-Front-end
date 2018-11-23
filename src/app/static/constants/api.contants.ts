@@ -58,7 +58,8 @@ export const HH_CATEGORY = {
 export const HH_CART = {
     BASE: `${SERVER_API_URL}/api/carts`,
     CHECKCART: `${SERVER_API_URL}/api/carts/exist`,
-    BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`
+    BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`,
+    PRODUCTLIST: `${SERVER_API_URL}/api/carts/customer/product`
 }
 // order
 export const HH_ORDER = {

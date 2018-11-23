@@ -8,78 +8,56 @@
    intro bg -->
 <h3 class="mt-30 cartText">Cart Items</h3>
 <div class="row order">
-  <div class="col-md-12">
-    <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource">
-
-        <!-- Position Column -->
-        <!-- <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef> No. </th>
-              <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
-            </ng-container> -->
-
-        <!-- dishId Column -->
-        <ng-container matColumnDef="dishId">
-          <th mat-header-cell *matHeaderCellDef> Dish Id </th>
-          <td mat-cell *matCellDef="let element"> {{element.dishId}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- price Column -->
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> Price </th>
-          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-        </ng-container>
-
-        <!-- Edit Column -->
-        <ng-container matColumnDef="edit">
-          <th mat-header-cell *matHeaderCellDef>Update </th>
-          <td mat-cell *matCellDef="let element">
-            <form>
-                <input min="1" max="20" type="number" value="1" class="updateCart" />
-            </form>
-          </td>
-        </ng-container>
-
-        <!-- Delete Column -->
-        <ng-container matColumnDef="cancel">
-          <th mat-header-cell *matHeaderCellDef>Remove </th>
-          <td mat-cell *matCellDef="let element"><i (click)="confirmCancel(element.orderId)" class="ti-trash"></i></td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <!-- <div class="btn-div-update">
+    <div class="col-md-12">
+        <div class="mat-elevation-z8">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartTable">
+                        <th scope="row">1</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.qty}}</td>
+                        <td>{{item.totalPrice}}</td>
+                        <td><input type="number" min="1"></td>
+                        <td><button>Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div class="btn-div-update">
          <button class="btn btn-primary updatBtn">Update Cart</button>
       </div> -->
-    </div>
-    <div class="row">
-      <div class="col-md-6 coupon-div">
-        <form>
-          <div class="input-group mb-3">
-            <input type="text" class="updateCart" placeholder="Enter Coupon" aria-label="Recipient's username"
-              aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button  class="btn btn-outline-secondary" type="button">Apply Coupon</button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 coupon-div">
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="updateCart" placeholder="Enter Coupon" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Apply Coupon</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-        </form>
-      </div>
 
-      <div class="col-md-6 total-div">
-        <p>BASE TOTAL: $53.95</p>
-        <p>Coupon: AXSDERN - $10</p>
-        <p>TOTAL: $40.95</p>
-      </div>
+            <div class="col-md-6 total-div">
+                <p>BASE TOTAL: $53.95</p>
+                <p>Coupon: AXSDERN - $10</p>
+                <p>TOTAL: $40.95</p>
+            </div>
 
-    </div>
-    <button (click)="test()" name="Submit"  class="button uppercase">
+        </div>
+        <button (click)="test()" name="Submit" class="button uppercase">
         Order Now</button>
-  </div>
+    </div>
 </div>
