@@ -58,7 +58,8 @@ export const HH_CATEGORY = {
 export const HH_CART = {
     BASE: `${SERVER_API_URL}/api/carts`,
     CHECKCART: `${SERVER_API_URL}/api/carts/exist`,
-    BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`
+    BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`,
+    PRODUCTLIST: `${SERVER_API_URL}/api/carts/customer/product`
 }
 // order
 export const HH_ORDER = {
@@ -80,4 +81,19 @@ export const HH_ORDER_STATUS = {
 export const HH_SALE_ORDER = {
     BASE: `${SERVER_API_URL}/api/sale-orders`,
     BYORDERID: `${SERVER_API_URL}/api/sale-orders/order`
+}
+
+// TABLE
+export const HH_TABLE = {
+    BASE: `${SERVER_API_URL}/api/book-tables`
+}
+
+// reservation
+export const HH_RESERVATION = {
+    BASE: `${SERVER_API_URL}/api/reservations`,
+    BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
+    // BYRESERVEDATE: `${SERVER_API_URL}/api/reservations/table`,
+    // BYSTARTIME: `${SERVER_API_URL}/api/reservations/table`,
+    // BYENDTIME: `${SERVER_API_URL}/api/reservations/table`,
+    // BYSTATUS: `${SERVER_API_URL}/api/reservations/table`,
 }

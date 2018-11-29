@@ -1,3 +1,130 @@
-<p>
-  reservation works!
-</p>
+<!-- <div class="row">
+    <div class="col-md-2" *ngFor="let item of reservation">
+        <mat-card class="staff-order" (click)="viewOrderByStatus(item.id)">{{item.name}} Order</mat-card>
+    </div>
+
+    <div class="col-md-2">
+        <mat-card class="staff-order" (click)="allOrder()">All Order</mat-card>
+    </div>
+</div> -->
+
+<!-- DISPLAY ORDER  -->
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <!-- <mat-form-field class="filter-staffa">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field> -->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="startTime">
+                    <th mat-header-cell *matHeaderCellDef> startTime </th>
+                    <td mat-cell *matCellDef="let element"> {{element.startTime }} </td>
+                </ng-container>
+
+                <!-- Last Name Column -->
+                <ng-container matColumnDef="endTime">
+                    <th mat-header-cell *matHeaderCellDef> endTime </th>
+                    <td mat-cell *matCellDef="let element"> {{element.endTime }} </td>
+                </ng-container>
+
+                <!-- dateOfBirth Column -->
+                <ng-container matColumnDef="reserverDate">
+                    <th mat-header-cell *matHeaderCellDef> reserverDate </th>
+                    <td mat-cell *matCellDef="let element"> {{element.reserverDate }} </td>
+                </ng-container>
+
+                <!--  -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status }} </td>
+                </ng-container>
+                <!--  -->
+                <ng-container matColumnDef="comment">
+                    <th mat-header-cell *matHeaderCellDef> comment </th>
+                    <td mat-cell *matCellDef="let element"> {{element.comment }} </td>
+                </ng-container>
+
+                <!--  -->
+                <ng-container matColumnDef="updatedDate">
+                    <th mat-header-cell *matHeaderCellDef> updatedDate </th>
+                    <td mat-cell *matCellDef="let element"> {{element.updatedDate }} </td>
+                </ng-container>
+
+                <!-- status Column -->
+                <ng-container matColumnDef="staff">
+                    <th mat-header-cell *matHeaderCellDef> staffId </th>
+                    <td mat-cell *matCellDef="let element"> <a (click)="getStaffById(element.staffId)">{{
+                            element.staffId}} </a></td>
+                </ng-container>
+
+                <!-- Phone Number Column -->
+                <ng-container matColumnDef="customer">
+                    <th mat-header-cell *matHeaderCellDef>customerId </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="getCustomerById(element.customerId)">{{
+                            element.customerId}} </a></td>
+                </ng-container>
+
+                <!-- Address Column -->
+                <ng-container matColumnDef="bookTable">
+                    <th mat-header-cell *matHeaderCellDef> bookTableId </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="getTableId(element.bookTableId)">{{
+                            element.bookTableId }}</a></td>
+                </ng-container>
+
+
+                <!-- Edit Column -->
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef>Update Status </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="editReservation(element.id)"><i class="ti-pencil"></i></a></td>
+                </ng-container>
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <!-- pagination -->
+
+            <div class="box-footer clearfix" *ngIf="pager.pages && pager.pages.length">
+                <span class="pull-left">Showing 1 to {{reservation.length < pageSize ? reservation.length : pageSize}}
+                        of {{totalItems}} entries</span>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li [ngClass]="{disabled:pager.currentPage === 0}" title="First Page">
+                        <a aria-label="First" (click)="(pager.currentPage !== 0) && setPage(0)" class="page-link">
+                            <i class="fa fa-step-backward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 0}" title="Previous Page">
+                        <a aria-label="Previous" (click)="(pager.currentPage !== 0) && setPage(pager.currentPage - 1)" class="page-link">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page - 1}">
+                        <a (click)="setPage(page-1)" class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage + 1 === pager.totalPages}" title="Next Page">
+                        <a aria-label="Next" (click)="(pager.currentPage + 1 !== pager.totalPages) && setPage(pager.currentPage + 1)" class="page-link">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage + 1 === pager.totalPages}" title="Last Page">
+                        <a aria-label="Last" (click)="(pager.currentPage + 1 !== pager.totalPages) && setPage(pager.totalPages - 1)" class="page-link">
+                            <i class="fa fa-step-forward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

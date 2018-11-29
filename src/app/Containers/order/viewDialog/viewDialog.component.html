@@ -120,3 +120,37 @@
         </div>
     </div>
 </div>
+
+<!-- TABLE DETAILS -->
+<div class="row justify-content-center" [hidden]="!isTable">
+    <div class="col-8">
+        <div *ngIf="table">
+            <h2>Table Detail</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Id: </span><span class="data">{{table.id}}</span></dt>
+                <dt><span>Nuber of Person: </span><span class="data">{{table.persons}}</span></dt>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT DATA OF Reservation -->
+<div [hidden]="!isEditReservation">
+    <h3 class="data">Change the Reservation status <br>(Approve or cancel reservation)</h3>
+    <form [formGroup]="reserveForm">
+        <mat-form-field>
+            <mat-select placeholder="status" formControlName="status">
+                <mat-option *ngFor="let status of statusReserve" [value]="status.value">
+                    {{status.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <br>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="getResrvation()">Update</button>
+            <button class="example-button-padd" mat-stroked-button (click)="cancel()">Cancel</button>
+        </div>
+    </form>
+</div>

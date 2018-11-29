@@ -1,87 +1,96 @@
-.inner-intro_profile{
+.inner-intro_profile {
     height: 200px;
     display: block;
 }
 
-.order{
-  width: 80%;
-  margin: 20px auto;
+.order {
+    width: 80%;
+    margin: 20px auto;
 }
-.cartText{
-  text-align: center;
-  font-family: 'Amatic SC', cursive;
-  font-weight: bold;
-  font-size: 60px;
+
+.cartText {
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+    font-size: 60px;
 }
+
 table {
     width: 100%;
 }
 
-.filter-staffa
-{
-width: 100%;
+.filter-staffa {
+    width: 100%;
 }
 
 .btn-hearder {
     padding-bottom: 10px;
-  }
-  
-  
-  .content-header {
+}
+
+.content-header {
     margin-bottom: 15px;
-  }
-  
-  .icon-active {
+}
+
+.icon-active {
     padding-left: 5px;
     padding-right: 5px;
-  }
-  
-  .pagination {
+}
+
+.pagination {
     margin-top: 0;
-  }
-  
-  .page-link {
+}
+
+.page-link {
     cursor: pointer;
     font-size: 14px !important;
-  }
-  
-  .select-size {
+}
+
+.select-size {
     font-weight: normal;
     text-align: left;
     white-space: nowrap;
-  }
-  
-  .input-sm {
-    width: 75px;
-  }
-
-.total-div{
-  float: right;
-  margin-top: 20px;
-  border: #c7770b 1px solid;
-  padding: 10px;
 }
-  p{
+
+.input-sm {
+    width: 75px;
+}
+
+.total-div {
+    float: right;
+    margin-top: 20px;
+    border: #c7770b 1px solid;
+    padding: 10px;
+}
+
+p {
     color: black;
     font-family: 'Amatic SC', cursive;
     font-weight: bold;
     text-align: left;
     font-size: 30px;
-  }
-  .updateCart{
-    border: #c7770b 1px solid;
-  }
+}
 
-  .updatBtn{
+.updateCart {
+    border: #c7770b 1px solid;
+}
+
+.updatBtn {
     border-color: #f44336;
     color: #ffffff;
     background-color: cornflowerblue
 }
 
-.btn-div-update{
-  margin-top: 10px;
+.btn-div-update {
+    margin-top: 10px;
 }
-.coupon-div{
-  margin-top: 20px;
-  float: left;
+
+.coupon-div {
+    margin-top: 20px;
+    float: left;
+}
+
+.table .thead-dark th {
+    color: #fff;
+    background-color: #212529;
+    border-color: #32383e;
 }

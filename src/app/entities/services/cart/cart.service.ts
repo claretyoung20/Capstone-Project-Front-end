@@ -34,6 +34,14 @@ export class CartService extends EntityService<ICart> {
         tap(this.onResponse.bind(this)));
   }
 
+  public findAllProcuctFromCartByCustomerId(id: number | string): Observable<any> {
+    const option = this.buildFindAllOption();
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = HH_CART.PRODUCTLIST + '/' + id;
+      return this.http.get<ICart>(url, reqOptions).pipe(
+        tap(this.onResponse.bind(this)));
+  }
+
   private convertDateFromServer(res: EntityResponseType): EntityResponseType {
     res.body.dateCreated = res.body.dateCreated != null ? moment(res.body.dateCreated) : null;
     res.body.dateUpdated = res.body.dateUpdated != null ? moment(res.body.dateUpdated) : null;
