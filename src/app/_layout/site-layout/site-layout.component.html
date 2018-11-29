@@ -124,19 +124,23 @@ header -->
                                 <li>
                                     <a href="/menu"> Menu</a>
                                 </li>
-                                <li>
+
+                                 <!-- Only for logged in customer -->
+                                <li [ngStyle]="{'display': isCustomerLogin()}">
                                     <a href="/reservation"> Reservation</a>
                                 </li>
-                                <li>
+
+                                <!-- Only for logged in customer -->
+                                <li [ngStyle]="{'display': isCustomerLogin()}">
                                     <a href="javascript:void(0)"> Profile <i class="fa fa-angle-down fa-indicator"></i>
                                     </a>
                                     <!-- drop down multilevel  -->
                                     <ul class="drop-down-multilevel">
                                         <li><a href="/profile">View Account </a></li>
-                                        <li><a href="#"> Logout </a></li>
+                                        <li><a href="/logout">Logout</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li [ngStyle]="{'display': showAccount()}">
                                     <a href="javascript:void(0)"> Account <i class="fa fa-angle-down fa-indicator"></i>
                                     </a>
                                     <!-- drop down multilevel  -->
@@ -148,9 +152,10 @@ header -->
                                 <li><a href="#"> Rating</a></li>
                                 <li><a href="/contactus"> Contact us</a></li>
 
-                                <i style="color: red">
+                                 <!-- Only for logged in customer -->
+                                <i [ngStyle]="{'display': isCustomerLogin()}" style="color: red" >
                                     <a href="/checkout">
-                                        <mat-icon matBadge="3" matBadgeColor="warn">shopping_cart</mat-icon>
+                                        <mat-icon matBadge="{{cartTotal}}" matBadgeColor="warn">shopping_cart</mat-icon>
                                     </a>
                                 </i>
                             </ul>

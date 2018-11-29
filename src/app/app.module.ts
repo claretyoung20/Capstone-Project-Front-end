@@ -29,6 +29,7 @@ import { AddressDialogComponent } from './Containers/config/address/address-dial
 import { ConformDeleteDialogComponent } from './Containers/account/customer/conform-delete-dialog/conform-delete-dialog.component';
 import { CustomerContainersModule } from './customer-containers/customer-containers.module';
 import { EditCustomerAccountComponent } from './customer-containers/customer-profile/edit-customer-account/edit-customer-account.component';
+import { MenuAddCartComponent } from './customer-containers/customer-menu/menu-add-cart/menu-add-cart.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { EditCustomerAccountComponent } from './customer-containers/customer-pro
     SocialDialogComponent,
     TimeManagerDialogComponent,
     AddressDialogComponent,
-    ConformDeleteDialogComponent
+    ConformDeleteDialogComponent,
+    MenuAddCartComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { EditCustomerAccountComponent } from './customer-containers/customer-pro
     TimeManagerDialogComponent,
     AddressDialogComponent,
     ConformDeleteDialogComponent,
-    EditCustomerAccountComponent
+    EditCustomerAccountComponent,
+    MenuAddCartComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
