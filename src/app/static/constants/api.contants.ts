@@ -30,11 +30,13 @@ export const HH_TIME_MANAGER = {
 }
 
 export const HH_STAFF = {
-    BASE: `${SERVER_API_URL}/api/staff`
+    BASE: `${SERVER_API_URL}/api/staff`,
+    BYUSERID: `${SERVER_API_URL}/api/staff/user`,
+    BYUSERACCOUNTID: `${SERVER_API_URL}/api/staff/user-id`
 }
 
 export const HH_STAFF_ACCOUNT = {
-    BASE: `${SERVER_API_URL}/api/staff/account`
+    BASE: `${SERVER_API_URL}/api/staff/account`,
 }
 
 export const HH_ACCOUNT = {
@@ -57,4 +59,25 @@ export const HH_CART = {
     BASE: `${SERVER_API_URL}/api/carts`,
     CHECKCART: `${SERVER_API_URL}/api/carts/exist`,
     BYCUTOMERID: `${SERVER_API_URL}/api/carts/customer`
+}
+// order
+export const HH_ORDER = {
+    BASE: `${SERVER_API_URL}/api/happy-orders`,
+    BYSTATUSID: `${SERVER_API_URL}/api/happy-orders/status`
+}
+
+// Status
+export const HH_COUPON = {
+    BASE: `${SERVER_API_URL}/api/coupons`
+}
+
+// ORDER STATUS
+export const HH_ORDER_STATUS = {
+    BASE: `${SERVER_API_URL}/api/order-statuses`
+}
+
+// sale order
+export const HH_SALE_ORDER = {
+    BASE: `${SERVER_API_URL}/api/sale-orders`,
+    BYORDERID: `${SERVER_API_URL}/api/sale-orders/order`
 }

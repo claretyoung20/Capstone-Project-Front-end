@@ -1,12 +1,15 @@
-.staff-order {
-    text-align: center;
-    background-color: #3d8ba7;
-    font-weight: 300;
-    color: aliceblue;
+.data {
+    color: cornflowerblue;
+}
+
+.example-button-padd {
+    margin-left: 15px;
+    color: white;
+    background-color: darkred;
 }
 
 table {
-    width: 100%;
+    width: 650px
 }
 
 .filter-staffa {

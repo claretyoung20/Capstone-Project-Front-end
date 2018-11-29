@@ -1,0 +1,122 @@
+<!-- Order status -->
+<div [hidden]="!isOrderStatus">
+    <div *ngIf="orderStatus">
+        <h4>Current Order Status</h4>
+        <p>Status Id: <span class="data">{{orderStatus.id}}</span></p>
+        <p>State: <span class="data">{{orderStatus.name}}</span></p>
+    </div>
+</div>
+
+<!--  Customer detail -->
+<div class="row justify-content-center" [hidden]="!isCustomer">
+    <div class="col-8">
+        <div *ngIf="customer">
+            <h2>Customer Detail</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Address: </span><span class="data">{{customer.address}}</span></dt>
+                <dt><span>Date Created: </span><span class="data">{{customer.dateCreated}}</span></dt>
+                <dt><span>Date Updated: </span><span class="data">{{customer.dateUpdated}}</span></dt>
+                <dt><span>Date Of Birth: </span><span class="data">{{customer.dateOfBirth}}</span></dt>
+                <dt><span>Email: </span><span class="data">{{customer.email}}</span></dt>
+                <dt><span>First Name: </span><span class="data">{{customer.firstName}}</span></dt>
+                <dt><span>Last Name: </span><span class="data">{{customer.lastName}}</span></dt>
+                <dt><span>Phone Number: </span><span class="data">{{customer.phoneNumber}}</span></dt>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!-- Staff -->
+<div [hidden]="!isStaff">
+    <div *ngIf="staff">
+        <h4>Staff Detail</h4>
+        <p>Status Id: {{staff.id}}</p>
+        <p>State: {{staff.staffCode}}</p>
+    </div>
+</div>
+
+<!-- coupon -->
+<div class="row justify-content-center" [hidden]="!isCoupon">
+    <div class="col-8">
+        <div *ngIf="coupon">
+            <h2>Coupon Detail</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Code: </span><span class="data">{{coupon.code}}</span></dt>
+                <dt><span>Start Created: </span><span class="data">{{coupon.startFromDate}}</span></dt>
+                <dt><span>End Updated: </span><span class="data">{{coupon.endDate}}</span></dt>
+                <dt><span>Price: </span><span class="data">{{coupon.price}}</span></dt>
+                <dt><span>maxAmountToApply: </span><span class="data">{{coupon.maxAmountToApply}}</span></dt>
+                <dt><span>Number Per User: </span><span class="data">{{coupon.noPerUser}}</span></dt>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT DATA OF ORDER -->
+<div [hidden]="!isEditStatus">
+    <h4 class="data">Change the order status</h4>
+    <form [formGroup]="updateForm">
+        <mat-form-field>
+            <mat-select placeholder="status" formControlName="id">
+                <mat-option *ngFor="let status of statusOrder" [value]="status.id">
+                    {{status.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <br>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="getStaffId()">Update</button>
+            <button class="example-button-padd" mat-stroked-button (click)="cancel()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<!-- individual orders -->
+<div class="row" [hidden]="!isSubOrder">
+    <div class="col-md-12">
+        <button (click)="viewAllSubOrder()" mat-raised-button color="primary"><i class="ti-plus"> View All Sales</i></button>
+        <br>
+        <br>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let i = index"> {{ i + 1}} </td>
+                </ng-container>
+
+                <!-- Base Price Column -->
+                <ng-container matColumnDef="basePrice">
+                    <th mat-header-cell *matHeaderCellDef> Base Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.basePrice | currency: '$'}} </td>
+                </ng-container>
+
+                <!-- discount Amount Column -->
+                <ng-container matColumnDef="discountAmount">
+                    <th mat-header-cell *matHeaderCellDef> Discount Amount </th>
+                    <td mat-cell *matCellDef="let element"> {{element.discountAmount | currency: '$'}} </td>
+                </ng-container>
+
+                <!-- discount Amount Column -->
+                <ng-container matColumnDef="originalPrice">
+                    <th mat-header-cell *matHeaderCellDef> Original Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.originalPrice | currency: '$'}} </td>
+                </ng-container>
+
+
+                <!-- Address Column -->
+                <ng-container matColumnDef="productId">
+                    <th mat-header-cell *matHeaderCellDef> Product Id </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="getProductDetail(element.productId)">{{ element.productId }}</a></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,17 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { CURRENTADMINROLE } from 'app/static/constants/site.constants';
+import { Router } from '@angular/router';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'dashboard-cmp',
     moduleId: module.id,
     templateUrl: 'dashboard.component.html'
 })
 
-export class DashboardComponent implements OnInit{
-    ngOnInit(){
-        var dataSales = {
+export class DashboardComponent implements OnInit {
+
+  userRole: string;
+
+  constructor (
+    private router: Router
+    ) { }
+
+    ngOnInit() {
+
+      this.userRole = localStorage.getItem(CURRENTADMINROLE) || 'non';
+        console.log('currently' + this.userRole);
+
+        if (this.userRole === 'non') {
+          this.router.navigate(['/admin/login']);
+        }
+        const dataSales = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
           series: [
              [287, 385, 490, 562, 594, 626, 698, 895, 952],
@@ -20,11 +37,11 @@ export class DashboardComponent implements OnInit{
           ]
         };
 
-        var optionsSales = {
+        const optionsSales = {
           low: 0,
           high: 1000,
           showArea: true,
-          height: "245px",
+          height: '245px',
           axisX: {
             showGrid: false,
           },
@@ -35,7 +52,7 @@ export class DashboardComponent implements OnInit{
           showPoint: false,
         };
 
-        var responsiveSales: any[] = [
+        const responsiveSales: any[] = [
           ['screen and (max-width: 640px)', {
             axisX: {
               labelInterpolationFnc: function (value) {
@@ -45,10 +62,11 @@ export class DashboardComponent implements OnInit{
           }]
         ];
 
+        // tslint:disable-next-line:no-unused-expression
         new Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
 
 
-        var data = {
+        const data = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           series: [
             [542, 543, 520, 680, 653, 753, 326, 434, 568, 610, 756, 895],
@@ -56,15 +74,15 @@ export class DashboardComponent implements OnInit{
           ]
         };
 
-        var options = {
+        const options = {
             seriesBarDistance: 10,
             axisX: {
                 showGrid: false
             },
-            height: "245px"
+            height: '245px'
         };
 
-        var responsiveOptions: any[] = [
+        const responsiveOptions: any[] = [
           ['screen and (max-width: 640px)', {
             seriesBarDistance: 5,
             axisX: {
@@ -75,15 +93,16 @@ export class DashboardComponent implements OnInit{
           }]
         ];
 
+        // tslint:disable-next-line:no-unused-expression
         new Chartist.Line('#chartActivity', data, options, responsiveOptions);
 
-        var dataPreferences = {
+        const dataPreferences = {
             series: [
                 [25, 30, 20, 25]
             ]
         };
 
-        var optionsPreferences = {
+        const optionsPreferences = {
             donut: true,
             donutWidth: 40,
             startAngle: 0,
@@ -94,10 +113,12 @@ export class DashboardComponent implements OnInit{
             }
         };
 
+        // tslint:disable-next-line:no-unused-expression
         new Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
+        // tslint:disable-next-line:no-unused-expression
         new Chartist.Pie('#chartPreferences', {
-          labels: ['62%','32%','6%'],
+          labels: ['62%', '32%', '6%'],
           series: [62, 32, 6]
         });
     }
