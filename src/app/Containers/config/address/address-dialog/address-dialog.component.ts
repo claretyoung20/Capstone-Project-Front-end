@@ -56,7 +56,9 @@ export class AddressDialogComponent implements OnInit {
       id: [''],
       city: [''],
       street: ['', [Validators.required]],
-      country: ['']
+      country: [''],
+      contactNumber: [''],
+      supportEmail: [''],
     })
   }
 
@@ -72,6 +74,8 @@ export class AddressDialogComponent implements OnInit {
       street: data.street || '',
       city: data.city || '',
       country: data.country || '',
+      contactNumber: data.contactNumber || '',
+      supportEmail: data.supportEmail || '',
     });
   }
 

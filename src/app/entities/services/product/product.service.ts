@@ -24,4 +24,13 @@ export class ProductService extends EntityService<Product> {
     return this.http.get<Product>(url, reqOptions).pipe(
       tap(this.onResponse.bind(this)));
   }
+
+  public findProductsByShowOnHomepage(): Observable<any> {
+    const option = this.buildFindAllOption();
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = HH_PRODUCT.BYSHOWONPAGE;
+    return this.http.get<Product>(url, reqOptions).pipe(
+      tap(this.onResponse.bind(this)));
+  }
+
 }

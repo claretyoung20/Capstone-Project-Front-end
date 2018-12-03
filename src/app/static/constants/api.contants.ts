@@ -45,8 +45,11 @@ export const HH_ACCOUNT = {
 
 export const HH_PRODUCT = {
     BASE: `${SERVER_API_URL}/api/products`,
-    BYCATEGORY: `${SERVER_API_URL}/api/products/category`
+    BYCATEGORY: `${SERVER_API_URL}/api/products/category`,
+    BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`
+
 }
+
 export const HH_PRODUCT_TYPE = {
     BASE: `${SERVER_API_URL}/api/product-types`
 }
@@ -69,7 +72,8 @@ export const HH_ORDER = {
 
 // Status
 export const HH_COUPON = {
-    BASE: `${SERVER_API_URL}/api/coupons`
+    BASE: `${SERVER_API_URL}/api/coupons`,
+    VALIDCOUPON: `${SERVER_API_URL}/api/coupons/valid`
 }
 
 // ORDER STATUS

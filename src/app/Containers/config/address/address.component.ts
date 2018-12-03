@@ -12,7 +12,7 @@ import { Address } from 'app/entities/interfaces/address';
 export class AddressComponent implements OnInit {
 
   allAddress: Address[] = [];
-  displayedColumns: string[] = ['id', 'city', 'country', 'restaurantId', 'street', 'edit'];
+  displayedColumns: string[] = ['id', 'city', 'country', 'restaurantId', 'street', 'contactNumber', 'supportEmail', 'edit'];
   dataSource;
 
   haveAddress = false;

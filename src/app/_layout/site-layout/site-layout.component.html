@@ -19,9 +19,9 @@ header -->
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="topbar-left text-left">
-                        <ul>
-                            <li><i class="fa fa-phone"></i> (01) 123 456 7890 </li>
-                            <li><i class="fa fa-envelope-o"></i> support@website.com</li>
+                        <ul *ngFor="let address of address" >
+                            <li><i class="fa fa-phone"></i> {{address.contactNumber}} </li>
+                            <li><i class="fa fa-envelope-o"></i> {{address.supportEmail}}</li>
                         </ul>
                     </div>
                 </div>
@@ -76,23 +76,20 @@ header -->
                                     </a>
                                     <div class="head-info-content">
                                         <div class="info-left pull-left">
-                                            <div class="time">
-                                                <h6>MON – SAT</h6>
-                                                <p>Lunch: 11:30 – 2:00</p>
-                                                <p>Evening: 6:30 – 10:00</p>
-                                            </div>
-                                            <div class="time mt-20">
-                                                <h6>SUNDAY</h6>
-                                                <p>Lunch: 11:30 – 2:00</p>
-                                                <p>Evening: 6:30 – 10:00</p>
+                                            <div class="time" *ngFor="let time of timeMagers" >
+                                                <h6>{{time.day}}</h6>
+                                                <p>Start: {{time.startTime}}</p>
+                                                <p>Close: {{time.endTime}}</p>
                                             </div>
                                         </div>
                                         <div class="info-right pull-right">
                                             <div class="address">
-                                                <p>1234 North Avenue Luke, IN 360001 </p>
-                                                <p> (01) 123 456 7890 </p>
-                                                <p>support@website.com </p>
-                                                <a href="#"><i class="fa fa-map-o pr-10"></i> Find us here</a>
+                                                <div *ngFor="let address of address" >
+                                                    <p class="text-white">{{address.street}} {{address.city}}, {{address.country}}</p>
+                                                    <p class="text-white">{{ address.contactNumber}}</p>
+                                                    <p class="text-white">{{address.supportEmail}}</p>
+                                                    <a class="text-orange" href="#"><i class="fa fa-map-o pr-10"></i> Find us here</a>
+                                                </div>
                                                 <ul class="list-inline mt-15">
                                                     <li>
                                                         <a href="#"> <i class="fa fa-facebook"></i> </a>
@@ -196,17 +193,7 @@ header -->
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="newsletter">
-                    <h4 class="text-white mb-30">Newsletter</h4>
-                    <p class="text-white">Signing up to our newsletter keeps you up-to-date!</p>
-                    <div class="newsletter-input">
-                        <input type="email" placeholder="Your email*" name="email">
-                        <a href="#"><i class="fa fa-envelope-o"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="col-lg-4 col-md-4 col-sm-7">
                 <div class="tweet">
                     <h4 class="text-white mb-30">Latest tweet</h4>
                     <div class="tweet-block mb-20">
@@ -229,23 +216,21 @@ header -->
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="col-lg-4 col-md-4 col-sm-7">
                 <div class="opening-time">
                     <h4 class="text-white mb-30">Open time</h4>
                     <ul>
-                        <li>Monday<span class="text-right">8am - 2pm </span></li>
-                        <li>Tuesday<span>10am - 4pm</span></li>
-                        <li>Wednesday<span>11am - 4pm</span></li>
+                        <li *ngFor="let timeMager of timeMagers" >{{ timeMager.day}}<span class="text-right">{{timeMager.startTime}} - {{timeMager.endTime}} </span></li>
                         <li>Close on public holidays</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="contact">
+            <div class="col-lg-4 col-md-4 col-sm-7">
+                <div class="contact" *ngFor="let address of address" >
                     <h4 class="text-white mb-30">Contact</h4>
-                    <p class="text-white">1234 North Avenue Luke, IN 360001</p>
-                    <p class="text-white">(01) 123 456 7890</p>
-                    <p class="text-white">support@website.com</p>
+                    <p class="text-white">{{address.street}} {{address.city}}, {{address.country}}</p>
+                    <p class="text-white">{{ address.contactNumber}}</p>
+                    <p class="text-white">{{address.supportEmail}}</p>
                     <a class="text-orange" href="#"><i class="fa fa-map-o pr-10"></i> Find us here</a>
                 </div>
             </div>
