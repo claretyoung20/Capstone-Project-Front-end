@@ -34,7 +34,7 @@ export class CustomerLoginComponent implements OnInit {
     const data = this.loginForm.value;
     this.customerService.customerLogin(data.email, data.password).subscribe(res => {
       localStorage.setItem(ISCUSTOMERLOGGED, 'true');
-      localStorage.setItem(LOCALSTORAGEFORCUSTOMER, res.id);
+      localStorage.setItem(LOCALSTORAGEFORCUSTOMER, res.id.toString());
       console.log(res);
        this.router.navigate(['/']);
     })
