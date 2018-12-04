@@ -23,4 +23,11 @@ export class CustomerService extends EntityService<UserCustomer> {
     return this.http.post<IUser>(url, option).pipe(
       tap(this.onResponse.bind(this)));
   }
+
+  public findcustomerByUserId(id: number | string): Observable<UserCustomer> {
+    const url = HH_CUSTOMER.BYUSERID + '/' + id;
+    return this.http.get<UserCustomer>(url).pipe(
+      tap(this.onResponse.bind(this)
+      ));
+  }
 }

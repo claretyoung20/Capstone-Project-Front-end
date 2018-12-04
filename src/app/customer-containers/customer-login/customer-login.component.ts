@@ -31,7 +31,8 @@ export class CustomerLoginComponent implements OnInit {
     public dialog: MatDialog,
     private loginService: LoginService,
     private app: LoginService,
-    private accountService: AccountStaffService
+    private accountService: AccountStaffService,
+    private customerService: CustomerService
   ) { }
 
   ngOnInit() {
@@ -81,10 +82,16 @@ getAccount(login, password) {
 private onSuccess(data) {
   this.user = data;
   console.log(this.user);
-  localStorage.setItem(LOCALSTORAGEFORCUSTOMER, this.user.id);
+  this.getCustomerByUserId(this.user.id);
   localStorage.setItem(CUSTOMERROLE, this.user.authorities[0]);
+  localStorage.setItem(ISCUSTOMERLOGGED, 'true');
 
    this.router.navigateByUrl('/');
+}
+getCustomerByUserId(id) {
+  this.customerService.findcustomerByUserId(id).subscribe( res => {
+    localStorage.setItem(LOCALSTORAGEFORCUSTOMER, res.id.toString());
+  })
 }
 
 private onError(error) {
