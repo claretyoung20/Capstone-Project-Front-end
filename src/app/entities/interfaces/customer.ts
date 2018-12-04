@@ -28,5 +28,6 @@ export interface Customer extends Entity {
     resetDate?: string,
     reset_Key?: string,
     restaurantId?: number,
-    status?: boolean
+    status?: boolean,
+    login?: string,
 }

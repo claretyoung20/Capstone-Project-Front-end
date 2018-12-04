@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from 'app/entities/services/customer/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer } from 'app/entities/interfaces/customer';
+import { Customer, UserCustomer } from 'app/entities/interfaces/customer';
 
 @Component({
   selector: 'app-customer-edit',
@@ -12,7 +12,7 @@ import { Customer } from 'app/entities/interfaces/customer';
 export class CustomerEditComponent implements OnInit {
 
   id: any;
-  customers: Customer
+  customers: UserCustomer
   customerForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -35,7 +35,7 @@ export class CustomerEditComponent implements OnInit {
 
   getCustomerById(id) {
     console.log(id);
-    this.customerService.find(id).subscribe((custumerData: Customer) => {
+    this.customerService.find(id).subscribe((custumerData: UserCustomer) => {
       this.pathValue(custumerData);
       this.customers = custumerData
       console.log(custumerData);
@@ -73,13 +73,13 @@ export class CustomerEditComponent implements OnInit {
     const oldData = this.customers;
     const newData = this.customerForm.value;
 
-    oldData.firstName = newData.firstName;
-    oldData.lastName = newData.lastName;
-    oldData.address = newData.address;
-    oldData.email = newData.email;
-    oldData.phoneNumber = newData.phoneNumber;
-    oldData.status = newData.status;
-    oldData.dateOfBirth = newData.dateOfBirth;
+    // oldData.firstName = newData.firstName;
+    // oldData.lastName = newData.lastName;
+    // oldData.address = newData.address;
+    // oldData.email = newData.email;
+    // oldData.phoneNumber = newData.phoneNumber;
+    // oldData.status = newData.status;
+    // oldData.dateOfBirth = newData.dateOfBirth;
 
     this.customerService.update(oldData).subscribe(res => {
       this.router.navigate(['admin/account/customer']);

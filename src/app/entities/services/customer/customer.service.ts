@@ -1,3 +1,4 @@
+import { HH_ACCOUNT } from './../../../static/constants/api.contants';
 import { IUser } from './../../../core/user/user.model';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
@@ -29,5 +30,20 @@ export class CustomerService extends EntityService<UserCustomer> {
     return this.http.get<UserCustomer>(url).pipe(
       tap(this.onResponse.bind(this)
       ));
+  }
+
+  public findUserByUserId(id: number | string): Observable<UserCustomer> {
+    const url = HH_ACCOUNT.BYUSERID + '' + id;
+    return this.http.get<UserCustomer>(url).pipe(
+      tap(this.onResponse.bind(this)
+      ));
+  }
+
+    public updateCustomerUser(data: IUser): Observable<IUser> {
+      const url = HH_CUSTOMER.UPDATEUSECUSTOMER;
+      const option = this.buildUpdateOption(data);
+      return this.http.put<IUser>(url, option).pipe(
+        tap(this.onResponse.bind(this)
+       ));
   }
 }

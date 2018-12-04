@@ -20,7 +20,8 @@ export const HH_CUSTOMER = {
     BASE: `${SERVER_API_URL}/api/customers`,
     LOGIN: `${SERVER_API_URL}/api/customers/login`,
     NEWCUSTOMER: `${SERVER_API_URL}/api/customers/new`,
-    BYUSERID: `${SERVER_API_URL}/api/customers/userId`
+    BYUSERID: `${SERVER_API_URL}/api/customers/userId`,
+    UPDATEUSECUSTOMER: `${SERVER_API_URL}/api/customers/users`,
 }
 
 export const HH_SOCIAL_MEDIA = {
@@ -42,7 +43,8 @@ export const HH_STAFF_ACCOUNT = {
 }
 
 export const HH_ACCOUNT = {
-    BASE: `${SERVER_API_URL}/api/user`
+    BASE: `${SERVER_API_URL}/api/user`,
+    BYUSERID: `${SERVER_API_URL}/api/users/userId`
 }
 
 export const HH_PRODUCT = {
