@@ -1,0 +1,55 @@
+.padd {
+    margin: 50px;
+}
+
+.staff-order {
+    text-align: center;
+    background-color: #3d8ba7;
+    font-weight: 300;
+    color: aliceblue;
+}
+
+table {
+    width: 100%;
+}
+
+.filter-staffa {
+    width: 100%;
+}
+
+.btn-hearder {
+    padding-bottom: 10px;
+}
+
+th,
+td {
+    /* text-align: center; */
+}
+
+.content-header {
+    margin-bottom: 15px;
+}
+
+.icon-active {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.pagination {
+    margin-top: 0;
+}
+
+.page-link {
+    cursor: pointer;
+    font-size: 14px !important;
+}
+
+.select-size {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.input-sm {
+    width: 75px;
+}

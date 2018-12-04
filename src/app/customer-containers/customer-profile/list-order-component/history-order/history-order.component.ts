@@ -1,56 +1,43 @@
-import { ORDERVIEWSUBORDERDIALOG } from './../../static/constants/site.constants';
+import { LOCALSTORAGEFORCUSTOMER } from 'app/static/constants/site.constants';
+import { Customer } from 'app/entities/interfaces/customer';
+import { ViewDialogComponent } from './../../../../Containers/order/viewDialog/viewDialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Order } from './../../entities/interfaces/order';
-import { Customer } from './../../entities/interfaces/customer';
-import { CustomerService } from './../../entities/services/customer/customer.service';
-import { Coupon } from './../../entities/interfaces/coupon';
-import { CouponService } from './../../entities/services/coupon/coupon.service';
-import { PaginationService } from './../../shared/pagination/pagination.service';
-import { OrderService } from './../../entities/services/order/order.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  CURRENTADMINROLE,
-  STAFFROLE,
-  ORDERSTATUSDIALOG,
-  ORDERCUSTOMERSDIALOG,
-  ORDERSSTAFFDIALOG,
-  ORDERCOUPONDIALOG,
-  ORDEREDITDIALOG
-} from 'app/static/constants/site.constants';
+import { ORDERVIEWSUBORDERDIALOG, ORDERSTATUSDIALOG, ORDERCOUPONDIALOG } from './../../../../static/constants/site.constants';
 import { MatDialog, MatTableDataSource } from '@angular/material';
-import { StaffService } from 'app/entities/services/staff/staff.service';
+import { CouponService } from './../../../../entities/services/coupon/coupon.service';
+import { Coupon } from './../../../../entities/interfaces/coupon';
+import { Order } from './../../../../entities/interfaces/order';
+import { Component, OnInit } from '@angular/core';
 import { Staff } from 'app/entities/interfaces/staff';
 import { OrderStatus } from 'app/entities/interfaces/orderStatus';
+import { OrderService } from 'app/entities/services/order/order.service';
+import { PaginationService } from 'app/shared/pagination/pagination.service';
 import { OrderStatusService } from 'app/entities/services/orderStatus/orderStatus.service';
-import { ViewDialogComponent } from './viewDialog/viewDialog.component';
 import { SaleOrderService } from 'app/entities/services/saleOrder/sale-order.service';
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  selector: 'app-history-order',
+  templateUrl: './history-order.component.html',
+  styleUrls: ['./history-order.component.css']
 })
-export class OrderComponent implements OnInit {
-  userRole: string;
+export class HistoryOrderComponent implements OnInit {
 
   orders: Order[] = [];
   coupon: Coupon;
   customer: Customer;
   staff: Staff;
   orderStatus: OrderStatus;
+  customerId: number;
   displayedColumns: string[] = [
     'id',
     'dateCreated',
     'dateUpdated',
     'totalPrice',
     'orderStatus',
-    'customer',
     'coupon',
-    'staff',
-    'edit',
     'suborder'
   ];
+  dataSource;
 
   /* paganation */
   pageSize = 10;
@@ -58,46 +45,30 @@ export class OrderComponent implements OnInit {
   pager: any = {};
   totalItems: any = 0;
 
-  dataSource;
-
-  allOrderStatus: OrderStatus[] = [];
-
+  allOrderStatus: OrderStatus[] = []
   constructor(
-    private router: Router,
     public dialog: MatDialog,
     private orderService: OrderService,
     private pagination: PaginationService,
     private couponService: CouponService,
-    private customerService: CustomerService,
-    private staffServices: StaffService,
     private orderStatusService: OrderStatusService,
     private saleServices: SaleOrderService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    // chck if staff is logged in
-    this.userRole = localStorage.getItem(CURRENTADMINROLE) || 'non';
-    console.log('currently' + this.userRole);
-
-    if (this.userRole === 'non' || this.userRole !== STAFFROLE) {
-      this.router.navigate(['/admin/login']);
-    }
-
+    this.customerId = JSON.parse(
+      localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0'
+    );
     this. getAllOrderStatus();
 
     this.getAllOrder();
   }
 
   getAllOrder() {
-    const query = {
-      size: this.pageSize,
-      page: this.currentPage
-    };
-    this.orderService.query(query).subscribe(res => {
+    this.orderService.getOrderHistory(this.customerId).subscribe(res => {
       this.processToShow(res);
     });
   }
-
   processToShow(res) {
     this.pager = this.pagination.getPager(
       this.currentPage,
@@ -115,7 +86,6 @@ export class OrderComponent implements OnInit {
     this.currentPage = number;
     this.getAllOrder();
   }
-
   changePageSize(value) {
     console.log('Page size to show ' + value);
     this.pageSize = value;
@@ -129,20 +99,6 @@ export class OrderComponent implements OnInit {
   getOrderStatus(id) {
     this.orderStatusService.find(id).subscribe(res => {
       this.opendialog(res, ORDERSTATUSDIALOG);
-    });
-  }
-
-  // get customer id
-  getCustomerById(id) {
-    this.customerService.find(id).subscribe(res => {
-      this.opendialog(res, ORDERCUSTOMERSDIALOG);
-    });
-  }
-
-  // get staff by id
-  getStaffById(id) {
-    this.staffServices.find(id).subscribe(res => {
-      this.opendialog(res, ORDERSSTAFFDIALOG);
     });
   }
 
@@ -179,12 +135,6 @@ export class OrderComponent implements OnInit {
     this.allOrderStatus = res;
   }
 
-  editOrder(id) {
-    this.orderService.find(id).subscribe(res => {
-      this.opendialog(res, ORDEREDITDIALOG);
-    });
-  }
-
   viewSubOrder(id) {
     this.saleServices.getbyOrderId(id).subscribe(res => {
       this.opendialog(res, ORDERVIEWSUBORDERDIALOG);
@@ -211,5 +161,4 @@ export class OrderComponent implements OnInit {
      }
    }
   }
-
 }

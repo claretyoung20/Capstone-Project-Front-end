@@ -1,3 +1,4 @@
+import { HistoryOrderComponent } from './customer-profile/list-order-component/history-order/history-order.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -42,7 +43,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     BookPolicyComponent,
     CheckoutPageComponent,
     ContactUsComponent,
-    LogoutComponent
+    LogoutComponent,
+    HistoryOrderComponent
   ]
 })
 export class CustomerContainersModule { }

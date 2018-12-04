@@ -3,7 +3,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { IAccount } from 'app/entities/model/user/iaccount.interface';
 import { MyErrorStateMatcher } from './../../Containers/login/login.component';
 import { HttpResponse } from '@angular/common/http';
-import { CUSTOMERROLE } from './../../static/constants/site.constants';
+import { CUSTOMERROLE, LOCALSTORAGEFORUSERCUSTOMER } from './../../static/constants/site.constants';
 import { AccountStaffService } from 'app/entities/services/account/account.service';
 import { LoginService, User } from 'app/core';
 import { Component, OnInit } from '@angular/core';
@@ -91,8 +91,10 @@ private onSuccess(data) {
 getCustomerByUserId(id) {
   this.customerService.findcustomerByUserId(id).subscribe( res => {
     localStorage.setItem(LOCALSTORAGEFORCUSTOMER, res.id.toString());
+    localStorage.setItem(LOCALSTORAGEFORUSERCUSTOMER, res.userId.toString());
   })
 }
+
 
 private onError(error) {
  // message error

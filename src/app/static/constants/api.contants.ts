@@ -71,7 +71,9 @@ export const HH_CART = {
 // order
 export const HH_ORDER = {
     BASE: `${SERVER_API_URL}/api/happy-orders`,
-    BYSTATUSID: `${SERVER_API_URL}/api/happy-orders/status`
+    BYSTATUSID: `${SERVER_API_URL}/api/happy-orders/status`,
+    HISTORYORDER: `${SERVER_API_URL}/api/happy-orders/history`,
+    ACTIVEORDER: `${SERVER_API_URL}/api/happy-orders/active`
 }
 
 // Status
