@@ -1,3 +1,4 @@
+import { ConfirnRegistrationComponent } from './customer-containers/register-customer/confirnRegistration/confirnRegistration.component';
 import { ContainersModule } from './Containers/containers.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -48,7 +49,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConformDeleteDialogComponent,
     MenuAddCartComponent,
     ViewDialogComponent,
-    ViewProductDetailComponent
+    ViewProductDetailComponent,
+    ConfirnRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     EditCustomerAccountComponent,
     MenuAddCartComponent,
     ViewDialogComponent,
-    ViewProductDetailComponent
+    ViewProductDetailComponent,
+    ConfirnRegistrationComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

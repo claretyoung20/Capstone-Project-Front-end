@@ -13,4 +13,6 @@ export const ORDERVIEWSUBORDERDIALOG = 'subOrder';
 export const ORDEREDITDIALOG = 'edit';
 export const TABLEDETAIL = 'tableDetail';
 export const EDITRESERVATIONDSTATUS = 'editTableStatus';
-
+export const ERROR_MESSAGE = {
+    REQUIRED_FIELD: 'Please Enter Correct and Required Information!'
+  }

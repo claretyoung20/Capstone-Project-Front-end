@@ -17,7 +17,7 @@ import { BookPolicyComponent } from './table-map/book-policy/book-policy.compone
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LogoutComponent } from './logout/logout.component';
-
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 @NgModule({
   imports: [
@@ -25,6 +25,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxMyDatePickerModule.forRoot(),
   ],
   declarations: [
     HomeComponent,

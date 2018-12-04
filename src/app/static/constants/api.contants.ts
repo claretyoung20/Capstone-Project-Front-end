@@ -18,7 +18,8 @@ export const HH_ADDRESS = {
 
 export const HH_CUSTOMER = {
     BASE: `${SERVER_API_URL}/api/customers`,
-    LOGIN: ` ${SERVER_API_URL}/api/customers/login`
+    LOGIN: ` ${SERVER_API_URL}/api/customers/login`,
+    NEWCUSTOMER: ` ${SERVER_API_URL}/api/customers/new`
 }
 
 export const HH_SOCIAL_MEDIA = {

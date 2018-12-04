@@ -1,13 +1,15 @@
-.form-horizontal, .contact-form{
+.form-horizontal,
+.contact-form {
     text-align: center;
 }
-.form-div{
+
+.form-div {
     width: 40%;
     margin: auto;
 }
 
 @media screen and (max-width: 900px) {
-    .form-div{
+    .form-div {
         width: 100%;
         margin: auto;
     }
