@@ -1,3 +1,4 @@
+import { ErrorDialogComponent } from './customer-containers/customer-login/error-dialog/error-dialog.component';
 import { ConfirnRegistrationComponent } from './customer-containers/register-customer/confirnRegistration/confirnRegistration.component';
 import { ContainersModule } from './Containers/containers.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -50,7 +51,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     MenuAddCartComponent,
     ViewDialogComponent,
     ViewProductDetailComponent,
-    ConfirnRegistrationComponent
+    ConfirnRegistrationComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     MenuAddCartComponent,
     ViewDialogComponent,
     ViewProductDetailComponent,
-    ConfirnRegistrationComponent
+    ConfirnRegistrationComponent,
+    ErrorDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

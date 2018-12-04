@@ -4,6 +4,7 @@ export const CURRENTADMINROLE = 'adminRole';
 export const CURRENTSTAFFORADMINID = 'adminId';
 export const STAFFROLE = 'ROLE_STAFF';
 export const ADMINROLE = 'ROLE_ADMIN';
+export const CUSTOMERROLE = 'ROLE_CUSTOMER';
 export const MANAGERRole = 'ROLE_MANAGER';
 export const ORDERSTATUSDIALOG = 'orderStatus';
 export const ORDERCUSTOMERSDIALOG = 'customer';
