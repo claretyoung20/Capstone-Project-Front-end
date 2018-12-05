@@ -1,17 +1,18 @@
-import { LOCALSTORAGEFORCUSTOMER } from 'app/static/constants/site.constants';
 import { Customer } from 'app/entities/interfaces/customer';
+import { Reservation } from './../../../../entities/interfaces/reservation';
+import { LOCALSTORAGEFORCUSTOMER } from './../../../../static/constants/site.constants';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from 'app/shared/pagination/pagination.service';
-import { MatDialog, MatTableDataSource } from '@angular/material';
-import { Reservation } from 'app/entities/interfaces/reservation';
 import { ReservationService } from 'app/entities/services/reservation/reservation.service';
 
 @Component({
-  selector: 'app-list-reservation-component',
-  templateUrl: './list-reservation-component.component.html',
-  styleUrls: ['./list-reservation-component.component.css']
+  selector: 'app-history-reservation',
+  templateUrl: './history-reservation.component.html',
+  styleUrls: ['./history-reservation.component.css']
 })
-export class ListReservationComponentComponent implements OnInit {
+export class HistoryReservationComponent implements OnInit {
+
   reservation: Reservation[] = [];
   customer: Customer;
   customerId: number;
@@ -22,10 +23,8 @@ export class ListReservationComponentComponent implements OnInit {
     'time',
     'comment',
     'status',
-    'action'
   ];
   dataSource;
-
 
   /* paganation */
   pageSize = 10;
@@ -46,12 +45,6 @@ export class ListReservationComponentComponent implements OnInit {
     this.getAllReservation();
   }
 
-  getAllReservation() {
-    this.resevationService.getActiveReservation(this.customerId).subscribe(res => {
-      this.processToShow(res);
-    });
-  }
-
   getStatus(time) {
     if (time === 'e') {
       return 'Evening';
@@ -60,6 +53,11 @@ export class ListReservationComponentComponent implements OnInit {
     }
   }
 
+  getAllReservation() {
+    this.resevationService.getReservationHistory(this.customerId).subscribe(res => {
+      this.processToShow(res);
+    });
+  }
   processToShow(res) {
     this.pager = this.pagination.getPager(
       this.currentPage,
@@ -87,5 +85,3 @@ export class ListReservationComponentComponent implements OnInit {
   }
 
 }
-
-

@@ -1,3 +1,4 @@
+import { HistoryReservationComponent } from './customer-profile/list-reservation-component/history-reservation/history-reservation.component';
 import { HistoryOrderComponent } from './customer-profile/list-order-component/history-order/history-order.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -44,7 +45,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     CheckoutPageComponent,
     ContactUsComponent,
     LogoutComponent,
-    HistoryOrderComponent
+    HistoryOrderComponent,
+    HistoryReservationComponent
   ]
 })
 export class CustomerContainersModule { }
