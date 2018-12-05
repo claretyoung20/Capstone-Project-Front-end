@@ -10,35 +10,62 @@
 <div class="row order">
     <div class="col-md-12">
         <div class="mat-elevation-z8">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of cartTable">
-                        <th scope="row">1</th>
-                        <td>{{item.name}}</td>
-                        <td>{{item.price}}</td>
-                        <td>{{item.qty}}</td>
-                        <td>{{item.totalPrice}}</td>
-                        <td><input type="number" min="1"></td>
-                        <td><button>Remove</button></td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <mat-form-field class="filter-staffa">
+                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                      </mat-form-field> -->
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource">
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let i = index"> {{ + i + 1}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Prodcut Name </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.productName }} </td>
+                            </ng-container>
+
+                            <!-- productPrice Column -->
+                            <ng-container matColumnDef="productPrice">
+                                <th mat-header-cell *matHeaderCellDef> Prodcut Price </th>
+                                <td mat-cell *matCellDef="let element"> {{element.productPrice | currency: '$'}} </td>
+                            </ng-container>
+
+                            <!-- dateOfBirth Column -->
+                            <ng-container matColumnDef="totalItem">
+                                <th mat-header-cell *matHeaderCellDef> totalItem </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.totalItem }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="totalPrice">
+                                <th mat-header-cell *matHeaderCellDef> Total Price </th>
+                                <td mat-cell *matCellDef="let element"> {{ getTotalPrice(element.productPrice, element.totalItem) | currency: '$' }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef> Action </th>
+                                <td mat-cell *matCellDef="let element"><button (click)="removeItem(element.id)" class="btn btn-danger">Remove</button></td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
             <!-- <div class="btn-div-update">
          <button class="btn btn-primary updatBtn">Update Cart</button>
       </div> -->
         </div>
-        <div class="row">
+        <div class="row" [hidden]="true">
             <div class="col-md-6 coupon-div">
                 <form>
                     <div class="input-group mb-3">
@@ -57,7 +84,9 @@
             </div>
 
         </div>
-        <button (click)="test()" name="Submit" class="button uppercase">
-        Order Now</button>
+        <div class="bttn">
+            <button (click)="orderNow()" name="Submit" class="button uppercase">
+                Order Now</button>
+        </div>
     </div>
 </div>

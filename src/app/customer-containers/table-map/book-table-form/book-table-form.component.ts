@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ReservationService } from 'app/entities/services/reservation/reservation.service';
 import { Reservation } from './../../../entities/interfaces/reservation';
@@ -53,7 +54,8 @@ export class BookTableFormComponent implements OnInit {
     private fb: FormBuilder,
     private tableServces: TableService,
     private timeService: TimeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -135,6 +137,7 @@ export class BookTableFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.router.navigate(['/profile']);
     });
   }
 
