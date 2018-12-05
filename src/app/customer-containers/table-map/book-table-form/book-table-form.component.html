@@ -1,64 +1,116 @@
 <!--=================================
  reservation -->
 
-<section class="reservation book-a-table">
-  <div class="page-section-ptb">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <div class="section-title text-center">
-            <div class="title-separator">
-              <i class="glyph-icon flaticon-food-27"></i>
-            </div>
-            <h2> <span class="text-orange">book </span>a table</h2>
-            <p>We provide free, secure and instantly confirmed online reservation.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <form class="form-horizontal" id="contactform">
-            <div class="contact-form">
-              <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                  <div class="form-field" id="datepicker">
-                    <i class="fa fa-calendar add-on"></i>
-                    <input data-format="yyyy-MM-dd" type="text" placeholder="Select date">
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                  <div class="form-field" id="timepicker">
-                    <i class="fa fa-clock-o icon-time add-on"></i>
-                    <input data-format="hh:mm:ss" type="text" placeholder="Select time">
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                  <div class="form-field">
-                    <div class="selected-box">
-                      <select>
-                        <option value="Person">Person</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="2">More then 2</option>
-                      </select>
+<section class="book-a-table">
+    <div class="page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="section-title text-center">
+                        <div class="title-separator">
+                            <i class="glyph-icon flaticon-food-27"></i>
+                        </div>
+                        <h2> <span class="text-orange">book </span>a table</h2>
+                        <p>We provide free, secure and instantly confirmed online reservation.</p>
                     </div>
-                  </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                  <div class="form-submit mb-30 text-center">
-                    <button id="submit" name="Submit" type="submit" onclick="return false;" class="button uppercase">
-                      See Avaliable Table</button>
-                  </div>
-                </div>
-              </div>
             </div>
-          </form>
-        </div>
-      </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <form class="form-horizontal" [formGroup]="tableForm">
+                        <div class="contact-form">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 sasa">
+                                    <div class="form-group">
+                                        <label>Select Date<span class="spanRequired">*</span>:</label>
+                                        <div class="input-group" [class.has-error]="tableForm.get('revserDate').invalid && submitForm || (tableForm.get('revserDate')?.errors && tableForm.get('revserDate').touched)">
+                                            <span class="input-group-btn">
+                                              <button type="button" class="btn btn-default" (click)="desc.toggleCalendar()">
+                                                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                                              </button>
+                                            </span>
+                                            <input class="form-control" style="float:none" placeholder="Select Date" ngx-mydatepicker name="revserDate" formControlName="revserDate" [options]="dateOptions" #desc="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="desc.toggleCalendar()"
+                                            />
+                                            <span class="input-group-btn">
+                                              <button type="button" class="btn btn-default" (click)="desc.clearDate()">
+                                                  <i class="fa fa-times" aria-hidden="true" title="Clear"></i>
+                                              </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 sasa">
+                                    <div class="form-group" [class.has-error]="tableForm.get('time').invalid && submitForm || (tableForm.get('time')?.errors && tableForm.get('time').touched)">
+                                        <label>Choose Time<span class="spanRequired">*</span>:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-code"></i>
+                                            </div>
+                                            <mat-form-field class="hhh">
+                                                <mat-select placeholder="Select tIME" formControlName="time">
+                                                    <mat-option *ngFor="let times of reserveTime" [value]="times.value">
+                                                        {{times.viewValue}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 sasa">
+                                    <div class="form-group" [class.has-error]="tableForm.get('person').invalid && submitForm || (tableForm.get('person')?.errors && tableForm.get('person').touched)">
+                                        <label>Number of Persons<span class="spanRequired">*(1 to 6 persons)</span>:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-code"></i>
+                                            </div>
+                                            <input min="1" max="6" type="number" class="form-control pull-right" #dimension formControlName="person" placeholder="Number of Person">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <div class="form-submit-1 mb-30 text-center">
+                                        <button (click)="viewTable()" class="button uppercase">
+                                        See Avaliable Table
+                                      </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div *ngIf="errorMessage " class="alert alert-danger ">
+                                    {{errorMessage}}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
+        </div>
     </div>
-  </div>
 </section>
 
-<!--=================================
-    reservation -->
+<section class="our-team white-bg page-section-pt" *ngIf="tables">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4" *ngFor="let table of tables">
+                <div class="team">
+                    <div class="team-images">
+                        <img class="img-responsive center-block" src="../../../assets/images/table/table01.jpg" alt="">
+                    </div>
+                    <div class="team-content">
+                        <div class="team-description">
+                            <h6>Table for {{table.persons}}</h6>
+                            <span>Lorem Ipusm andr ser bguyt usskks</span>
+                        </div>
+                        <div class="team-social">
+                            <button class="btn btn-primary reserve" type="button" (click)="reserveTable(table.id)">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

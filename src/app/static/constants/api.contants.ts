@@ -95,15 +95,12 @@ export const HH_SALE_ORDER = {
 
 // TABLE
 export const HH_TABLE = {
-    BASE: `${SERVER_API_URL}/api/book-tables`
+    BASE: `${SERVER_API_URL}/api/book-tables`,
+    AVAILABLE: `${SERVER_API_URL}/api/book-tables/avaliable`
 }
 
 // reservation
 export const HH_RESERVATION = {
     BASE: `${SERVER_API_URL}/api/reservations`,
-    BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
-    // BYRESERVEDATE: `${SERVER_API_URL}/api/reservations/table`,
-    // BYSTARTIME: `${SERVER_API_URL}/api/reservations/table`,
-    // BYENDTIME: `${SERVER_API_URL}/api/reservations/table`,
-    // BYSTATUS: `${SERVER_API_URL}/api/reservations/table`,
+    BYTABLEID: `${SERVER_API_URL}/api/reservations/table`
 }
