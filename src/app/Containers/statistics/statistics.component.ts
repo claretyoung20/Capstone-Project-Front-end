@@ -1,3 +1,4 @@
+import { ViewProductDetailComponent } from './../order/viewProductDetail/viewProductDetail.component';
 import { PaginationService } from 'app/shared/pagination/pagination.service';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { SaleOrder } from 'app/entities/interfaces/saleOrder';
 import { SaleOrderService } from 'app/entities/services/saleOrder/sale-order.service';
 import { CURRENTADMINROLE, STAFFROLE } from 'app/static/constants/site.constants';
+import { ProductService } from 'app/entities/services/product/product.service';
 
 @Component({
   selector: 'app-statistics',
@@ -26,8 +28,6 @@ export class StatisticsComponent implements OnInit {
    displayedColumns: string[] = [
     'id',
     'basePrice',
-    'discountAmount',
-    'originalPrice',
     'dateCreated',
     'dateUpdated',
     'productId',
@@ -38,7 +38,8 @@ export class StatisticsComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private saleOrdeService: SaleOrderService,
-    private pagination: PaginationService
+    private pagination: PaginationService,
+    private productService: ProductService,
   ) { }
 
 
@@ -90,8 +91,20 @@ applyFilter(filterValue: string) {
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
-getProductById(id) {
+getProductDetail(id) {
+  // open new dialog
+  this.productService.find(id).subscribe(res => {
+    this.openPrdDeDialog(res);
+  })
+}
 
+openPrdDeDialog(res) {
+  console.log('hehehehe product id => ' + res);
+  const dialogRef = this.dialog.open(ViewProductDetailComponent, {
+    data: {
+      resData: res,
+    }
+  });
 }
 
 getOrderById() {}

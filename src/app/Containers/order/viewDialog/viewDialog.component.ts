@@ -66,7 +66,7 @@ export class ViewDialogComponent implements OnInit {
   // sub orer
   // data source
   dataSource;
-  displayedColumns: string[] = ['id', 'basePrice', 'discountAmount', 'originalPrice', 'productId'];
+  displayedColumns: string[] = ['id', 'basePrice', 'productId'];
   isSubOrder = false;
   subOrders: SaleOrder[] = [];
 
