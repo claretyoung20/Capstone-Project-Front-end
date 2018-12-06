@@ -11,47 +11,47 @@
  our-menu -->
 
 <section class="tab-page page-section-ptb">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="tabs clearfix">
-          <!-- Nav tabs -->
-          <ul class="tabs-link without-icon white text-left">
-            <li class="active"><a href="#tab-1" data-toggle="tab" aria-expanded="false"> Account Info | </a></li>
-            <li><a href="#tab-2" data-toggle="tab" aria-expanded="true"> View Orders | </a></li>
-            <li><a href="#tab-3" data-toggle="tab"> View Reservation</a></li>
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <!-- Account Tab -->
-            <div class="tab-pane fade active in" id="tab-1">
-              <div>
-                <p><b>Fisrt Name:</b> {{customerData?.firstName}}</p>
-                <p>Last Name: {{customerData?.lastName}}</p>
-                <p>Email: {{customerData?.email}}</p>
-                <p>DOB: {{customerData?.dateOfBirth}}</p>
-                <p>Phone: {{customerData?.phoneNumber}}</p>
-                <p>Address: {{customerData?.address}}</p>
-                <div><a class="button arrow e-small mb-20" (click)="openEditProfile()"><span> Edit </span> <i class="fa fa-edit"></i>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs clearfix">
+                    <!-- Nav tabs -->
+                    <ul class="tabs-link without-icon white text-left">
+                        <li class="active"><a href="#tab-1" data-toggle="tab" aria-expanded="false"> Account Info | </a></li>
+                        <li><a href="#tab-2" data-toggle="tab" aria-expanded="true"> View Orders | </a></li>
+                        <li><a href="#tab-3" data-toggle="tab"> View Reservation</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Account Tab -->
+                        <div class="tab-pane fade active in" id="tab-1">
+                            <div>
+                                <p><b>Fisrt Name:</b> {{user?.firstName}}</p>
+                                <p>Last Name: {{user?.lastName}}</p>
+                                <p>Email: {{user?.email}}</p>
+                                <p>DOB: {{customerData?.dateOfBirth}}</p>
+                                <p>Phone: {{customerData?.phoneNumber}}</p>
+                                <p>Address: {{customerData?.address}}</p>
+                                <div><a class="button arrow e-small mb-20" (click)="openEditProfile()"><span> Edit </span> <i class="fa fa-edit"></i>
                   </a> <br /> </div>
-              </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Orders  tab -->
+
+                        <div class="tab-pane fade in" id="tab-2">
+                            <app-list-order-component></app-list-order-component>
+                        </div>
+
+                        <!-- Reservation tab -->
+
+                        <div class="tab-pane fade in" id="tab-3">
+                            <app-list-reservation-component></app-list-reservation-component>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <!-- Orders  tab -->
-
-            <div class="tab-pane fade in" id="tab-2">
-              <app-list-order-component></app-list-order-component>
-            </div>
-
-            <!-- Reservation tab -->
-
-            <div class="tab-pane fade in" id="tab-3">
-              <app-list-reservation-component></app-list-reservation-component>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>

@@ -1,3 +1,6 @@
+import { SaleOrder } from './../../entities/interfaces/saleOrder';
+import { SaleOrderService } from 'app/entities/services/saleOrder/sale-order.service';
+import { OrderService } from './../../entities/services/order/order.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatTableDataSource } from '@angular/material';
@@ -6,6 +9,8 @@ import { ProductService } from 'app/entities/services/product/product.service';
 import { LOCALSTORAGEFORCUSTOMER, ISCUSTOMERLOGGED } from 'app/static/constants/site.constants';
 import { ICart } from 'app/entities/interfaces/cart';
 import { Product } from 'app/entities/interfaces/product';
+import { RemoveConfirmComponent } from './remove-confirm/remove-confirm.component';
+import { Order } from 'app/entities/interfaces/order';
 
 @Component({
   selector: 'app-checkout-page',
@@ -16,11 +21,14 @@ export class CheckoutPageComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['dishId', 'name', 'price', 'edit', 'cancel'];
+  displayedColumns: string[] = ['id', 'name', 'productPrice', 'totalItem', 'totalPrice', 'action'];
 
   dataSource;
 
   orders: {};
+  orderSave: Order = {};
+  saleOrdersSave: SaleOrder = {}
+  savedOrder = false;
   customerId: number;
   isCustomerLoggedIn: Boolean;
   iCart: ICart[] = [];
@@ -29,13 +37,17 @@ export class CheckoutPageComponent implements OnInit {
 
   products: Product[] = [];
 
-  cartTable: CartTable[] = [];
+  carts: ICart[] = [];
+
+  totalPriceSave: number;
 
   constructor(
     private router: Router,
     public dialog: MatDialog,
     private productServices: ProductService,
-    private cartServices: CartService
+    private cartServices: CartService,
+    private orderService: OrderService,
+    private orderSaleService: SaleOrderService
   ) { }
 
   ngOnInit() {
@@ -46,7 +58,6 @@ export class CheckoutPageComponent implements OnInit {
       this.router.navigate(['/login']);
     } else {
       this.getAllCartItemsByCustomerId(this.customerId)
-      this.getCartByCustomerId(this.customerId);
     }
   }
 
@@ -55,6 +66,9 @@ export class CheckoutPageComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getTotalPrice(price, item) {
+    return price * item;
+  }
 
   viewCustomer(id) {
   }
@@ -64,62 +78,82 @@ export class CheckoutPageComponent implements OnInit {
 
   getAllCartItemsByCustomerId(id) {
     this.cartServices.findAllByCustomerId(id).subscribe(res => {
-      this.showCart(res);
-    })
-  }
-
-  showCart(res) {
-    this.iCart = res;
-    console.log('carts -> ' + this.iCart)
-  }
-
-  getCartByCustomerId(id) {
-    this.cartServices.findAllProcuctFromCartByCustomerId(id).subscribe(res => {
       this.show(res);
     })
   }
 
-  show(res) {
-    this.products = res;
-    console.log(this.products)
-    this.showCartOnTable();
+  show(res ) {
+    console.log(res);
+    this.dataSource = new MatTableDataSource(res);
+    this.carts = res;
   }
 
 
-  showCartOnTable() {
-    let cartT:  CartTable = {};
-    let i;
-    // tslint:disable-next-line:forin
-    for (i in this.iCart) {
-        let j
-        // tslint:disable-next-line:forin
-        for (j in this.products) {
-          cartT = {};
-            if (this.products[j].id === this.iCart[i].productId) {
-              cartT.cartId = this.iCart[i].id;
-              cartT.price = this.products[j].price;
-              cartT.qty = this.iCart[i].totalItem;
-              cartT.totalPrice = this.iCart[i].totalItem * this.products[j].price;
-              cartT.id = this.products[j].id;
-            }
-        }
-        this.cartTable[i] = cartT;
+  removeItem(id) {
+   this.openCartDialog(id);
+  }
+
+  openCartDialog(id) {
+
+    const dialogRef = this.dialog.open(RemoveConfirmComponent, {
+      data: {
+        itemId: id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllCartItemsByCustomerId(this.customerId);
+    });
+  }
+
+  totalPrice() {
+    let cartItems;
+    this.totalPriceSave = 0;
+    for (cartItems in this.carts) {
+      if (this.carts) {
+        this.totalPriceSave += this.carts[cartItems].productPrice * this.carts[cartItems].totalItem;
+      }
     }
 
-    console.log(this.cartTable);
+    return this.totalPriceSave;
   }
 
+  orderNow() {
+    // this.totalPrice();
+    // add to order
+    // total price
 
-  test() {}
+    this.orderSave.baseTotal = this.totalPrice();
+    this.orderSave.totalPrice = this.totalPrice();
+    this.orderSave.customerId = this.customerId;
+    this.orderSave.restaurantId = 1;
+    this.orderSave.orderStatusId = 1;
 
-}
+    this.orderService.create(this.orderSave).subscribe( res => {
+      console.log('successful');
 
-export interface CartTable {
-  id?: number;
-  name?: string;
-  price?: number;
-  qty?: number;
-  totalPrice?: number
-  cartId?: number;
+      const orderId = res.id;
+      let cartItems;
+      for (cartItems in this.carts) {
+
+        if (this.carts) {
+          // save sale order
+          this.saleOrdersSave = {};
+          this.saleOrdersSave.happyOrderId = orderId;
+          this.saleOrdersSave.basePrice = this.carts[cartItems].productPrice;
+          this.saleOrdersSave.productId = this.carts[cartItems].productId;
+
+          this.orderSaleService.create(this.saleOrdersSave).subscribe(result => {
+          })
+           this.cartServices.delete( this.carts[cartItems].id).subscribe(resultDelete => {
+              console.log('succesfully deleted');
+            })
+        }
+      }
+
+    })
+    this.router.navigate(['/profile']);
+  }
 
 }

@@ -1,10 +1,12 @@
 import { Entity } from './entity.interface';
 
 export interface Address extends Entity {
-    city: string,
-    country: string,
-    restaurantId: number,
-    street: string
+    city?: string;
+    street?: string;
+    country?: string;
+    supportEmail?: string;
+    contactNumber?: string;
+    restaurantId?: number;
 }
 
 

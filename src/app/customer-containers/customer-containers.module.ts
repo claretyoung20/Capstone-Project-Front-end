@@ -1,3 +1,5 @@
+import { HistoryReservationComponent } from './customer-profile/list-reservation-component/history-reservation/history-reservation.component';
+import { HistoryOrderComponent } from './customer-profile/list-order-component/history-order/history-order.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +19,7 @@ import { BookPolicyComponent } from './table-map/book-policy/book-policy.compone
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LogoutComponent } from './logout/logout.component';
-
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 @NgModule({
   imports: [
@@ -25,6 +27,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxMyDatePickerModule.forRoot(),
   ],
   declarations: [
     HomeComponent,
@@ -41,7 +44,9 @@ import { LogoutComponent } from './logout/logout.component';
     BookPolicyComponent,
     CheckoutPageComponent,
     ContactUsComponent,
-    LogoutComponent
+    LogoutComponent,
+    HistoryOrderComponent,
+    HistoryReservationComponent
   ]
 })
 export class CustomerContainersModule { }

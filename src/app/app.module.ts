@@ -1,3 +1,7 @@
+import { RemoveConfirmComponent } from './customer-containers/checkout-page/remove-confirm/remove-confirm.component';
+import { ConfirmReservationComponent } from './customer-containers/table-map/confirm-reservation/confirm-reservation.component';
+import { ErrorDialogComponent } from './customer-containers/customer-login/error-dialog/error-dialog.component';
+import { ConfirnRegistrationComponent } from './customer-containers/register-customer/confirnRegistration/confirnRegistration.component';
 import { ContainersModule } from './Containers/containers.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -48,7 +52,11 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConformDeleteDialogComponent,
     MenuAddCartComponent,
     ViewDialogComponent,
-    ViewProductDetailComponent
+    ViewProductDetailComponent,
+    ConfirnRegistrationComponent,
+    ErrorDialogComponent,
+    ConfirmReservationComponent,
+    RemoveConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +85,11 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     EditCustomerAccountComponent,
     MenuAddCartComponent,
     ViewDialogComponent,
-    ViewProductDetailComponent
+    ViewProductDetailComponent,
+    ConfirnRegistrationComponent,
+    ErrorDialogComponent,
+    ConfirmReservationComponent,
+    RemoveConfirmComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

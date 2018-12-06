@@ -5,6 +5,8 @@ export interface ICart extends Entity {
     dateCreated?: Moment;
     dateUpdated?: Moment;
     totalItem?: number;
+    productName?: string;
+    productPrice?: number;
     productId?: number;
     customerId?: number;
 }

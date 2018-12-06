@@ -1,0 +1,55 @@
+<div class="row padd">
+    <div class="col-md-12">
+        <h2>Reservation History</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- <mat-form-field class="filter-staffa">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field> -->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="dateCreated">
+                    <th mat-header-cell *matHeaderCellDef> Date Created </th>
+                    <td mat-cell *matCellDef="let element"> {{element.reserverDate | date: 'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <!-- Last Name Column -->
+                <ng-container matColumnDef="dateUpdated">
+                    <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.updatedDate | date: 'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <!-- dateOfBirth Column -->
+                <ng-container matColumnDef="time">
+                    <th mat-header-cell *matHeaderCellDef> Time </th>
+                    <td mat-cell *matCellDef="let element"> {{ getStatus(element.period) }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="comment">
+                    <th mat-header-cell *matHeaderCellDef> Comment </th>
+                    <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+        </div>
+    </div>
+</div>

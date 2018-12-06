@@ -1,0 +1,62 @@
+<div class="row padd">
+    <div class="col-md-12">
+        <h2>Order History</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- <mat-form-field class="filter-staffa">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field> -->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="dateCreated">
+                    <th mat-header-cell *matHeaderCellDef> dateCreated </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateCreated | date: 'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <!-- Last Name Column -->
+                <ng-container matColumnDef="dateUpdated">
+                    <th mat-header-cell *matHeaderCellDef> dateUpdated </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateUpdated | date: 'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <!-- dateOfBirth Column -->
+                <ng-container matColumnDef="totalPrice">
+                    <th mat-header-cell *matHeaderCellDef> totalPrice </th>
+                    <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency: '$'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="orderStatus">
+                    <th mat-header-cell *matHeaderCellDef> orderStatusId </th>
+                    <td mat-cell *matCellDef="let element">{{filterStatus(element.orderStatusId)}}</td>
+                </ng-container>
+
+                <!-- email Column -->
+                <ng-container matColumnDef="coupon">
+                    <th mat-header-cell *matHeaderCellDef> couponId </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="getCouponById(element.couponId)">{{ element.couponId}}</a></td>
+                </ng-container>
+
+                <!-- view order Column -->
+                <ng-container matColumnDef="suborder">
+                    <th mat-header-cell *matHeaderCellDef>View Sub Order </th>
+                    <td mat-cell *matCellDef="let element"><i (click)="viewSubOrder(element.id)" class="ti-eye"></i></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+        </div>
+    </div>
+</div>

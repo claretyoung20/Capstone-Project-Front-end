@@ -615,8 +615,8 @@ special-menu -->
                         <div class="title-separator">
                             <i class="glyph-icon flaticon-food-27 white"></i>
                         </div>
-                        <h2 class="text-white"> <span class="text-orange">Our Today’s</span> Special Menu</h2>
-                        <p class="text-white">We serve a daily changing menu</p>
+                        <h2 class="text-white"> <span class="text-orange"></span> Special Menu</h2>
+                        <p class="text-white">We serve a daily delicious meal</p>
                     </div>
                 </div>
             </div>
@@ -624,6 +624,9 @@ special-menu -->
                 <div class="col-lg-12 col-md-12">
                     <div class="owl-carousel" data-nav-dots="true" data-items="4" data-md-items="3" data-sm-items="2"
                         data-xs-items="1" data-dotcolor='white'>
+
+                        <!-- sssss -->
+                        <div *ngFor="let product of products">
                         <div class="item">
                             <div class="menu-body menu-center">
                                 <div class="menu-thumbnail">
@@ -632,68 +635,16 @@ special-menu -->
                                 </div>
                                 <div class="menu-details">
                                     <div class="menu-title clearfix">
-                                        <h4>Breakfast Complete</h4>
-                                        <span class="price">$99.0</span>
+                                        <h4>{{product.name}}</h4>
+                                        <span class="price">{{product.price}}</span>
+                                        <span style="padding: 15px"><button (click)="addTocart(product.id)" mat-fab  color="primary">Order</button></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="menu-body menu-center">
-                                <div class="menu-thumbnail">
-                                    <img class="img-responsive center-block" src="../../../assets/images/dish/06.png"
-                                        alt="">
-                                </div>
-                                <div class="menu-details">
-                                    <div class="menu-title clearfix">
-                                        <h4>French Toast</h4>
-                                        <span class="price">$99.0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="menu-body menu-center">
-                                <div class="menu-thumbnail">
-                                    <img class="img-responsive center-block" src="../../../assets/images/dish/07.png"
-                                        alt="">
-                                </div>
-                                <div class="menu-details">
-                                    <div class="menu-title clearfix">
-                                        <h4>Crepe Complete</h4>
-                                        <span class="price">$99.0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="menu-body menu-center">
-                                <div class="menu-thumbnail">
-                                    <img class="img-responsive center-block" src="../../../assets/images/dish/08.png"
-                                        alt="">
-                                </div>
-                                <div class="menu-details">
-                                    <div class="menu-title clearfix">
-                                        <h4>Vegetarian Breakfast</h4>
-                                        <span class="price">$99.0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="menu-body menu-center">
-                                <div class="menu-thumbnail">
-                                    <img class="img-responsive center-block" src="../../../assets/images/dish/09.png"
-                                        alt="">
-                                </div>
-                                <div class="menu-details">
-                                    <div class="menu-title clearfix">
-                                        <h4>French Breakfast</h4>
-                                        <span class="price">$99.0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                        <!-- ssssssss -->
+                        
                     </div>
                 </div>
             </div>
@@ -705,9 +656,11 @@ special-menu -->
 special-menu -->
 
 <!--=================================
-Pricing Grid -->
+Promotion Grid -->
+<div></div>
 
-<section class="pricing-grid gray-bg page-section-ptb">
+<section class="pricing-grid gray-bg page-section-ptb" *ngIf="customerId !== 0" >
+<!-- <section class="pricing-grid gray-bg page-section-ptb"> -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -716,78 +669,27 @@ Pricing Grid -->
                         <i class="glyph-icon flaticon-food-27"></i>
                     </div>
                     <h2> <span class="text-orange"> Happy Hour </span>Promotion</h2>
-                    <p>Choose your perfect pricing plan</p>
+                    <p>We care about you our customer</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-12 col-md-12 col-sm-12" *ngFor="let coupon of coupons" >
                 <div class="pricing-table">
                     <div class="pricing-title">
-                        <h2>BASIC plan</h2>
-                        <strong>$10</strong>
+                        <h2>Promo code</h2>
+                        <strong>{{ coupon.price | currency: '$'}}</strong>
+                        <strong>{{ coupon.code}}</strong>
+                        <p>Buy food worth {{ coupon.maxAmountToApply | currency: '$' }} or and get {{ coupon.price | currency: '$'}} discount..</p>
                     </div>
-                    <div class="pricing-list mb-30">
-                        <ul>
-                            <li class="text-light-gray">Starter Soup</li>
-                            <li>Tomato Salad</li>
-                            <li>Large 2 Chicken</li>
-                            <li>Peri Peri Sausage</li>
-                            <li class="text-light-gray">French Fry</li>
-                            <li class="text-light-gray">Cocoa Brownies</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-button"><a class="button" href="#">Order Now</a></div>
+                    <div class="pricing-button"><a class="button" href="#">View Menu</a></div>
                     <div class="pricing-icon">
                         <i class="glyph-icon flaticon-cake-piece-with-cream"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <div class="pricing-table">
-                    <div class="pricing-title">
-                        <h2 class="text-black">PREMIUM plan</h2>
-                        <strong>$16/<span>month</span></strong>
-                        <p>Use this plan in 1 month</p>
-                    </div>
-                    <div class="pricing-list mb-30">
-                        <ul>
-                            <li>Starter Soup</li>
-                            <li>Tomato Salad</li>
-                            <li class="text-light-gray">Large 2 Chicken</li>
-                            <li>Peri Peri Sausage</li>
-                            <li class="text-light-gray">French Fry</li>
-                            <li>Cocoa Brownies</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-button"><a class="button" href="#">Order Now</a></div>
-                    <div class="pricing-icon">
-                        <i class="glyph-icon flaticon-foamy-beer-jar"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <div class="pricing-table">
-                    <div class="pricing-title">
-                        <h2>ULTIMATE plan</h2>
-                        <strong>$23/<span>month</span></strong>
-                        <p>Use this plan in 1 month</p>
-                    </div>
-                    <div class="pricing-list mb-30">
-                        <ul>
-                            <li>Starter Soup</li>
-                            <li>Tomato Salad</li>
-                            <li>Large 2 Chicken</li>
-                            <li>Peri Peri Sausage</li>
-                            <li>French Fry</li>
-                            <li>Cocoa Brownies</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-button"><a class="button" href="#">Order Now</a></div>
-                    <div class="pricing-icon">
-                        <i class="glyph-icon flaticon-food-60"></i>
-                    </div>
-                </div>
+            <div *ngIf="coupons.length === 0" >
+                <p style = "text-align: center">We do not have any promotion at the momet, stay turned in for future promo!!</p>
             </div>
         </div>
     </div>
@@ -796,576 +698,7 @@ Pricing Grid -->
 <!--=================================
 Pricing Grid -->
 
-<!--=================================
-our-menu -->
 
-<section class="our-menu page-section-pt parallax pb-30" style="background-image: url(../../../assets/images/bg/06.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="tabs clearfix">
-                    <!-- Nav tabs -->
-                    <ul class="tabs-link text-center">
-                        <li class="active"><a href="#tab-1" data-toggle="tab" aria-expanded="false"><i class="glyph-icon flaticon-hot-mug-doodle"></i>
-                                Breakfast</a></li>
-                        <li><a href="#tab-2" data-toggle="tab" aria-expanded="true"><i class="glyph-icon flaticon-food-36"></i>
-                                Lunch</a></li>
-                        <li><a href="#tab-3" data-toggle="tab"><i class="glyph-icon flaticon-food-9"></i> Dinner</a></li>
-                        <li><a href="#tab-4" data-toggle="tab"><i class="glyph-icon flaticon-foamy-beer-jar"></i>
-                                Drinks</a></li>
-                    </ul>
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="tab-1">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/01.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Breakfast Complete</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Salmon fillet in a rich red curry with coconut milk, sweet basil
-                                                    leaves ,pea aubergine, and kaffir lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/02.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>French Toast</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>The famous hot, sour and spicy thai soup with king prawn, shimeji
-                                                    mushrooms, lemongrass, and lime leaf</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/03.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Crepe Complete</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Thai rice noodles stir-fried with bean curd, chinese chives, peanuts
-                                                    and beans sprouts in a special homemade sauce</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/04.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Vegetarian Breakfast</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Stir fried king prawn, tender stem broccoli and asparagus with
-                                                    oyster sauce. Deep-fried mince prawn</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/05.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>French Breakfast</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill boneless corn-fed chicken, marinated in coconut milk,
-                                                    lemongrass, galangal, turmeric and lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/06.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Eggs Benedict</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill sirloin beef with cracked black pepper. Served with green
-                                                    salad and sweet and sour sauce on the side</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/07.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>English Breakfast</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Tender stem broccoli and asparagus with oyster sauce. Stir fried
-                                                    king prawn. Lime mousse with mango ganache</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/08.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Barrel's Breakfast</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>With chopped vegetables, served with plum sauce. Tossed in
-                                                    peppercorns and spiced salt</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab-2">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/09.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Shrimp and Grits</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>With peppercorns and spiced salt, delicately battered. Tossed in
-                                                    peppercorns and spiced salsa</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/10.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Spring Salad</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Salmon fillet in a rich red curry with coconut milk, sweet basil
-                                                    leaves ,pea aubergine, and kaffir lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/11.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Fried Chicken Breast</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>The famous hot, sour and spicy thai soup with king prawn, shimeji
-                                                    mushrooms, lemongrass, and lime leaf</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/12.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Seafood Pasta</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Thai rice noodles stir-fried with bean curd, chinese chives, peanuts
-                                                    and beans sprouts in a special homemade sauce</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/13.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>She Crab Soup</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Stir fried king prawn, tender stem broccoli and asparagus with
-                                                    oyster sauce. Deep-fried mince prawn</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/14.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Black Bean Soup</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill boneless corn-fed chicken, marinated in coconut milk,
-                                                    lemongrass, galangal, turmeric and lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/15.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Turkey Melt</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill sirloin beef with cracked black pepper. Served with green
-                                                    salad and sweet and sour sauce on the side</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/16.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Lobster Roll</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Tender stem broccoli and asparagus with oyster sauce. Stir fried
-                                                    king prawn. Lime mousse with mango ganache</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab-3">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/01.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Caesar Salad</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>With chopped vegetables, served with plum sauce. Tossed in
-                                                    peppercorns and spiced salt</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/02.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Mixed Greens Salad</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>With peppercorns and spiced salt, delicately battered. Tossed in
-                                                    peppercorns and spiced salsa</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/03.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Pork Belly</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Salmon fillet in a rich red curry with coconut milk, sweet basil
-                                                    leaves ,pea aubergine, and kaffir lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/04.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Peach Gazpacho</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>The famous hot, sour and spicy thai soup with king prawn, shimeji
-                                                    mushrooms, lemongrass, and lime leaf</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/05.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Veal Chop</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Thai rice noodles stir-fried with bean curd, chinese chives, peanuts
-                                                    and beans sprouts in a special homemade sauce</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/06.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Wood Roasted Salmon</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Stir fried king prawn, tender stem broccoli and asparagus with
-                                                    oyster sauce. Deep-fried mince prawn</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/07.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Pan Seared Chicken</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill boneless corn-fed chicken, marinated in coconut milk,
-                                                    lemongrass, galangal, turmeric and lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/08.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Butter Poached Lobster</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill sirloin beef with cracked black pepper. Served with green
-                                                    salad and sweet and sour sauce on the side</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab-4">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/09.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Raspberry Iced Tea</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Tender stem broccoli and asparagus with oyster sauce. Stir fried
-                                                    king prawn. Lime mousse with mango ganache</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/10.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Black Iced Tea</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>With chopped vegetables, served with plum sauce. Tossed in
-                                                    peppercorns and spiced salt</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/11.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Arnold Palmer</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>With peppercorns and spiced salt, delicately battered. Tossed in
-                                                    peppercorns and spiced salsa</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/12.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Coffee</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Salmon fillet in a rich red curry with coconut milk, sweet basil
-                                                    leaves ,pea aubergine, and kaffir lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/13.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Loose Leaf Teas</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>The famous hot, sour and spicy thai soup with king prawn, shimeji
-                                                    mushrooms, lemongrass, and lime leaf</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/14.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Red Bull</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Thai rice noodles stir-fried with bean curd, chinese chives, peanuts
-                                                    and beans sprouts in a special homemade sauce</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/15.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>San Pellegrino</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Stir fried king prawn, tender stem broccoli and asparagus with
-                                                    oyster sauce. Deep-fried mince prawn</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-body menu-left">
-                                        <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/16.png"
-                                                alt="">
-                                        </div>
-                                        <div class="menu-details">
-                                            <div class="menu-title clearfix">
-                                                <h4>Saratoga</h4>
-                                                <span class="price">$99.0</span>
-                                            </div>
-                                            <div class="menu-description">
-                                                <p>Grill boneless corn-fed chicken, marinated in coconut milk,
-                                                    lemongrass, galangal, turmeric and lime leaves</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!--=================================
 special-menu -->
@@ -1443,95 +776,6 @@ counter -->
 <!--=================================
 counter -->
 
-<!--=================================
-reservation form  -->
-
-<section class="reservation-form contact-form dark page-section-ptb parallax bg-overlay-black-80" style="background-image: url(../../../assets/images/bg/02.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title text-center">
-                    <div class="title-separator">
-                        <i class="glyph-icon flaticon-food-27"></i>
-                    </div>
-                    <h2 class="text-white"> <span class="text-orange"> Happy Hour</span> Reservation</h2>
-                    <p class="text-white">We provide free, secure and instantly confirmed online reservation.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row row-eq-height">
-            <div class="col-lg-4 col-md-5 pl-0 pr-0">
-                <div class="reservation-image form-image">
-                    <img class="img-responsive" src="../../../assets/images/event/07.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-7 col-sm-12 pl-0 pr-0 white-bg">
-                <form class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <h3 class="mb-30">Reservation form</h3>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-field">
-                            <i class="fa fa-pencil"></i>
-                            <input class="web placeholder" type="text" placeholder="Full Name" name="web">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-field">
-                            <i class="fa fa-phone"></i>
-                            <input class="web placeholder" type="text" placeholder="Phone Number" name="web">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-field">
-                            <i class="fa fa-envelope-o"></i>
-                            <input class="web placeholder" type="text" placeholder="Your Email" name="web">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-field" id="datepicker">
-                            <i class="fa fa-calendar add-on"></i>
-                            <input data-format="yyyy-MM-dd" type="text" placeholder="Select date">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-field" id="timepicker">
-                            <i class="fa fa-clock-o icon-time add-on"></i>
-                            <input data-format="hh:mm:ss" type="text" placeholder="Select time">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-field">
-                            <div class="selected-box">
-                                <select>
-                                    <option value="Person">Person</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="2">More then 2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="form-field">
-                            <i class="fa fa-comment-o"></i>
-                            <textarea class="input-message placeholder" placeholder="Comment*" rows="2" name="message"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="submit-button">
-                            <a class="button" href="#">Book A Table</a>
-                            <span>Is all about good food. Enjoy our decious food</span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--=================================
-reservation form  -->
 
 <!--=================================
 testimonials -->

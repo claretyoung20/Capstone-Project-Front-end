@@ -1,115 +1,164 @@
 <div class="inner-intro parallax bg-overlay-black-70" style="background-image: url(../../../assets/images/bg/03.jpg);">
-  <div class="container">
-    <div class="row text-center intro-title">
-      <h1 class="text-orange">REGISTER WITH US</h1>
-      <ul class="page-breadcrumb">
-        <li><a href=""><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i></li>
-        <li>register <i class="fa fa-angle-double-right"></i></li>
-        <li><span>register form</span></li>
-      </ul>
+    <div class="container">
+        <div class="row text-center intro-title">
+            <h1 class="text-orange">REGISTER WITH US</h1>
+            <ul class="page-breadcrumb">
+                <li><a href=""><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i></li>
+                <li>register <i class="fa fa-angle-double-right"></i></li>
+                <li><span>register form</span></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 
 <!--reservation -->
 
 <section class="reservation">
-  <div class="page-section-ptb">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <div class="section-title text-center">
-            <div class="title-separator">
-              <i class="glyph-icon flaticon-food-27"></i>
-            </div>
-            <h2> <span class="text-orange">Sign </span> Up</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-10  col-lg-offset-1">
-          <form [formGroup]="customerForm" class="form-horizontal">
-            <div class="contact-form">
-              <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field">
-                    <i class="fa fa-pencil"></i>
-                    <input class="web placeholder" type="text" placeholder="First Name" formControlName="firstName">
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field">
-                    <i class="fa fa-pencil"></i>
-                    <input class="web placeholder" type="text" placeholder="Last Name" formControlName="lastName">
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field">
-                    <i class="fa fa-phone"></i>
-                    <input class="web placeholder" type="tel" placeholder="Phone Number" formControlName="phoneNumber">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field">
-                    <i class="fa fa-envelope-o"></i>
-                    <input class="web placeholder" type="email" placeholder="Email" formControlName="email">
-                  </div>
-                </div>
-                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field" id="datepicker" placeholder="Date of Birth">
-                    <i class="fa fa-calendar add-on"></i>
-                    <input data-format="yyyy-MM-dd" type="text" placeholder="Date of Birth">
-                  </div>
-                </div> -->
-
-                <mat-form-field class="left col-lg-4 col-md-4 col-sm-4">
-                  <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth" formControlName="dateOfBirth">
-                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                  <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field">
-                    <i class="fa fa-address-book-o" aria-hidden="true"></i>
-                    <input type="text" placeholder="Address" formControlName="address">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="form-field">
-                    <i class="fa fa-address-book-o" aria-hidden="true"></i>
-                    <input type="password" placeholder="Password" formControlName="password">
-                  </div>
-                </div>
-
-                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="form-field">
-                      <i class="fa fa-address-book-o" aria-hidden="true"></i>
-                      <input type="password" placeholder="Confirm Password" formControlName="passwordConfirm">
+    <div class="page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="section-title text-center">
+                        <div class="title-separator">
+                            <i class="glyph-icon flaticon-food-27"></i>
+                        </div>
+                        <h2> <span class="text-orange">Sign </span> Up</h2>
                     </div>
-                  </div> -->
-
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-submit mt-10 mb-30 text-center">
-
-                    <button id="submit" name="Submit" (click)="addCustomer()" class="button uppercase">
-                      Register</button>
-                  </div>
                 </div>
-              </div>
             </div>
-          </form>
+            <div class="row">
+                <div class="col-lg-10  col-lg-offset-1">
+                    <form novalidate [formGroup]="customerForm" class="form-horizontal">
+                        <div class="contact-form">
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group" [class.has-error]="customerForm.get('login').invalid && submitForm || (customerForm.get('login')?.errors && customerForm.get('login').touched)">
+                                        <label>Login<span class="spanRequired">*</span>:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-code"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" #login formControlName="login" placeholder="Enter Username">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group" [class.has-error]="customerForm.get('firstName').invalid && submitForm || (customerForm.get('firstName')?.errors && customerForm.get('firstName').touched)">
+                                        <label>First Name<span class="spanRequired">*</span>:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-code"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" #firstName formControlName="firstName" placeholder="Enter firstName">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group" [class.has-error]="customerForm.get('lastName').invalid && submitForm || (customerForm.get('lastName')?.errors && customerForm.get('lastName').touched)">
+                                        <label>Last Name<span class="spanRequired">*</span>:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-code"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" #lastName formControlName="lastName" placeholder="Enter Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group" [class.has-error]="customerForm.get('email')?.invalid && submitForm || (customerForm.get('email')?.errors && customerForm.get('email').touched)">
+                                        <label>Email<span class="spanRequired">*</span>:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-code"></i>
+                                            </div>
+                                            <input placeholder="Email" type="email" class="form-control pull-right" formControlName="email">
+                                        </div>
+                                        <span *ngIf="customerForm.get('email')?.errors && customerForm.get('email').touched" class="alert alert-danger">Please enter valid Email</span>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group">
+                                        <label>Date Of Birth:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default" (click)="desc.toggleCalendar()">
+                                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                                      </button>
+                                  </span>
+                                            <input class="form-control" style="float:none" placeholder="Select Date Of Birth" ngx-mydatepicker name="dateOfBirth" formControlName="dateOfBirth" [options]="dateOptions" #desc="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="desc.toggleCalendar()"
+                                            />
+                                            <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default" (click)="desc.clearDate()">
+                                          <i class="fa fa-times" aria-hidden="true" title="Clear"></i>
+                                      </button>
+                                  </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group">
+                                        <label>Phone Nuber:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-list-ol"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" #dimension formControlName="phoneNumber" placeholder="Enter Phone Number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 padSize">
+                                    <div class="form-group">
+                                        <label>Address:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-list-ol"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" #dimension formControlName="address" placeholder="Enter Address">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div *ngIf="errorMessage " class="alert alert-danger ">
+                                    {{errorMessage}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-submit mt-10 mb-30 text-center">
+
+                                        <button id="submit" name="Submit" (click)="addCustomer()" class="button uppercase">
+                      Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!--=================================

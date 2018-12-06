@@ -43,7 +43,8 @@ export class MenuAddCartComponent implements OnInit {
 
   login() {
     this.dialogRef.close();
-    window.location.reload();
+    // window.location.reload();
+    this.router.navigate(['/login']);
   }
 
   register() {

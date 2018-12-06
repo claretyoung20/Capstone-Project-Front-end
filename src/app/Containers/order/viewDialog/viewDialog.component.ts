@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductService } from 'app/entities/services/product/product.service';
 import { OrderStatusService } from './../../../entities/services/orderStatus/orderStatus.service';
 import { OrderService } from './../../../entities/services/order/order.service';
@@ -65,7 +66,7 @@ export class ViewDialogComponent implements OnInit {
   // sub orer
   // data source
   dataSource;
-  displayedColumns: string[] = ['id', 'basePrice', 'discountAmount', 'originalPrice', 'productId'];
+  displayedColumns: string[] = ['id', 'basePrice', 'productId'];
   isSubOrder = false;
   subOrders: SaleOrder[] = [];
 
@@ -93,6 +94,7 @@ export class ViewDialogComponent implements OnInit {
     private orderService: OrderService,
     private orderStatusService: OrderStatusService,
     private staffService: StaffService,
+    private router: Router,
     public dialog: MatDialog,
     private productSErvice: ProductService,
     private reserveService: ReservationService
@@ -192,7 +194,10 @@ export class ViewDialogComponent implements OnInit {
   }
 
   // sub order
-  viewAllSubOrder() {}
+  viewAllSubOrder() {
+    this.router.navigate(['/admin/statistics']);
+    this.dialogRef.close();
+  }
 
   getProductDetail(id) {
     // open new dialog

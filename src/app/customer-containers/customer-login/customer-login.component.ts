@@ -1,8 +1,16 @@
+import { MatDialog } from '@angular/material';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { IAccount } from 'app/entities/model/user/iaccount.interface';
+import { MyErrorStateMatcher } from './../../Containers/login/login.component';
+import { HttpResponse } from '@angular/common/http';
+import { CUSTOMERROLE, LOCALSTORAGEFORUSERCUSTOMER } from './../../static/constants/site.constants';
+import { AccountStaffService } from 'app/entities/services/account/account.service';
+import { LoginService, User } from 'app/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'app/entities/services/customer/customer.service';
-import { ISCUSTOMERLOGGED, LOCALSTORAGEFORCUSTOMER } from 'app/static/constants/site.constants';
+import { ISCUSTOMERLOGGED, LOCALSTORAGEFORCUSTOMER, CURRENTADMINROLE } from 'app/static/constants/site.constants';
 
 @Component({
   selector: 'app-customer-login',
@@ -12,10 +20,18 @@ import { ISCUSTOMERLOGGED, LOCALSTORAGEFORCUSTOMER } from 'app/static/constants/
 export class CustomerLoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  matcher = new MyErrorStateMatcher();
 
+  accounts: IAccount[] = [];
+
+  user: User;
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    public dialog: MatDialog,
+    private loginService: LoginService,
+    private app: LoginService,
+    private accountService: AccountStaffService,
     private customerService: CustomerService
   ) { }
 
@@ -25,19 +41,72 @@ export class CustomerLoginComponent implements OnInit {
 
   buildForm() {
     this.loginForm = this.fb.group({
-      email: [''],
+      login: [''],
       password: ['']
     })
   }
 
   login() {
-    const data = this.loginForm.value;
-    this.customerService.customerLogin(data.email, data.password).subscribe(res => {
-      localStorage.setItem(ISCUSTOMERLOGGED, 'true');
-      localStorage.setItem(LOCALSTORAGEFORCUSTOMER, res.id);
-      console.log(res);
-       this.router.navigate(['/']);
-    })
-  }
+    localStorage.clear();
+    localStorage.removeItem(CUSTOMERROLE);
+    localStorage.removeItem(LOCALSTORAGEFORCUSTOMER);
+    const data =  this.loginForm.value;
+    this.loginService
+        .login({
+            username: data.login,
+            password: data.password,
+            rememberMe: true
+        })
+        .then(() => {
+           console.log('successful');
+           this.getAccount(data.login, data.password);
+        })
+        .catch(() => {
+          this.openDialog();
+          console.log(' not successful');
+        });
+}
 
+authenticated() { return this.app.authenticated; }
+
+// access user account and get
+getAccount(login, password) {
+  // get by login and password
+  this.accountService.findByUserLogin(login, password) .subscribe(
+    (res: HttpResponse<User>) => this.onSuccess(res.body),
+    (res: HttpResponse<any>) => this.onError(res.body)
+);
+
+}
+
+private onSuccess(data) {
+  this.user = data;
+  console.log(this.user);
+  this.getCustomerByUserId(this.user.id);
+  localStorage.setItem(CUSTOMERROLE, this.user.authorities[0]);
+  localStorage.setItem(ISCUSTOMERLOGGED, 'true');
+
+   this.router.navigateByUrl('/');
+}
+getCustomerByUserId(id) {
+  this.customerService.findcustomerByUserId(id).subscribe( res => {
+    localStorage.setItem(LOCALSTORAGEFORCUSTOMER, res.id.toString());
+    localStorage.setItem(LOCALSTORAGEFORUSERCUSTOMER, res.userId.toString());
+  })
+}
+
+
+private onError(error) {
+ // message error
+}
+
+openDialog() {
+  const dialogRef = this.dialog.open(ErrorDialogComponent, {
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+    this.router.navigateByUrl('/login');
+  });
+}
 }

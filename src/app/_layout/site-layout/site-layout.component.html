@@ -19,9 +19,9 @@ header -->
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="topbar-left text-left">
-                        <ul>
-                            <li><i class="fa fa-phone"></i> (01) 123 456 7890 </li>
-                            <li><i class="fa fa-envelope-o"></i> support@website.com</li>
+                        <ul *ngFor="let address of address">
+                            <li><i class="fa fa-phone"></i> {{address.contactNumber}} </li>
+                            <li><i class="fa fa-envelope-o"></i> {{address.supportEmail}}</li>
                         </ul>
                     </div>
                 </div>
@@ -40,8 +40,7 @@ header -->
                                             <div class="row">
                                                 <div class="form_search-wrap">
                                                     <form>
-                                                        <input class="search-input" placeholder="Type and hit Enter..."
-                                                            type="text">
+                                                        <input class="search-input" placeholder="Type and hit Enter..." type="text">
                                                         <a href="#" class="search-close">
                                                             <span></span>
                                                             <span></span>
@@ -76,23 +75,20 @@ header -->
                                     </a>
                                     <div class="head-info-content">
                                         <div class="info-left pull-left">
-                                            <div class="time">
-                                                <h6>MON – SAT</h6>
-                                                <p>Lunch: 11:30 – 2:00</p>
-                                                <p>Evening: 6:30 – 10:00</p>
-                                            </div>
-                                            <div class="time mt-20">
-                                                <h6>SUNDAY</h6>
-                                                <p>Lunch: 11:30 – 2:00</p>
-                                                <p>Evening: 6:30 – 10:00</p>
+                                            <div class="time" *ngFor="let time of timeMagers">
+                                                <h6>{{time.day}}</h6>
+                                                <p>Start: {{time.startTime}}</p>
+                                                <p>Close: {{time.endTime}}</p>
                                             </div>
                                         </div>
                                         <div class="info-right pull-right">
                                             <div class="address">
-                                                <p>1234 North Avenue Luke, IN 360001 </p>
-                                                <p> (01) 123 456 7890 </p>
-                                                <p>support@website.com </p>
-                                                <a href="#"><i class="fa fa-map-o pr-10"></i> Find us here</a>
+                                                <div *ngFor="let address of address">
+                                                    <p class="text-white">{{address.street}} {{address.city}}, {{address.country}}</p>
+                                                    <p class="text-white">{{ address.contactNumber}}</p>
+                                                    <p class="text-white">{{address.supportEmail}}</p>
+                                                    <a class="text-orange" href="#"><i class="fa fa-map-o pr-10"></i> Find us here</a>
+                                                </div>
                                                 <ul class="list-inline mt-15">
                                                     <li>
                                                         <a href="#"> <i class="fa fa-facebook"></i> </a>
@@ -125,7 +121,7 @@ header -->
                                     <a href="/menu"> Menu</a>
                                 </li>
 
-                                 <!-- Only for logged in customer -->
+                                <!-- Only for logged in customer -->
                                 <li [ngStyle]="{'display': isCustomerLogin()}">
                                     <a href="/reservation"> Reservation</a>
                                 </li>
@@ -149,11 +145,10 @@ header -->
                                         <li><a href="/login"> Login</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#"> Rating</a></li>
                                 <li><a href="/contactus"> Contact us</a></li>
 
-                                 <!-- Only for logged in customer -->
-                                <i [ngStyle]="{'display': isCustomerLogin()}" style="color: red" >
+                                <!-- Only for logged in customer -->
+                                <i [ngStyle]="{'display': isCustomerLogin()}" style="color: red">
                                     <a href="/checkout">
                                         <mat-icon matBadge="{{cartTotal}}" matBadgeColor="warn">shopping_cart</mat-icon>
                                     </a>
@@ -188,25 +183,13 @@ header -->
                     <img id="logo-footer" class="img-responive" src="../../assets/img/logoaa.png" alt="">
                 </div>
                 <div class="col-lg-8 col-lg-offset-2">
-                    <p class=" text-white mb-60">We provide you with daily self-made bread, sourdough pizza, roasted
-                        fish-meat-vegetables and many more. Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    <p class=" text-white mb-60">We provide you with daily self-made bread, sourdough pizza, roasted fish-meat-vegetables and many more. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                         enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="newsletter">
-                    <h4 class="text-white mb-30">Newsletter</h4>
-                    <p class="text-white">Signing up to our newsletter keeps you up-to-date!</p>
-                    <div class="newsletter-input">
-                        <input type="email" placeholder="Your email*" name="email">
-                        <a href="#"><i class="fa fa-envelope-o"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="col-lg-4 col-md-4 col-sm-7">
                 <div class="tweet">
                     <h4 class="text-white mb-30">Latest tweet</h4>
                     <div class="tweet-block mb-20">
@@ -229,23 +212,21 @@ header -->
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="col-lg-4 col-md-4 col-sm-7">
                 <div class="opening-time">
                     <h4 class="text-white mb-30">Open time</h4>
                     <ul>
-                        <li>Monday<span class="text-right">8am - 2pm </span></li>
-                        <li>Tuesday<span>10am - 4pm</span></li>
-                        <li>Wednesday<span>11am - 4pm</span></li>
+                        <li *ngFor="let timeMager of timeMagers">{{ timeMager.day}}<span class="text-right">{{timeMager.startTime}} - {{timeMager.endTime}} </span></li>
                         <li>Close on public holidays</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="contact">
+            <div class="col-lg-4 col-md-4 col-sm-7">
+                <div class="contact" *ngFor="let address of address">
                     <h4 class="text-white mb-30">Contact</h4>
-                    <p class="text-white">1234 North Avenue Luke, IN 360001</p>
-                    <p class="text-white">(01) 123 456 7890</p>
-                    <p class="text-white">support@website.com</p>
+                    <p class="text-white">{{address.street}} {{address.city}}, {{address.country}}</p>
+                    <p class="text-white">{{ address.contactNumber}}</p>
+                    <p class="text-white">{{address.supportEmail}}</p>
                     <a class="text-orange" href="#"><i class="fa fa-map-o pr-10"></i> Find us here</a>
                 </div>
             </div>
@@ -275,8 +256,7 @@ header -->
                         </ul>
                     </div>
                     <p class="text-white mt-30"> &copy;Copyright <span id="copyright">
-                            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span>
-                        All right reserved by The Happy Hour. Designed by <a href="#"> Happy Hour</a></p>
+                            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> All right reserved by The Happy Hour. Designed by <a href="#"> Happy Hour</a></p>
                 </div>
             </div>
         </div>

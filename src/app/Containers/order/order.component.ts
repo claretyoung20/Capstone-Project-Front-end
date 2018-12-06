@@ -202,4 +202,14 @@ export class OrderComponent implements OnInit {
   allOrder() {
     this.getAllOrder();
   }
+
+  filterStatus(id) {
+    let item;
+   for (item in this.allOrderStatus) {
+     if (this.allOrderStatus[item].id === id) {
+        return this.allOrderStatus[item].name;
+     }
+   }
+  }
+
 }

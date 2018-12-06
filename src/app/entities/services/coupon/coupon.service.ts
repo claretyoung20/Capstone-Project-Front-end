@@ -1,5 +1,6 @@
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { Coupon } from '../../interfaces/coupon';
 import { EntityService } from './../entity.service';
 import { HH_COUPON } from 'app/static/constants/api.contants';
@@ -14,6 +15,14 @@ export class CouponService extends EntityService<Coupon> {
   baseUrl = HH_COUPON.BASE;
   constructor() {
     super();
+  }
+
+  public findValidCoupon(): Observable<any> {
+    const option = this.buildFindAllOption();
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = HH_COUPON.VALIDCOUPON;
+    return this.http.get<Coupon>(url, reqOptions).pipe(
+      tap(this.onResponse.bind(this)));
   }
 
 }

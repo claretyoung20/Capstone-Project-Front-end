@@ -18,7 +18,10 @@ export const HH_ADDRESS = {
 
 export const HH_CUSTOMER = {
     BASE: `${SERVER_API_URL}/api/customers`,
-    LOGIN: ` ${SERVER_API_URL}/api/customers/login`
+    LOGIN: `${SERVER_API_URL}/api/customers/login`,
+    NEWCUSTOMER: `${SERVER_API_URL}/api/customers/new`,
+    BYUSERID: `${SERVER_API_URL}/api/customers/userId`,
+    UPDATEUSECUSTOMER: `${SERVER_API_URL}/api/customers/users`,
 }
 
 export const HH_SOCIAL_MEDIA = {
@@ -40,13 +43,17 @@ export const HH_STAFF_ACCOUNT = {
 }
 
 export const HH_ACCOUNT = {
-    BASE: `${SERVER_API_URL}/api/user`
+    BASE: `${SERVER_API_URL}/api/user`,
+    BYUSERID: `${SERVER_API_URL}/api/users/userId`
 }
 
 export const HH_PRODUCT = {
     BASE: `${SERVER_API_URL}/api/products`,
-    BYCATEGORY: `${SERVER_API_URL}/api/products/category`
+    BYCATEGORY: `${SERVER_API_URL}/api/products/category`,
+    BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`
+
 }
+
 export const HH_PRODUCT_TYPE = {
     BASE: `${SERVER_API_URL}/api/product-types`
 }
@@ -64,12 +71,15 @@ export const HH_CART = {
 // order
 export const HH_ORDER = {
     BASE: `${SERVER_API_URL}/api/happy-orders`,
-    BYSTATUSID: `${SERVER_API_URL}/api/happy-orders/status`
+    BYSTATUSID: `${SERVER_API_URL}/api/happy-orders/status`,
+    HISTORYORDER: `${SERVER_API_URL}/api/happy-orders/history`,
+    ACTIVEORDER: `${SERVER_API_URL}/api/happy-orders/active`
 }
 
 // Status
 export const HH_COUPON = {
-    BASE: `${SERVER_API_URL}/api/coupons`
+    BASE: `${SERVER_API_URL}/api/coupons`,
+    VALIDCOUPON: `${SERVER_API_URL}/api/coupons/valid`
 }
 
 // ORDER STATUS
@@ -85,15 +95,15 @@ export const HH_SALE_ORDER = {
 
 // TABLE
 export const HH_TABLE = {
-    BASE: `${SERVER_API_URL}/api/book-tables`
+    BASE: `${SERVER_API_URL}/api/book-tables`,
+    AVAILABLE: `${SERVER_API_URL}/api/book-tables/avaliable`
 }
 
 // reservation
 export const HH_RESERVATION = {
     BASE: `${SERVER_API_URL}/api/reservations`,
     BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
-    // BYRESERVEDATE: `${SERVER_API_URL}/api/reservations/table`,
-    // BYSTARTIME: `${SERVER_API_URL}/api/reservations/table`,
-    // BYENDTIME: `${SERVER_API_URL}/api/reservations/table`,
-    // BYSTATUS: `${SERVER_API_URL}/api/reservations/table`,
+    RESERVATIONHISTORY: `${SERVER_API_URL}/api/reservations/history`,
+    ACTIVERESERVATION: `${SERVER_API_URL}/api/reservations/active`
+
 }

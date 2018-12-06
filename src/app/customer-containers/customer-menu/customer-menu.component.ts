@@ -78,7 +78,7 @@ export class CustomerMenuComponent implements OnInit {
     this.getAllProductByCategory();
   }
 
-  addTocart(pId) {
+  addTocart(pId, prodctName, productPrice, createdDate) {
     // check if use is logged in
     this.customerId = JSON.parse(localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0');
     this.isCustomerLoggedIn = JSON.parse(localStorage.getItem(ISCUSTOMERLOGGED) || 'false');
@@ -102,7 +102,10 @@ export class CustomerMenuComponent implements OnInit {
           id: res.body.id,
           totalItem: res.body.totalItem + 1,
           productId: productId,
-          customerId: custmId
+          customerId: custmId,
+          productName: prodctName,
+          productPrice: productPrice,
+          dateCreated: createdDate
         }
 
         this.cartServices.update(cartData).subscribe(result => {
@@ -114,7 +117,10 @@ export class CustomerMenuComponent implements OnInit {
           const cartData: ICart = {
             totalItem: 1,
             productId: productId,
-            customerId: custmId
+            customerId: custmId,
+            productName: prodctName,
+            productPrice: productPrice,
+            dateCreated: createdDate
           };
           this.cartServices.create(cartData).subscribe(result => {
             console.log(result);

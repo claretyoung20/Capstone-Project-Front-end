@@ -30,8 +30,7 @@ export class ReservationComponent implements OnInit {
    reservation: Reservation[] = [];
    displayedColumns: string[] = [
     'id',
-    'startTime',
-    'endTime',
+    'time',
     'status',
     'reserverDate',
     'updatedDate',
@@ -101,6 +100,13 @@ export class ReservationComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getStatus(time) {
+    if (time === 'e') {
+      return 'Evening';
+    } else if (time === 'm') {
+      return 'Morning'
+    }
+  }
 
   getStaffById(id) {
     this.staffServices.find(id).subscribe(res => {

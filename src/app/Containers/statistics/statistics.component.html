@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <p class="fiter">Filter Sales</p>
     <br>
     <br>
@@ -27,10 +27,11 @@
     </form>
 </div>
 
+
+<button (click)="searchValue()" mat-raised-button color="primary" class="report"><i class="ti-plus"> Export Sale Report</i></button> -->
+<br>
+<br>
 <!-- DISPLAY ORDER  -->
-<button (click)="searchValue()" mat-raised-button color="primary" class="report"><i class="ti-plus"> Export Sale Report</i></button>
-<br>
-<br>
 <div class="row">
     <div class="col-md-12">
         <mat-form-field class="filter-staffa">
@@ -52,18 +53,6 @@
                     <td mat-cell *matCellDef="let element"> {{element.basePrice }} </td>
                 </ng-container>
 
-                <!-- discountAmount Column -->
-                <ng-container matColumnDef="discountAmount">
-                    <th mat-header-cell *matHeaderCellDef> discountAmount </th>
-                    <td mat-cell *matCellDef="let element"> {{element.discountAmount | currency: '$' }} </td>
-                </ng-container>
-
-                <!-- originalPrice Column -->
-                <ng-container matColumnDef="originalPrice">
-                    <th mat-header-cell *matHeaderCellDef> originalPrice </th>
-                    <td mat-cell *matCellDef="let element"> {{element.originalPrice | currency: '$'}} </td>
-                </ng-container>
-
                 <!--  -->
                 <ng-container matColumnDef="dateCreated">
                     <th mat-header-cell *matHeaderCellDef> dateCreated </th>
@@ -79,7 +68,7 @@
                 <!-- status Column -->
                 <ng-container matColumnDef="productId">
                     <th mat-header-cell *matHeaderCellDef> productId </th>
-                    <td mat-cell *matCellDef="let element"> <a (click)="getProductById(element.productId)">{{
+                    <td mat-cell *matCellDef="let element"> <a (click)="getProductDetail(element.productId)">{{
               element.productId}} </a></td>
                 </ng-container>
 
