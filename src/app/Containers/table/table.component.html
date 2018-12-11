@@ -1,0 +1,77 @@
+<button (click)="addNewTable()" mat-raised-button color="primary"><i class="ti-plus"> Add New Table</i></button>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <!-- <mat-form-field class="filter-staffa">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field> -->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
+                </ng-container>
+
+                <!-- persons Column -->
+                <ng-container matColumnDef="persons">
+                    <th mat-header-cell *matHeaderCellDef> Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.persons }} </td>
+                </ng-container>
+
+                <!-- v Column -->
+                <ng-container matColumnDef="isAvaliable">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.isAvaliable}} </td>
+                </ng-container>
+
+                <!-- Edit Column -->
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef>Edit </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="editTable(element.id)"><i class="ti-pencil"></i></a></td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef>Delete </th>
+                    <td mat-cell *matCellDef="let element"><a (click)="confirmDelete(element.id)"><i class="ti-trash"></i></a></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <!-- pagination -->
+
+            <div class="box-footer clearfix" *ngIf="pager.pages && pager.pages.length">
+                <span class="pull-left">Showing 1 to {{tables.length < pageSize ? tables.length : pageSize}} of {{totalItems}} entries</span>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li [ngClass]="{disabled:pager.currentPage === 0}" title="First Page">
+                        <a aria-label="First" (click)="(pager.currentPage !== 0) && setPage(0)" class="page-link">
+                            <i class="fa fa-step-backward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 0}" title="Previous Page">
+                        <a aria-label="Previous" (click)="(pager.currentPage !== 0) && setPage(pager.currentPage - 1)" class="page-link">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page - 1}">
+                        <a (click)="setPage(page-1)" class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage + 1 === pager.totalPages}" title="Next Page">
+                        <a aria-label="Next" (click)="(pager.currentPage + 1 !== pager.totalPages) && setPage(pager.currentPage + 1)" class="page-link">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage + 1 === pager.totalPages}" title="Last Page">
+                        <a aria-label="Last" (click)="(pager.currentPage + 1 !== pager.totalPages) && setPage(pager.totalPages - 1)" class="page-link">
+                            <i class="fa fa-step-forward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

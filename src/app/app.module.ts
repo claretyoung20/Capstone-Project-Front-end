@@ -20,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-import { TableComponent } from './table/table.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { MaterialModule } from './material/material.module';
@@ -40,13 +39,13 @@ import { EditCustomerAccountComponent } from './customer-containers/customer-pro
 import { MenuAddCartComponent } from './customer-containers/customer-menu/menu-add-cart/menu-add-cart.component';
 import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.component';
 import { ViewProductDetailComponent } from './Containers/order/viewProductDetail/viewProductDetail.component';
+import { TableDialogComponent } from './Containers/table/table-dialog/table-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UserComponent,
-    TableComponent,
     SiteLayoutComponent,
     AppLayoutComponent,
     DialogContentComponent,
@@ -62,7 +61,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConfirmReservationComponent,
     RemoveConfirmComponent,
     MenuDialogComponent,
-    PromotionDialogComponent
+    PromotionDialogComponent,
+    TableDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +97,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConfirmReservationComponent,
     RemoveConfirmComponent,
     MenuDialogComponent,
-    PromotionDialogComponent
+    PromotionDialogComponent,
+    TableDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

@@ -4,7 +4,6 @@ import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-import { TableComponent } from './table/table.component';
 import { ConfigComponent } from './Containers/config/config.component';
 import { AccountComponent } from './Containers/account/account.component';
 import { StatisticsComponent } from './Containers/statistics/statistics.component';
@@ -31,6 +30,8 @@ import { CheckoutPageComponent } from './customer-containers/checkout-page/check
 import { ContactUsComponent } from './customer-containers/contact-us/contact-us.component';
 import { LogoutComponent } from './customer-containers/logout/logout.component';
 import { CategoryEditComponent } from './Containers/category/category-edit/category-edit.component';
+import { TableComponent } from './Containers/table/table.component';
+import { EditTableComponent } from './Containers/table/edit-table/edit-table.component';
 
 
 
@@ -94,8 +95,26 @@ export const AppRoutes: Routes = [
                 component: UserComponent
             },
             {
-                path: 'table',
-                component: TableComponent
+                path: '',
+                children: [
+                    {
+                        path: 'table',
+                        component: TableComponent
+                    },
+                    {
+                        path: '',
+                        children: [
+                            {
+                                path: 'table/edit/:id',
+                                component: EditTableComponent
+                            },
+                            {
+                                path: 'table/add',
+                                component: EditTableComponent
+                            }
+                        ]
+                    }
+            ]
             },
             {
                 path: 'config',

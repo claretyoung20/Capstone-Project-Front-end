@@ -1,3 +1,4 @@
+import { TableModule } from './table/table.module';
 import { PromotionModule } from './promotion/promotion.module';
 import { MenuModule } from './menu/menu.module';
 import { CategoryModuleModule } from './category/category-module.module';
@@ -35,7 +36,8 @@ import { CustomerComponent } from './Customers/customer/customer.component';
     CategoryModuleModule,
     AccountModule,
     MenuModule,
-    PromotionModule
+    PromotionModule,
+    TableModule
   ],
   declarations: [
     ConfigComponent,
