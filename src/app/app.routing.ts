@@ -28,6 +28,7 @@ import { TableMapComponent } from './customer-containers/table-map/table-map.com
 import { CheckoutPageComponent } from './customer-containers/checkout-page/checkout-page.component';
 import { ContactUsComponent } from './customer-containers/contact-us/contact-us.component';
 import { LogoutComponent } from './customer-containers/logout/logout.component';
+import { CategoryEditComponent } from './Containers/category/category-edit/category-edit.component';
 
 
 
@@ -155,8 +156,26 @@ export const AppRoutes: Routes = [
                 component: PromotionComponent
             },
             {
-                path: 'category',
-                component: CategoryComponent
+                path: '',
+                children: [
+                    {
+                        path: 'category',
+                        component: CategoryComponent
+                    },
+                    {
+                        path: '',
+                        children: [
+                            {
+                                path: 'category/edit/:id',
+                                component: CategoryEditComponent
+                            },
+                            {
+                                path: 'category/add',
+                                component: CategoryEditComponent
+                            }
+                        ]
+                    }
+            ]
             },
             {
                 path: 'menu',
