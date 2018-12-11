@@ -106,21 +106,21 @@ export class MenuComponent implements OnInit {
   }
 
   isAvailable() {
-    this.productService.findAll().subscribe(res => {
+    this.productService.isAvailable().subscribe(res => {
       this.processToShow(res);
       console.log('IS AVAILABLE');
     });
   }
 
   isNotAvailable() {
-    this.productService.findAll().subscribe(res => {
+    this.productService.isNotAvailable().subscribe(res => {
       this.processToShow(res);
       console.log('IS NOT AVAILABLE');
     });
   }
 
   isOnHomePage() {
-    this.productService.findAll().subscribe(res => {
+    this.productService.findProductsByShowOnHomepage().subscribe(res => {
       this.processToShow(res);
       console.log('IS ON HOMEPAGE');
     });

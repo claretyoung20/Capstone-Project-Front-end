@@ -50,8 +50,9 @@ export const HH_ACCOUNT = {
 export const HH_PRODUCT = {
     BASE: `${SERVER_API_URL}/api/products`,
     BYCATEGORY: `${SERVER_API_URL}/api/products/category`,
-    BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`
-
+    BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`,
+    ISAVAILABLE: `${SERVER_API_URL}/api/products/isAvailable`,
+    ISNOTAVAILABLE: `${SERVER_API_URL}/api/products/isNotAvailable`,
 }
 
 export const HH_PRODUCT_TYPE = {

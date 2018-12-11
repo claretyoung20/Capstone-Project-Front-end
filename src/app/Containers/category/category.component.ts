@@ -1,3 +1,4 @@
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { ConformDeleteDialogComponent } from './../account/customer/conform-delete-dialog/conform-delete-dialog.component';
 import { CategoryService } from './../../entities/services/category/category.service';
 import { MatDialog, MatTableDataSource } from '@angular/material';
@@ -13,7 +14,7 @@ import { PaginationService } from 'app/shared/pagination/pagination.service';
 })
 export class CategoryComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'dateCreated', 'dateUpdated', 'name', 'edit'];
+  displayedColumns: string[] = ['id', 'dateCreated', 'dateUpdated', 'name', 'edit', 'delete'];
 
   dataSource;
 
@@ -69,9 +70,9 @@ export class CategoryComponent implements OnInit {
 
   confirmDelete(id) {
     const title = 'Delete';
-    const dialogRef = this.dialog.open(ConformDeleteDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       data: {
-        customerId: id,
+        categoryId: id,
         title: title
       }
     });

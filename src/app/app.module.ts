@@ -1,3 +1,4 @@
+import { ConfirmDeleteComponent } from './Containers/category/confirm-delete/confirm-delete.component';
 import { PromotionDialogComponent } from './Containers/promotion/promotion-dialog/promotion-dialog.component';
 import { MenuDialogComponent } from './Containers/menu/menu-dialog/menu-dialog.component';
 import { RemoveConfirmComponent } from './customer-containers/checkout-page/remove-confirm/remove-confirm.component';
@@ -62,7 +63,8 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
     RemoveConfirmComponent,
     MenuDialogComponent,
     PromotionDialogComponent,
-    TableDialogComponent
+    TableDialogComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
     RemoveConfirmComponent,
     MenuDialogComponent,
     PromotionDialogComponent,
-    TableDialogComponent
+    TableDialogComponent,
+    ConfirmDeleteComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
