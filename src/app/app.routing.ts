@@ -1,3 +1,4 @@
+import { MenuEditComponent } from './Containers/menu/menu-edit/menu-edit.component';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -178,8 +179,26 @@ export const AppRoutes: Routes = [
             ]
             },
             {
-                path: 'menu',
-                component: MenuComponent
+                path: '',
+                children: [
+                    {
+                        path: 'menu',
+                        component: MenuComponent
+                    },
+                    {
+                        path: '',
+                        children: [
+                            {
+                                path: 'menu/edit/:id',
+                                component: MenuEditComponent
+                            },
+                            {
+                                path: 'menu/add',
+                                component: MenuEditComponent
+                            }
+                        ]
+                    }
+            ]
             },
             {
                 path: 'Order',

@@ -8,6 +8,7 @@ export interface Product extends Entity {
     price?: number;
     updatedDate?: Moment;
     isAvailable?: boolean;
+    showOnHomepage?: boolean;
     restaurantId?: number;
     categoryId?: number;
 }

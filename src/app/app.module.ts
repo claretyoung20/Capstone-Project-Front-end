@@ -1,3 +1,4 @@
+import { MenuDialogComponent } from './Containers/menu/menu-dialog/menu-dialog.component';
 import { RemoveConfirmComponent } from './customer-containers/checkout-page/remove-confirm/remove-confirm.component';
 import { ConfirmReservationComponent } from './customer-containers/table-map/confirm-reservation/confirm-reservation.component';
 import { ErrorDialogComponent } from './customer-containers/customer-login/error-dialog/error-dialog.component';
@@ -56,7 +57,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConfirnRegistrationComponent,
     ErrorDialogComponent,
     ConfirmReservationComponent,
-    RemoveConfirmComponent
+    RemoveConfirmComponent,
+    MenuDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConfirnRegistrationComponent,
     ErrorDialogComponent,
     ConfirmReservationComponent,
-    RemoveConfirmComponent
+    RemoveConfirmComponent,
+    MenuDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]

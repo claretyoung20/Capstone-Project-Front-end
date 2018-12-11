@@ -1,3 +1,4 @@
+import { MenuModule } from './menu/menu.module';
 import { CategoryModuleModule } from './category/category-module.module';
 import { TimeManagerComponent } from './config/time-manager/time-manager.component';
 import { NgModule } from '@angular/core';
@@ -31,13 +32,13 @@ import { CustomerComponent } from './Customers/customer/customer.component';
     ReactiveFormsModule,
     MaterialModule,
     CategoryModuleModule,
-    AccountModule
+    AccountModule,
+    MenuModule
   ],
   declarations: [
     ConfigComponent,
     StatisticsComponent,
     PromotionComponent,
-    MenuComponent,
     OrderComponent,
     ReservationComponent,
     LoginComponent,
