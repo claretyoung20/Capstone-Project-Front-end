@@ -1,3 +1,4 @@
+import { PromotionDialogComponent } from './Containers/promotion/promotion-dialog/promotion-dialog.component';
 import { MenuDialogComponent } from './Containers/menu/menu-dialog/menu-dialog.component';
 import { RemoveConfirmComponent } from './customer-containers/checkout-page/remove-confirm/remove-confirm.component';
 import { ConfirmReservationComponent } from './customer-containers/table-map/confirm-reservation/confirm-reservation.component';
@@ -25,6 +26,8 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { MaterialModule } from './material/material.module';
 import { DialogContentComponent } from './shared/Dialog/dialog-content/dialog-content.component';
 import { AppInjector } from './app.injector';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServerProvider, LoginService } from './core';
@@ -58,7 +61,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ErrorDialogComponent,
     ConfirmReservationComponent,
     RemoveConfirmComponent,
-    MenuDialogComponent
+    MenuDialogComponent,
+    PromotionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,11 +96,16 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ErrorDialogComponent,
     ConfirmReservationComponent,
     RemoveConfirmComponent,
-    MenuDialogComponent
+    MenuDialogComponent,
+    PromotionDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(appInjector: AppInjector) { }
+  constructor(appInjector: AppInjector,
+    private dpConfig: NgbDatepickerConfig
+    ) {
+      this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
+     }
 }

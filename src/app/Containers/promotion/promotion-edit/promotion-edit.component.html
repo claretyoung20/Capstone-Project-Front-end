@@ -1,0 +1,81 @@
+<div class="coupon">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                <h2 id="jhi-coupon-heading">Create or edit a Coupon</h2>
+                <div>
+                    <div class="form-group" [hidden]="!coupon.id">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" [(ngModel)]="coupon.id" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Code</label>
+                        <input type="text" class="form-control" name="code" id="field_code" [(ngModel)]="coupon.code" required/>
+                        <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.code?.errors?.required">
+                                    This field is required.
+                                    </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Start Date:</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="desc.toggleCalendar()">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                            <input class="form-control" id="field_startFromDate" style="float:none" ngx-mydatepicker name="startFromDate" [(ngModel)]="coupon.startFromDate" [options]="dateOptions" #desc="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="desc.toggleCalendar()" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="desc.clearDate()">
+                                <i class="fa fa-times" aria-hidden="true" title="Clear"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>End Date:</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="descEnd.toggleCalendar()">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                            <input class="form-control" id="field_endDate" style="float:none" ngx-mydatepicker name="endDate" [(ngModel)]="coupon.endDate" [options]="dateOptions" #descEnd="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="descEnd.toggleCalendar()" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="descEnd.clearDate()">
+                                <i class="fa fa-times" aria-hidden="true" title="Clear"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_isActive">Is Active</label>
+                        <input type="checkbox" class="form-control" name="isActive" id="field_isActive" [(ngModel)]="coupon.isActive" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_noPerUser">No Per User</label>
+                        <input type="number" class="form-control" name="noPerUser" id="field_noPerUser" [(ngModel)]="coupon.noPerUser" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_maxAmountToApply">Max Amount To Apply</label>
+                        <input type="number" class="form-control" name="maxAmountToApply" id="field_maxAmountToApply" [(ngModel)]="coupon.maxAmountToApply" />
+                    </div>
+                </div>
+                <div>
+                    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                               &nbsp;<span>Cancel</span>
+                            </button>
+                    <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                &nbsp;<span>Save</span>
+                            </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

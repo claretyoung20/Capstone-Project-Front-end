@@ -1,3 +1,4 @@
+import { PromotionModule } from './promotion/promotion.module';
 import { MenuModule } from './menu/menu.module';
 import { CategoryModuleModule } from './category/category-module.module';
 import { TimeManagerComponent } from './config/time-manager/time-manager.component';
@@ -33,12 +34,12 @@ import { CustomerComponent } from './Customers/customer/customer.component';
     MaterialModule,
     CategoryModuleModule,
     AccountModule,
-    MenuModule
+    MenuModule,
+    PromotionModule
   ],
   declarations: [
     ConfigComponent,
     StatisticsComponent,
-    PromotionComponent,
     OrderComponent,
     ReservationComponent,
     LoginComponent,

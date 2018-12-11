@@ -1,23 +1,23 @@
-import { PromotionDialogComponent } from './promotion-dialog/promotion-dialog.component';
-import { MatDialog, MatTableDataSource } from '@angular/material';
-import { CouponService } from './../../entities/services/coupon/coupon.service';
+import { ICoupon } from './../../../entities/interfaces/iCoupon';
+import { Coupon } from './../../../entities/interfaces/coupon';
 import { Router } from '@angular/router';
-import { ICoupon } from './../../entities/interfaces/iCoupon';
+import { CouponService } from './../../../entities/services/coupon/coupon.service';
+import { MatTableDataSource, MatDialog } from '@angular/material';
+import { PromotionDialogComponent } from './../promotion-dialog/promotion-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from 'app/shared/pagination/pagination.service';
 
 @Component({
-  selector: 'app-promotion',
-  templateUrl: './promotion.component.html',
-  styleUrls: ['./promotion.component.css']
+  selector: 'app-promotion-history',
+  templateUrl: './promotion-history.component.html',
+  styleUrls: ['./promotion-history.component.css']
 })
-export class PromotionComponent implements OnInit {
+export class PromotionHistoryComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'code', 'startFromDate', 'endDate', 'noPerUser',
-  'maxAmountToApply', 'isActive', 'edit', 'action'];
+  'maxAmountToApply', 'isActive', 'action'];
 
   dataSource;
-
   coupon: ICoupon[] = [];
   /* paganation */
   pageSize = 10;
@@ -83,14 +83,6 @@ export class PromotionComponent implements OnInit {
       this.getAllProduct();
     });
 
-  }
-
-  addNewCoupon() {
-    this.router.navigate(['admin/promotion/add']);
-  }
-
-  editCoupon(id) {
-    this.router.navigate(['admin/promotion/edit', id]);
   }
 
   deleteCoupon(id) {

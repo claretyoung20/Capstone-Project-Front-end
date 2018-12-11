@@ -1,12 +1,14 @@
-<button (click)="addNewCoupon()" mat-raised-button color="primary"><i class="ti-plus"> Add New Coupon</i></button>
-<br>
-<br>
+<div class="row padd">
+    <div class="col-md-12">
+        <h2>Coupon History</h2>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-12">
         <!-- <mat-form-field class="filter-staffa">
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field> -->
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field> -->
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource">
 
@@ -49,13 +51,8 @@
                     <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="edit">
-                    <th mat-header-cell *matHeaderCellDef> Edit </th>
-                    <td mat-cell *matCellDef="let element"><a (click)="editCoupon(element.id)"><i class="ti-pencil"></i></a></td>
-                </ng-container>
-
                 <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef> Delete </th>
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element"><a (click)="deleteCoupon(element.id)"><i class="ti-trash"></i></a></td>
                 </ng-container>
 
@@ -64,11 +61,5 @@
             </table>
 
         </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <app-promotion-history></app-promotion-history>
     </div>
 </div>

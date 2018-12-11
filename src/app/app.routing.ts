@@ -1,3 +1,4 @@
+import { PromotionEditComponent } from './Containers/promotion/promotion-edit/promotion-edit.component';
 import { MenuEditComponent } from './Containers/menu/menu-edit/menu-edit.component';
 import { Routes } from '@angular/router';
 
@@ -153,8 +154,26 @@ export const AppRoutes: Routes = [
                 component: StatisticsComponent
             },
             {
-                path: 'promotion',
-                component: PromotionComponent
+                path: '',
+                children: [
+                    {
+                        path: 'promotion',
+                        component: PromotionComponent
+                    },
+                    {
+                        path: '',
+                        children: [
+                            {
+                                path: 'promotion/edit/:id',
+                                component: PromotionEditComponent
+                            },
+                            {
+                                path: 'promotion/add',
+                                component: PromotionEditComponent
+                            }
+                        ]
+                    }
+            ]
             },
             {
                 path: '',

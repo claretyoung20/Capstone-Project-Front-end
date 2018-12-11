@@ -24,6 +24,8 @@
         "@angular/platform-browser": "^6.1.0",
         "@angular/platform-browser-dynamic": "^6.1.0",
         "@angular/router": "^6.1.0",
+        "@fortawesome/angular-fontawesome": "^0.3.0",
+        "@fortawesome/fontawesome-svg-core": "^1.2.9",
         "@ng-bootstrap/ng-bootstrap": "^4.0.0",
         "@ng-select/ng-select": "^2.13.0",
         "@ngui/map": "0.30.3",
