@@ -1,11 +1,12 @@
 import { Coupon } from './../../../entities/interfaces/coupon';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CouponService } from './../../../entities/services/coupon/coupon.service';
 import { ICoupon } from './../../../entities/interfaces/iCoupon';
 import { Component, OnInit } from '@angular/core';
 import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
+import { TimeService } from 'app/shared/util/time.service';
 
 @Component({
   selector: 'app-promotion-edit',
@@ -26,7 +27,9 @@ export class PromotionEditComponent implements OnInit {
 
   constructor(
     private couponService: CouponService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private timeService: TimeService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -59,12 +62,19 @@ export class PromotionEditComponent implements OnInit {
 
   save() {
     this.isSaving = true;
-    
+    const data = this.prepareToSave(this.coupon);
+    console.log(data);
     if (this.coupon.id !== undefined) {
-      this.subscribeToSaveResponse(this.couponService.update(this.coupon));
+      this.subscribeToSaveResponse(this.couponService.update(data));
     } else {
-      this.subscribeToSaveResponse(this.couponService.create(this.coupon));
+      this.subscribeToSaveResponse(this.couponService.create(data));
     }
+  }
+  prepareToSave(data) {
+    const dataProcess = data;
+    dataProcess.startFromDate = this.timeService.fromTimeDatePicker(dataProcess.startFromDate).setUTC().toISOString();
+    dataProcess.endDate = this.timeService.fromTimeDatePicker(dataProcess.endDate).setUTC().toISOString();
+    return dataProcess;
   }
 
   private subscribeToSaveResponse(result: Observable<Coupon>) {
@@ -76,7 +86,7 @@ export class PromotionEditComponent implements OnInit {
 
   private onSaveSuccess() {
     this.isSaving = false;
-    this.previousState();
+    this.router.navigate(['/admin/promotion']);
   }
 
   private onSaveError() {

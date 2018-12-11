@@ -73,7 +73,7 @@ export class PromotionComponent implements OnInit {
     const title = 'Delete';
     const dialogRef = this.dialog.open(PromotionDialogComponent, {
       data: {
-        productId: id,
+        couponId: id,
         title: title
       }
     });
