@@ -37,11 +37,11 @@ export class PromotionHistoryComponent implements OnInit {
   }
 
   getAllProduct() {
-    const query = {
-      size: this.pageSize,
-      page: this.currentPage
-    }
-    this.couponService.query(query).subscribe(res => {
+    // const query = {
+    //   size: this.pageSize,
+    //   page: this.currentPage
+    // }
+    this.couponService.historyCoupon().subscribe(res => {
       this.processToShow(res);
     });
   }

@@ -13,8 +13,11 @@
                         <input type="checkbox" class="form-control" name="isAvaliable" id="field_isAvaliable" [(ngModel)]="bookTable.isAvaliable" />
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="field_persons">Persons</label>
-                        <input type="number" class="form-control" name="persons" id="field_persons" [(ngModel)]="bookTable.persons" />
+                        <label class="form-control-label" jhiTranslate="happybourBackEndApp.bookTable.tableType" for="field_tableType">Table Type</label>
+                        <select class="form-control" id="field_tableType" name="tableType" [(ngModel)]="bookTable.tableTypeId" required>
+                            <option *ngIf="!editForm.value.tableType" [ngValue]="null" selected></option>
+                            <option [ngValue]="tableTypeOption.id" *ngFor="let tableTypeOption of tabletypes; trackBy: trackTableTypeById">{{tableTypeOption.description}}</option>
+                        </select>
                     </div>
                     <!-- <div class="form-group">
                         <label class="form-control-label" for="field_price">Price</label>

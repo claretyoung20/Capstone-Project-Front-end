@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TableService } from 'app/entities/services/table/table.service';
 import { Table } from 'app/entities/interfaces/table';
 import { Component, OnInit } from '@angular/core';
+import { TableType } from 'app/entities/interfaces/tableType';
+import { TableTypeService } from 'app/entities/services/tableType/table-type.service';
 
 @Component({
   selector: 'app-edit-table',
@@ -16,10 +18,13 @@ export class EditTableComponent implements OnInit {
   private _bookTable: Table;
   isSaving: boolean;
 
+  tabletypes: TableType[];
+
   constructor(
       private bookTableService: TableService,
       private activatedRoute: ActivatedRoute,
-      private router: Router
+      private router: Router,
+      private tableTypeService: TableTypeService
   ) {}
 
   ngOnInit() {
@@ -34,6 +39,13 @@ export class EditTableComponent implements OnInit {
         // error handling
       }
     });
+
+    this.tableTypeService.findAll().subscribe(
+        (res) => {
+            this.tabletypes = res;
+        },
+        (res: HttpErrorResponse) => this.onError(res.message)
+    );
   }
   getAllByTable(id) {
     this.bookTableService.find(id).subscribe(res => {
@@ -43,7 +55,9 @@ export class EditTableComponent implements OnInit {
   previousState() {
       window.history.back();
   }
-
+  onError(res) {
+      // do nothing
+  }
   save() {
       this.isSaving = true;
       if (this.bookTable.id !== undefined) {
@@ -66,9 +80,9 @@ export class EditTableComponent implements OnInit {
       this.isSaving = false;
   }
 
-  private onError(errorMessage: string) {
-      // c
-  }
+  trackTableTypeById(index: number, item: TableType) {
+    return item.id;
+}
 
   get bookTable() {
       return this._bookTable;

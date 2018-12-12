@@ -15,10 +15,10 @@
                     <td mat-cell *matCellDef="let i = index"> {{(currentPage*pageSize) + i + 1}} </td>
                 </ng-container>
 
-                <!-- persons Column -->
-                <ng-container matColumnDef="persons">
+                <!-- tableTypeId Column -->
+                <ng-container matColumnDef="tableTypeId">
                     <th mat-header-cell *matHeaderCellDef> Type </th>
-                    <td mat-cell *matCellDef="let element"> {{element.persons }} </td>
+                    <td mat-cell *matCellDef="let element"> {{getTableTypeCode(element.tableTypeId) }} </td>
                 </ng-container>
 
                 <!-- v Column -->

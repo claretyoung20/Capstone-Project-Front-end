@@ -1,3 +1,5 @@
+import { TableType } from './../../entities/interfaces/tableType';
+import { TableTypeService } from './../../entities/services/tableType/table-type.service';
 import { TableDialogComponent } from './table-dialog/table-dialog.component';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { TableService } from 'app/entities/services/table/table.service';
@@ -13,11 +15,12 @@ import { PaginationService } from 'app/shared/pagination/pagination.service';
 })
 export class TableComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'persons', 'isAvaliable', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'tableTypeId', 'isAvaliable', 'edit', 'delete'];
 
   dataSource;
 
   tables: Table[] = [];
+  tableTypes: TableType[] = [];
   /* paganation */
   pageSize = 10;
   currentPage = 0;
@@ -28,11 +31,13 @@ export class TableComponent implements OnInit {
     private router: Router,
     private tableService: TableService,
     private pagination: PaginationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private tableTypeService: TableTypeService
   ) { }
 
   ngOnInit() {
     this.getAllTables();
+    this.getAllTableTypess();
   }
 
   getAllTables() {
@@ -43,6 +48,20 @@ export class TableComponent implements OnInit {
     this.tableService.query(query).subscribe(res => {
       this.processToShow(res);
     });
+  }
+
+  getAllTableTypess() {
+    const query = {
+      size: this.pageSize,
+      page: this.currentPage
+    }
+    this.tableTypeService.findAll().subscribe(res => {
+      this.processToShowTableTypes(res);
+    });
+  }
+
+  processToShowTableTypes(res) {
+    this.tableTypes = res;
   }
 
   processToShow(res) {
@@ -81,6 +100,16 @@ export class TableComponent implements OnInit {
       this.getAllTables();
     });
 
+  }
+
+  getTableTypeCode(id) {
+    let types;
+    for (types in this.tableTypes) {
+      if (this.tableTypes[types].id === id) {
+          return this.tableTypes[types].description;
+      }
+    }
+    return 'Null';
   }
 
   addNewTable() {
