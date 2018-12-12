@@ -1,3 +1,4 @@
+import { LOCALSTORAGEFORCUSTOMER } from './../../../static/constants/site.constants';
 import { Router } from '@angular/router';
 import { ProductService } from 'app/entities/services/product/product.service';
 import { OrderStatusService } from './../../../entities/services/orderStatus/orderStatus.service';
@@ -29,6 +30,8 @@ import { ViewProductDetailComponent } from '../viewProductDetail/viewProductDeta
 import { Table } from 'app/entities/interfaces/table';
 import { Reservation } from 'app/entities/interfaces/reservation';
 import { ReservationService } from 'app/entities/services/reservation/reservation.service';
+import { TableType } from 'app/entities/interfaces/tableType';
+import { TableTypeService } from 'app/entities/services/tableType/table-type.service';
 
 @Component({
   selector: 'app-view-dialog',
@@ -42,6 +45,8 @@ export class ViewDialogComponent implements OnInit {
   customer: Customer;
   isCustomer = false;
 
+  tableTypes: TableType[] = [];
+
   user: User;
   staff: Staff;
   isStaff = false;
@@ -51,6 +56,8 @@ export class ViewDialogComponent implements OnInit {
 
   order: Order;
   isEditStatus = false;
+
+  customerId = 0;
 
   // order status
   statusOrder: OrderStatus[] = [];
@@ -97,12 +104,14 @@ export class ViewDialogComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private productSErvice: ProductService,
-    private reserveService: ReservationService
+    private reserveService: ReservationService,
+    private tableTypeService: TableTypeService
   ) {}
 
   ngOnInit() {
     // get current staff Id
     this.userId = JSON.parse(localStorage.getItem(CURRENTSTAFFORADMINID) || '0');
+    this.customerId = JSON.parse(localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0');
     if (this.data.title === ORDERSTATUSDIALOG) {
       this.orderStatus = this.data.resData;
       this.isOrderStatus = true;
@@ -141,8 +150,17 @@ export class ViewDialogComponent implements OnInit {
     this.buildForm();
     this.buildForm1();
     this.getAllOrderStatus();
+    this.getAllTableTypess();
   }
 
+  getAllTableTypess() {
+    this.tableTypeService.findAll().subscribe(res => {
+      this.processToShowTableTypes(res);
+    });
+  }
+  processToShowTableTypes(res) {
+    this.tableTypes = res;
+  }
   updateOrder(staffId) {
     if (this.userId !== 0) {
       const formData = this.updateForm.value;
@@ -204,6 +222,16 @@ export class ViewDialogComponent implements OnInit {
     this.productSErvice.find(id).subscribe(res => {
       this.openPrdDeDialog(res);
     })
+  }
+
+  getTableType(id) {
+    let types;
+    for (types in this.tableTypes) {
+      if (this.tableTypes[types].id === id) {
+          return this.tableTypes[types].description;
+      }
+    }
+    return 'Null';
   }
 
   openPrdDeDialog(res) {

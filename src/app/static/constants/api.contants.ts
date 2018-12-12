@@ -50,8 +50,9 @@ export const HH_ACCOUNT = {
 export const HH_PRODUCT = {
     BASE: `${SERVER_API_URL}/api/products`,
     BYCATEGORY: `${SERVER_API_URL}/api/products/category`,
-    BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`
-
+    BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`,
+    ISAVAILABLE: `${SERVER_API_URL}/api/products/isAvailable`,
+    ISNOTAVAILABLE: `${SERVER_API_URL}/api/products/isNotAvailable`,
 }
 
 export const HH_PRODUCT_TYPE = {
@@ -79,7 +80,9 @@ export const HH_ORDER = {
 // Status
 export const HH_COUPON = {
     BASE: `${SERVER_API_URL}/api/coupons`,
-    VALIDCOUPON: `${SERVER_API_URL}/api/coupons/valid`
+    VALIDCOUPON: `${SERVER_API_URL}/api/coupons/valid`,
+    ACTIVE: `${SERVER_API_URL}/api/coupons/active`,
+    HISTORY: `${SERVER_API_URL}/api/coupons/history`,
 }
 
 // ORDER STATUS
@@ -99,11 +102,16 @@ export const HH_TABLE = {
     AVAILABLE: `${SERVER_API_URL}/api/book-tables/avaliable`
 }
 
+export const HH_TABLE_TYPE = {
+    BASE: `${SERVER_API_URL}/api/table-types`,
+}
+
 // reservation
 export const HH_RESERVATION = {
     BASE: `${SERVER_API_URL}/api/reservations`,
     BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
     RESERVATIONHISTORY: `${SERVER_API_URL}/api/reservations/history`,
-    ACTIVERESERVATION: `${SERVER_API_URL}/api/reservations/active`
+    ACTIVERESERVATION: `${SERVER_API_URL}/api/reservations/active`,
+    BYSTATUS: `${SERVER_API_URL}/api/reservations/status`
 
 }

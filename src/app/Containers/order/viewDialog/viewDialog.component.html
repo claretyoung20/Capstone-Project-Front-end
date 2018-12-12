@@ -77,7 +77,9 @@
 <!-- individual orders -->
 <div class="row" [hidden]="!isSubOrder">
     <div class="col-md-12">
-        <button (click)="viewAllSubOrder()" mat-raised-button color="primary"><i class="ti-plus"> View All Sales</i></button>
+        <div>
+            <button *ngIf="customerId === 0" (click)="viewAllSubOrder()" mat-raised-button color="primary"><i class="ti-plus"> View All Sales</i></button>
+        </div>
         <br>
         <br>
         <div class="mat-elevation-z8">
@@ -116,7 +118,7 @@
             <hr>
             <dl class="row-md jh-entity-details">
                 <dt><span>Id: </span><span class="data">{{table.id}}</span></dt>
-                <dt><span>Nuber of Person: </span><span class="data">{{table.persons}}</span></dt>
+                <dt><span>Nuber of Person: </span><span class="data">{{ getTableType(table.tableTypeId) }}</span></dt>
             </dl>
         </div>
     </div>

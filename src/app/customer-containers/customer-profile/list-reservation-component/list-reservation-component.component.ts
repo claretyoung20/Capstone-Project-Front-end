@@ -5,6 +5,7 @@ import { PaginationService } from 'app/shared/pagination/pagination.service';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { Reservation } from 'app/entities/interfaces/reservation';
 import { ReservationService } from 'app/entities/services/reservation/reservation.service';
+import { CancelResevatioDialogComponent } from '../cancel-resevatio-dialog/cancel-resevatio-dialog.component';
 
 @Component({
   selector: 'app-list-reservation-component',
@@ -86,6 +87,21 @@ export class ListReservationComponentComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  cancelOrder(id) {
+    const title = 'Delete';
+    const dialogRef = this.dialog.open(CancelResevatioDialogComponent, {
+      data: {
+        reservationId: id,
+        title: title
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllReservation();
+    });
+
+  }
 }
 
 

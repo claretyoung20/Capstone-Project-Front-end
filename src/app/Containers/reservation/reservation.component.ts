@@ -1,4 +1,6 @@
-import { ORDERCUSTOMERSDIALOG, ORDERSSTAFFDIALOG, TABLEDETAIL, EDITRESERVATIONDSTATUS } from './../../static/constants/site.constants';
+import { ORDERCUSTOMERSDIALOG, ORDERSSTAFFDIALOG,
+  TABLEDETAIL, EDITRESERVATIONDSTATUS, RESERVATIONSTATUTSPENDING,
+  RESERVATIONSTATUTSCANCEL, RESERVATIONSTATUTsAPPROVE } from './../../static/constants/site.constants';
 import { ViewDialogComponent } from './../order/viewDialog/viewDialog.component';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { PaginationService } from 'app/shared/pagination/pagination.service';
@@ -143,6 +145,28 @@ export class ReservationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       this.getAllReservation();
+    });
+  }
+
+  allReservation() {
+    this.getAllReservation();
+  }
+
+  pendingReservation() {
+    this.reservationService.getByStatus(RESERVATIONSTATUTSPENDING).subscribe(res => {
+      this.processToShow(res);
+    });
+  }
+
+  canceledReservation() {
+    this.reservationService.getByStatus(RESERVATIONSTATUTSCANCEL).subscribe(res => {
+      this.processToShow(res);
+    });
+  }
+
+  approvedReservation() {
+    this.reservationService.getByStatus(RESERVATIONSTATUTsAPPROVE).subscribe(res => {
+      this.processToShow(res);
     });
   }
 }

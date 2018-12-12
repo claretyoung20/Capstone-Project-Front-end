@@ -1,3 +1,4 @@
+// tslint:disable-next-line:max-line-length
 import { HistoryReservationComponent } from './customer-profile/list-reservation-component/history-reservation/history-reservation.component';
 import { HistoryOrderComponent } from './customer-profile/list-order-component/history-order/history-order.component';
 import { NgModule } from '@angular/core';

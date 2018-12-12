@@ -1,3 +1,7 @@
+import { TableModule } from './table/table.module';
+import { PromotionModule } from './promotion/promotion.module';
+import { MenuModule } from './menu/menu.module';
+import { CategoryModuleModule } from './category/category-module.module';
 import { TimeManagerComponent } from './config/time-manager/time-manager.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -29,14 +33,15 @@ import { CustomerComponent } from './Customers/customer/customer.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    AccountModule
+    CategoryModuleModule,
+    AccountModule,
+    MenuModule,
+    PromotionModule,
+    TableModule
   ],
   declarations: [
     ConfigComponent,
     StatisticsComponent,
-    PromotionComponent,
-    CategoryComponent,
-    MenuComponent,
     OrderComponent,
     ReservationComponent,
     LoginComponent,

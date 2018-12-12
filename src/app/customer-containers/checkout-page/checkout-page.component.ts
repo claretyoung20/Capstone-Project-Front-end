@@ -11,6 +11,7 @@ import { ICart } from 'app/entities/interfaces/cart';
 import { Product } from 'app/entities/interfaces/product';
 import { RemoveConfirmComponent } from './remove-confirm/remove-confirm.component';
 import { Order } from 'app/entities/interfaces/order';
+import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 
 @Component({
   selector: 'app-checkout-page',
@@ -153,7 +154,13 @@ export class CheckoutPageComponent implements OnInit {
       }
 
     })
-    this.router.navigate(['/profile']);
+    // confirm sucess
+    const dialogRef = this.dialog.open(OrderSucessComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.router.navigate(['/profile']);
+    });
   }
 
 }

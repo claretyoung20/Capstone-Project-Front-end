@@ -41,29 +41,23 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 sasa">
                                     <div class="form-group" [class.has-error]="tableForm.get('time').invalid && submitForm || (tableForm.get('time')?.errors && tableForm.get('time').touched)">
-                                        <label>Choose Time<span class="spanRequired">*</span>:</label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-code"></i>
-                                            </div>
-                                            <mat-form-field class="hhh">
-                                                <mat-select placeholder="Select tIME" formControlName="time">
-                                                    <mat-option *ngFor="let times of reserveTime" [value]="times.value">
-                                                        {{times.viewValue}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
+                                        <!-- <label>Choose Time<span class="spanRequired">*</span>:</label> -->
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="field_period">Choose Time</label>
+                                            <mat-select placeholder="Select Time" class="form-control" id="field_period" name="time" formControlName="time" required>
+                                                <mat-option [value]="time.value" *ngFor="let time of reserveTime;">{{time.viewValue}}</mat-option>
+                                            </mat-select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 sasa">
-                                    <div class="form-group" [class.has-error]="tableForm.get('person').invalid && submitForm || (tableForm.get('person')?.errors && tableForm.get('person').touched)">
-                                        <label>Number of Persons<span class="spanRequired">*(1 to 6 persons)</span>:</label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-code"></i>
-                                            </div>
-                                            <input min="1" max="6" type="number" class="form-control pull-right" #dimension formControlName="person" placeholder="Number of Person">
+                                    <div class="form-group" [class.has-error]="tableForm.get('tableTypeId').invalid && submitForm || (tableForm.get('tableTypeId')?.errors && tableForm.get('tableTypeId').touched)">
+                                        <!-- <label>Chose Table Type<span class="spanRequired">*</span>:</label> -->
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="field_tableTypeId">Table Type</label>
+                                            <mat-select placeholder="Select Table Type" class="form-control" id="field_tableTypeId" formControlName="tableTypeId" required>
+                                                <mat-option [value]="tableTypeOption.id" *ngFor="let tableTypeOption of tabletypes;">{{tableTypeOption.description}}</mat-option>
+                                            </mat-select>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +95,7 @@
                     </div>
                     <div class="team-content">
                         <div class="team-description">
-                            <h6>Table for {{table.persons}}</h6>
+                            <h6>Lorem Table</h6>
                             <span>Lorem Ipusm andr ser bguyt usskks</span>
                         </div>
                         <div class="team-social">

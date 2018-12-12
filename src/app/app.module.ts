@@ -1,3 +1,9 @@
+import { CancelOrderComponent } from './customer-containers/customer-profile/list-order-component/cancel-order/cancel-order.component';
+import { OrderSucessComponent } from './customer-containers/checkout-page/order-sucess/order-sucess.component';
+import { CancelResevatioDialogComponent } from './customer-containers/customer-profile/cancel-resevatio-dialog/cancel-resevatio-dialog.component';
+import { ConfirmDeleteComponent } from './Containers/category/confirm-delete/confirm-delete.component';
+import { PromotionDialogComponent } from './Containers/promotion/promotion-dialog/promotion-dialog.component';
+import { MenuDialogComponent } from './Containers/menu/menu-dialog/menu-dialog.component';
 import { RemoveConfirmComponent } from './customer-containers/checkout-page/remove-confirm/remove-confirm.component';
 import { ConfirmReservationComponent } from './customer-containers/table-map/confirm-reservation/confirm-reservation.component';
 import { ErrorDialogComponent } from './customer-containers/customer-login/error-dialog/error-dialog.component';
@@ -18,12 +24,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-import { TableComponent } from './table/table.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { MaterialModule } from './material/material.module';
 import { DialogContentComponent } from './shared/Dialog/dialog-content/dialog-content.component';
 import { AppInjector } from './app.injector';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServerProvider, LoginService } from './core';
@@ -36,13 +43,13 @@ import { EditCustomerAccountComponent } from './customer-containers/customer-pro
 import { MenuAddCartComponent } from './customer-containers/customer-menu/menu-add-cart/menu-add-cart.component';
 import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.component';
 import { ViewProductDetailComponent } from './Containers/order/viewProductDetail/viewProductDetail.component';
+import { TableDialogComponent } from './Containers/table/table-dialog/table-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UserComponent,
-    TableComponent,
     SiteLayoutComponent,
     AppLayoutComponent,
     DialogContentComponent,
@@ -56,7 +63,14 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConfirnRegistrationComponent,
     ErrorDialogComponent,
     ConfirmReservationComponent,
-    RemoveConfirmComponent
+    RemoveConfirmComponent,
+    MenuDialogComponent,
+    PromotionDialogComponent,
+    TableDialogComponent,
+    ConfirmDeleteComponent,
+    CancelResevatioDialogComponent,
+    OrderSucessComponent,
+    CancelOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +91,8 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
 
   ],
   entryComponents: [
+    CancelOrderComponent,
+    OrderSucessComponent,
     DialogContentComponent,
     SocialDialogComponent,
     TimeManagerDialogComponent,
@@ -89,11 +105,20 @@ import { ViewProductDetailComponent } from './Containers/order/viewProductDetail
     ConfirnRegistrationComponent,
     ErrorDialogComponent,
     ConfirmReservationComponent,
-    RemoveConfirmComponent
+    RemoveConfirmComponent,
+    MenuDialogComponent,
+    PromotionDialogComponent,
+    TableDialogComponent,
+    ConfirmDeleteComponent,
+    CancelResevatioDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(appInjector: AppInjector) { }
+  constructor(appInjector: AppInjector,
+    private dpConfig: NgbDatepickerConfig
+    ) {
+      this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
+     }
 }

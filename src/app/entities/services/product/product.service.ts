@@ -33,4 +33,20 @@ export class ProductService extends EntityService<Product> {
       tap(this.onResponse.bind(this)));
   }
 
+
+  public isAvailable(): Observable<any> {
+    const option = this.buildFindAllOption();
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = HH_PRODUCT.ISAVAILABLE;
+    return this.http.get<Product>(url, reqOptions).pipe(
+      tap(this.onResponse.bind(this)));
+  }
+
+  public isNotAvailable(): Observable<any> {
+    const option = this.buildFindAllOption();
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = HH_PRODUCT.ISNOTAVAILABLE;
+    return this.http.get<Product>(url, reqOptions).pipe(
+      tap(this.onResponse.bind(this)));
+  }
 }
