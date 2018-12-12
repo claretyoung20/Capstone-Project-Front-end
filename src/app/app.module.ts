@@ -1,3 +1,4 @@
+import { CancelResevatioDialogComponent } from './customer-containers/customer-profile/cancel-resevatio-dialog/cancel-resevatio-dialog.component';
 import { ConfirmDeleteComponent } from './Containers/category/confirm-delete/confirm-delete.component';
 import { PromotionDialogComponent } from './Containers/promotion/promotion-dialog/promotion-dialog.component';
 import { MenuDialogComponent } from './Containers/menu/menu-dialog/menu-dialog.component';
@@ -64,7 +65,8 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
     MenuDialogComponent,
     PromotionDialogComponent,
     TableDialogComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    CancelResevatioDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +103,8 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
     MenuDialogComponent,
     PromotionDialogComponent,
     TableDialogComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    CancelResevatioDialogComponent
   ],
   providers: [AppInjector, AuthServerProvider, LoginService],
   bootstrap: [AppComponent]
