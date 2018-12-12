@@ -1,12 +1,20 @@
-<!-- <div class="row">
-    <div class="col-md-2" *ngFor="let item of reservation">
-        <mat-card class="staff-order" (click)="viewOrderByStatus(item.id)">{{item.name}} Order</mat-card>
+<div class="row">
+    <div class="col-md-3">
+        <mat-card class="staff-order" (click)="allReservation()">All Reservaton</mat-card>
     </div>
 
-    <div class="col-md-2">
-        <mat-card class="staff-order" (click)="allOrder()">All Order</mat-card>
+    <div class="col-md-3">
+        <mat-card class="staff-order" (click)="pendingReservation()">Pending Reservaton</mat-card>
     </div>
-</div> -->
+
+    <div class="col-md-3">
+        <mat-card class="staff-order" (click)="canceledReservation()">Canceled Reservaton</mat-card>
+    </div>
+
+    <div class="col-md-3">
+        <mat-card class="staff-order" (click)="approvedReservation()">Approved Reservaton</mat-card>
+    </div>
+</div>
 
 <!-- DISPLAY ORDER  -->
 <br>

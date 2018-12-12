@@ -111,6 +111,7 @@ export const HH_RESERVATION = {
     BASE: `${SERVER_API_URL}/api/reservations`,
     BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
     RESERVATIONHISTORY: `${SERVER_API_URL}/api/reservations/history`,
-    ACTIVERESERVATION: `${SERVER_API_URL}/api/reservations/active`
+    ACTIVERESERVATION: `${SERVER_API_URL}/api/reservations/active`,
+    BYSTATUS: `${SERVER_API_URL}/api/reservations/status`
 
 }

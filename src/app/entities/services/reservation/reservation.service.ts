@@ -33,4 +33,12 @@ export class ReservationService extends EntityService<Reservation> {
       return this.http.get<Reservation>(url, reqOptions).pipe(
         tap(this.onResponse.bind(this)));
   }
+
+  getByStatus(status: string): Observable<any> {
+    const option = this.buildFindAllOption();
+    const reqOptions = this.buildQueryRequestOption(option);
+    const url = HH_RESERVATION.BYSTATUS + '?status=' + status;
+      return this.http.get<Reservation>(url, reqOptions).pipe(
+        tap(this.onResponse.bind(this)));
+  }
 }

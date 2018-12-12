@@ -51,7 +51,7 @@
 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
-                    <td mat-cell *matCellDef="let element"><button class="btn btn-danger">Cancel</button></td>
+                    <td mat-cell *matCellDef="let element"><button *ngIf="element.orderStatusId === 1" (click)="cancelOrder(element.id)" class="btn btn-danger">Cancel</button></td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

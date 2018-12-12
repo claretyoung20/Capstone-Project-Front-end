@@ -17,6 +17,7 @@ export const TABLEDETAIL = 'tableDetail';
 export const EDITRESERVATIONDSTATUS = 'editTableStatus';
 export const RESERVATIONSTATUTSPENDING = 'pending';
 export const RESERVATIONSTATUTSCANCEL = 'cancel';
+export const RESERVATIONSTATUTsAPPROVE = 'approved';
 export const ERROR_MESSAGE = {
     REQUIRED_FIELD: 'Please Enter Correct and Required Information!'
   }

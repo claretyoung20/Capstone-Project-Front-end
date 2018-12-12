@@ -1,3 +1,4 @@
+import { CancelOrderComponent } from './cancel-order/cancel-order.component';
 import { Order } from './../../../entities/interfaces/order';
 import { ViewDialogComponent } from './../../../Containers/order/viewDialog/viewDialog.component';
 import { Customer } from 'app/entities/interfaces/customer';
@@ -6,7 +7,11 @@ import { LOCALSTORAGEFORCUSTOMER } from 'app/static/constants/site.constants';
 import { CouponService } from './../../../entities/services/coupon/coupon.service';
 import { OrderService } from 'app/entities/services/order/order.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ORDERVIEWSUBORDERDIALOG, ORDERSTATUSDIALOG, ORDERCOUPONDIALOG } from './../../../static/constants/site.constants';
+import {
+  ORDERVIEWSUBORDERDIALOG,
+  ORDERSTATUSDIALOG,
+  ORDERCOUPONDIALOG
+} from './../../../static/constants/site.constants';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { PaginationService } from 'app/shared/pagination/pagination.service';
@@ -45,8 +50,8 @@ export class ListOrderComponentComponent implements OnInit {
   pager: any = {};
   totalItems: any = 0;
 
-  allOrderStatus: OrderStatus[] = []
-  statusCurrent: OrderStatus[] = []
+  allOrderStatus: OrderStatus[] = [];
+  statusCurrent: OrderStatus[] = [];
   constructor(
     public dialog: MatDialog,
     private orderService: OrderService,
@@ -54,13 +59,13 @@ export class ListOrderComponentComponent implements OnInit {
     private couponService: CouponService,
     private orderStatusService: OrderStatusService,
     private saleServices: SaleOrderService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.customerId = JSON.parse(
       localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0'
     );
-    this. getAllOrderStatus();
+    this.getAllOrderStatus();
 
     this.getAllOrder();
   }
@@ -95,11 +100,25 @@ export class ListOrderComponentComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   // get order status
   getOrderStatus(id) {
     this.orderStatusService.find(id).subscribe(res => {
       this.opendialog(res, ORDERSTATUSDIALOG);
+    });
+  }
+
+  cancelOrder(id) {
+    const title = 'Delete';
+    const dialogRef = this.dialog.open(CancelOrderComponent, {
+      data: {
+        orderId: id,
+        title: title
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllOrder();
     });
   }
 
@@ -108,7 +127,6 @@ export class ListOrderComponentComponent implements OnInit {
     this.couponService.find(id).subscribe(res => {
       this.opendialog(res, ORDERCOUPONDIALOG);
     });
-
   }
 
   opendialog(res, title) {
@@ -129,7 +147,7 @@ export class ListOrderComponentComponent implements OnInit {
   getAllOrderStatus() {
     const query = {};
     this.orderStatusService.query(query).subscribe(res => {
-     this.showStatusbutton(res);
+      this.showStatusbutton(res);
     });
   }
   showStatusbutton(res) {
@@ -143,12 +161,14 @@ export class ListOrderComponentComponent implements OnInit {
   }
 
   viewOrderByStatus(id) {
-    this.orderService.getbyStatusId(id).subscribe(res => {
-      this.processToShow(res)
-    },
-    (error: HttpErrorResponse) => {
-      console.log('jjdjdjdj' + error.message);
-    })
+    this.orderService.getbyStatusId(id).subscribe(
+      res => {
+        this.processToShow(res);
+      },
+      (error: HttpErrorResponse) => {
+        console.log('jjdjdjdj' + error.message);
+      }
+    );
   }
   allOrder() {
     this.getAllOrder();
@@ -158,16 +178,13 @@ export class ListOrderComponentComponent implements OnInit {
 
   filterStatus(id) {
     let item;
-   for (item in this.allOrderStatus) {
-     if (this.allOrderStatus[item].id === id) {
+    for (item in this.allOrderStatus) {
+      if (this.allOrderStatus[item].id === id) {
         return this.allOrderStatus[item].name;
-     }
-   }
+      }
+    }
   }
-
-
 }
-
 
 export interface PeriodicElement {
   name: string;
@@ -175,5 +192,3 @@ export interface PeriodicElement {
   price: number;
   status: string;
 }
-
-

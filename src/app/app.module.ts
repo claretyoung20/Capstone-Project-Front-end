@@ -1,3 +1,5 @@
+import { CancelOrderComponent } from './customer-containers/customer-profile/list-order-component/cancel-order/cancel-order.component';
+import { OrderSucessComponent } from './customer-containers/checkout-page/order-sucess/order-sucess.component';
 import { CancelResevatioDialogComponent } from './customer-containers/customer-profile/cancel-resevatio-dialog/cancel-resevatio-dialog.component';
 import { ConfirmDeleteComponent } from './Containers/category/confirm-delete/confirm-delete.component';
 import { PromotionDialogComponent } from './Containers/promotion/promotion-dialog/promotion-dialog.component';
@@ -66,7 +68,9 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
     PromotionDialogComponent,
     TableDialogComponent,
     ConfirmDeleteComponent,
-    CancelResevatioDialogComponent
+    CancelResevatioDialogComponent,
+    OrderSucessComponent,
+    CancelOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
 
   ],
   entryComponents: [
+    CancelOrderComponent,
+    OrderSucessComponent,
     DialogContentComponent,
     SocialDialogComponent,
     TimeManagerDialogComponent,
