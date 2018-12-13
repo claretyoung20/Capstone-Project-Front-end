@@ -12,4 +12,5 @@ export interface Order extends Entity {
     restaurantId?: number;
     staffStaffCode?: string;
     staffId?: number;
+    bookTableId?: number;
 }

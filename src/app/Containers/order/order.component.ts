@@ -46,6 +46,7 @@ export class OrderComponent implements OnInit {
     'totalPrice',
     'orderStatus',
     'customer',
+    'bookTableId',
     'coupon',
     'staff',
     'edit',

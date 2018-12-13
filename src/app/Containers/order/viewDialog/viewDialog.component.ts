@@ -250,7 +250,8 @@ export class ViewDialogComponent implements OnInit {
   // update reservation
   buildForm1() {
     this.reserveForm = this.fb.group({
-      status: ['']
+      status: [this.statusReserve[0]],
+      comment: [null]
     });
   }
 
@@ -270,8 +271,9 @@ export class ViewDialogComponent implements OnInit {
     if (this.userId !== 0) {
       const formData = this.reserveForm.value;
       const data = this.reservation;
+       // use this User id to get staff id
       data.staffId = staffId;
-      // use this User id to get staff id
+      data.comment = formData.comment;
       data.status = formData.status;
       this.reserveService.update(data).subscribe(res => {
         console.log(res);

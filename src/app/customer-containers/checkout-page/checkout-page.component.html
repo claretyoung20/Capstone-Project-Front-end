@@ -84,6 +84,28 @@
             </div>
 
         </div>
+
+        <div class="row" style="padding-top: 30px">
+            <form [formGroup]="tableForm">
+                <div class="col-lg-3 col-md-3 col-sm-3 sasa">
+                    <div class="form-group" [class.has-error]="tableForm.get('tableId').invalid && submitForm || (tableForm.get('tableId')?.errors && tableForm.get('tableId').touched)">
+                        <!-- <label>Choose table<span class="spanRequired">*</span>:</label> -->
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_tableId">Choose Table Number</label>
+                            <mat-select placeholder="Select Table" class="form-control" id="field_tableId" name="tableId" formControlName="tableId" required>
+                                <mat-option [value]="table.id" *ngFor="let table of tables;">{{table.id}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div *ngIf="errorMessage " class="alert alert-danger ">
+                {{errorMessage}}
+            </div>
+        </div>
+
         <div class="bttn">
             <button (click)="orderNow()" name="Submit" class="button uppercase">
                 Order Now</button>
