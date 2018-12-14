@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { PromotionComponent } from './promotion.component';
 import { PromotionHistoryComponent } from './promotion-history/promotion-history.component';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import {NgJhipsterModule} from 'ng-jhipster';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     FormsModule,
     NgbModule,
     FontAwesomeModule,
+    NgJhipsterModule,
     NgxMyDatePickerModule.forRoot(),
   ],
   declarations: [

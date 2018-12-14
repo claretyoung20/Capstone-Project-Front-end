@@ -20,6 +20,7 @@ export class ListReservationComponentComponent implements OnInit {
     'id',
     'dateCreated',
     'dateUpdated',
+    'tableNumber',
     'time',
     'comment',
     'status',

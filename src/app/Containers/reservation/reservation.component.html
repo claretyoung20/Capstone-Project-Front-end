@@ -39,6 +39,10 @@
                     <td mat-cell *matCellDef="let element"> {{ getStatus(element.period) }} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="bookTableId">
+                    <th mat-header-cell *matHeaderCellDef> Table Number </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.bookTableId }} </td>
+                </ng-container>
 
                 <!-- dateOfBirth Column -->
                 <ng-container matColumnDef="reserverDate">
@@ -131,3 +135,7 @@
         </div>
     </div>
 </div>
+
+<br>
+<br>
+<app-reservation-history></app-reservation-history>

@@ -76,8 +76,9 @@ export class CheckoutPageComponent implements OnInit {
     this.getAllTable();
   }
   getAllTable(): any {
-    this.tableServces.findAll().subscribe( res => {
+    this.tableServces.getIsAvialableTable().subscribe( res => {
       this.tables = res;
+      console.log(this.tables);
     })
   }
 

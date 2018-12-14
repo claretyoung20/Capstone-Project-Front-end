@@ -74,7 +74,11 @@ export const HH_ORDER = {
     BASE: `${SERVER_API_URL}/api/happy-orders`,
     BYSTATUSID: `${SERVER_API_URL}/api/happy-orders/status`,
     HISTORYORDER: `${SERVER_API_URL}/api/happy-orders/history`,
-    ACTIVEORDER: `${SERVER_API_URL}/api/happy-orders/active`
+    ACTIVEORDER: `${SERVER_API_URL}/api/happy-orders/active`,
+    TODAYSORDER: `${SERVER_API_URL}/api/happy-orders/todayOrder`,
+    CURRENTORDERHISTORY: `${SERVER_API_URL}/api/happy-orders/currentHistory`
+
+
 }
 
 // Status
@@ -99,7 +103,8 @@ export const HH_SALE_ORDER = {
 // TABLE
 export const HH_TABLE = {
     BASE: `${SERVER_API_URL}/api/book-tables`,
-    AVAILABLE: `${SERVER_API_URL}/api/book-tables/avaliable`
+    AVAILABLE: `${SERVER_API_URL}/api/book-tables/avaliable`,
+    ISAVAILABLE: `${SERVER_API_URL}/api/book-tables/isAvailable`
 }
 
 export const HH_TABLE_TYPE = {
@@ -112,6 +117,7 @@ export const HH_RESERVATION = {
     BYTABLEID: `${SERVER_API_URL}/api/reservations/table`,
     RESERVATIONHISTORY: `${SERVER_API_URL}/api/reservations/history`,
     ACTIVERESERVATION: `${SERVER_API_URL}/api/reservations/active`,
-    BYSTATUS: `${SERVER_API_URL}/api/reservations/status`
-
+    BYSTATUS: `${SERVER_API_URL}/api/reservations/status`,
+    CURRENTLYACTIVE: `${SERVER_API_URL}/api/reservations/activeReservation`,
+    HSITORY: `${SERVER_API_URL}/api/reservations/historyReservation`
 }

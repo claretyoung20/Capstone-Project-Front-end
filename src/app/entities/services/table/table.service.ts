@@ -17,11 +17,19 @@ export class TableService extends EntityService<Table> {
   }
 
   getAvialableTable(person: number | string, period: string, reserveDate: any ): Observable<any> {
-    const option = this.buildFindAllOption();
-    const reqOptions = this.buildQueryRequestOption(option);
-    const url = HH_TABLE.AVAILABLE + '?period=' + period + '&persons=' + person + '&reserveDate=' + reserveDate;
-      return this.http.get<Table>(url, reqOptions).pipe(
-        tap(this.onResponse.bind(this)));
-  }
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_TABLE.AVAILABLE + '?period=' + period + '&persons=' + person + '&reserveDate=' + reserveDate;
+        return this.http.get<Table>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
+
+    getIsAvialableTable(): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_TABLE.ISAVAILABLE;
+        return this.http.get<Table>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 
 }

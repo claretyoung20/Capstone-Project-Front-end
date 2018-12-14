@@ -41,6 +41,7 @@
         "jquery": "^3.3.1",
         "moment": "^2.22.2",
         "mydatepicker": "^2.6.6",
+        "ng-jhipster": "^0.5.6",
         "ngx-cookie": "^4.0.2",
         "ngx-mydatepicker": "^2.4.9",
         "ngx-webstorage": "^3.0.0-beta.10",

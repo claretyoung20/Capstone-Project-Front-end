@@ -7,6 +7,7 @@ import { ICoupon } from './../../../entities/interfaces/iCoupon';
 import { Component, OnInit } from '@angular/core';
 import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
 import { TimeService } from 'app/shared/util/time.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-promotion-edit',
@@ -21,9 +22,15 @@ export class PromotionEditComponent implements OnInit {
   endDateDp: any;
   startFromDateDp: any;
 
-  dateOptions: INgxMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd'
-  };
+    today = new Date();
+    dd = this.today.getDate() - 1;
+    mm = this.today.getMonth() + 1; // January is 0!
+    yyyy = this.today.getFullYear();
+
+    dateOptions: INgxMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd',
+        disableUntil: { year: this.yyyy, month: this.mm, day: this.dd }
+    };
 
   constructor(
     private couponService: CouponService,
@@ -47,8 +54,9 @@ export class PromotionEditComponent implements OnInit {
   }
 
   getAllByCouponId(id) {
-    this.couponService.find(id).subscribe(res => {
-      this._coupon = res;
+    this.couponService.find(id).subscribe((res: Coupon) => {
+       this._coupon = this.convertDateFromServer(res);
+        // this._coupon = res;
     });
   }
   previousState() {
@@ -63,11 +71,13 @@ export class PromotionEditComponent implements OnInit {
   save() {
     this.isSaving = true;
     const data = this.prepareToSave(this.coupon);
-    console.log(data);
+      this.coupon.endDate = data.endDate;
+      this.coupon.startFromDate = data.startFromDate;
+    console.log(this.coupon);
     if (this.coupon.id !== undefined) {
-      this.subscribeToSaveResponse(this.couponService.update(data));
+      this.subscribeToSaveResponse(this.couponService.update(this.coupon));
     } else {
-      this.subscribeToSaveResponse(this.couponService.create(data));
+      this.subscribeToSaveResponse(this.couponService.create(this.coupon));
     }
   }
   prepareToSave(data) {
@@ -103,4 +113,12 @@ export class PromotionEditComponent implements OnInit {
   set coupon(coupon: ICoupon) {
     this._coupon = coupon;
   }
+
+    private convertDateFromServer(res): Coupon {
+        res.endDate = res.endDate != null ? moment(res.endDate) : null;
+        res.startFromDate = res.startFromDate != null ? moment(res.startFromDate) : null;
+        console.log('hdhdhdhdhdh');
+        console.log(res);
+        return res;
+    }
 }

@@ -34,6 +34,7 @@ export class ReservationComponent implements OnInit {
     'id',
     'time',
     'status',
+    'bookTableId',
     'reserverDate',
     'updatedDate',
     'staff',
@@ -66,11 +67,11 @@ export class ReservationComponent implements OnInit {
   }
 
   getAllReservation() {
-    const query = {
-      size: this.pageSize,
-      page: this.currentPage
-    };
-    this.reservationService.query(query).subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      };
+    this.reservationService.getCurrentReervation(query).subscribe(res => {
       this.processToShow(res);
     });
   }

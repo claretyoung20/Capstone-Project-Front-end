@@ -1,4 +1,4 @@
-import { ORDERVIEWSUBORDERDIALOG } from './../../static/constants/site.constants';
+import {ORDERVIEWSUBORDERDIALOG, TABLEDETAIL} from './../../static/constants/site.constants';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from './../../entities/interfaces/order';
 import { Customer } from './../../entities/interfaces/customer';
@@ -25,6 +25,8 @@ import { OrderStatus } from 'app/entities/interfaces/orderStatus';
 import { OrderStatusService } from 'app/entities/services/orderStatus/orderStatus.service';
 import { ViewDialogComponent } from './viewDialog/viewDialog.component';
 import { SaleOrderService } from 'app/entities/services/saleOrder/sale-order.service';
+import {Table} from '../../entities/interfaces/table';
+import {TableService} from '../../entities/services/table/table.service';
 
 @Component({
   selector: 'app-order',
@@ -35,6 +37,7 @@ export class OrderComponent implements OnInit {
   userRole: string;
 
   orders: Order[] = [];
+  table: Table;
   coupon: Coupon;
   customer: Customer;
   staff: Staff;
@@ -72,7 +75,8 @@ export class OrderComponent implements OnInit {
     private customerService: CustomerService,
     private staffServices: StaffService,
     private orderStatusService: OrderStatusService,
-    private saleServices: SaleOrderService
+    private saleServices: SaleOrderService,
+    private tableService: TableService
   ) {}
 
   ngOnInit() {
@@ -89,12 +93,19 @@ export class OrderComponent implements OnInit {
     this.getAllOrder();
   }
 
+  freezeTable(id) {
+    // display dialog asking staff to freeze table
+      this.tableService.find(id).subscribe( res => {
+        this.opendialog(res, TABLEDETAIL);
+      })
+  }
+
   getAllOrder() {
     const query = {
       size: this.pageSize,
       page: this.currentPage
     };
-    this.orderService.query(query).subscribe(res => {
+    this.orderService.getTodaysOrder(query).subscribe(res => {
       this.processToShow(res);
     });
   }
