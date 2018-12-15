@@ -22,6 +22,8 @@ import { AccountModule } from './account/account.module';
 import { CustomerComponent } from './Customers/customer/customer.component';
 import { ReservationHistoryComponent } from './reservation/reservation-history/reservation-history.component';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import {AdminProfileModule} from './admin-profile/admin-profile.module';
 
 @NgModule({
   imports: [
@@ -36,7 +38,8 @@ import { OrderHistoryComponent } from './order/order-history/order-history.compo
     AccountModule,
     MenuModule,
     PromotionModule,
-    TableModule
+    TableModule,
+    AdminProfileModule
   ],
   declarations: [
     ConfigComponent,
@@ -49,7 +52,7 @@ import { OrderHistoryComponent } from './order/order-history/order-history.compo
     AddressComponent,
     CustomerComponent,
     ReservationHistoryComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
   ]
 })
 export class ContainersModule { }
