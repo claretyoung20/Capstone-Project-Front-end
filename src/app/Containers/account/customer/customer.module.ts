@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CustomerComponent } from './customer.component';
 import { MaterialModule } from 'app/material/material.module';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     CustomerComponent,
