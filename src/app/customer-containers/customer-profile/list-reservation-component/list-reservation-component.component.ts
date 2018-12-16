@@ -19,7 +19,6 @@ export class ListReservationComponentComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'dateCreated',
-    'dateUpdated',
     'tableNumber',
     'time',
     'comment',

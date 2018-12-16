@@ -38,7 +38,6 @@ export class ReservationComponent implements OnInit {
     'reserverDate',
     'updatedDate',
     'staff',
-    'bookTable',
     'customer',
     'comment',
     'edit',

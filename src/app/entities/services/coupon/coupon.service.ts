@@ -40,5 +40,12 @@ export class CouponService extends EntityService<Coupon> {
     return this.http.get<Coupon>(url, reqOptions).pipe(
       tap(this.onResponse.bind(this)));
   }
+    public applyCoupon(amount: number, code: string, id: number): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_COUPON.APPLYCOUPON + '?id=' + id + '&code=' + code + '&amount=' + amount;
+        return this.http.get<Coupon>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 
 }

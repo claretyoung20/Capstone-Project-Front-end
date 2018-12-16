@@ -21,7 +21,6 @@ import {
   EDITRESERVATIONDSTATUS
 } from 'app/static/constants/site.constants';
 import { OrderStatus } from 'app/entities/interfaces/orderStatus';
-import { UserService } from 'app/core';
 import { Staff } from 'app/entities/interfaces/staff';
 import { Order } from 'app/entities/interfaces/order';
 import { StaffService } from 'app/entities/services/staff/staff.service';
@@ -33,6 +32,9 @@ import { ReservationService } from 'app/entities/services/reservation/reservatio
 import { TableType } from 'app/entities/interfaces/tableType';
 import { TableTypeService } from 'app/entities/services/tableType/table-type.service';
 import {TableService} from '../../../entities/services/table/table.service';
+import {UserService} from '../../../entities/model/user/user.service';
+import {AccountService} from '../../../core';
+import {AccountStaffService} from '../../../entities/services/account/account.service';
 
 @Component({
   selector: 'app-view-dialog',
@@ -67,6 +69,7 @@ export class ViewDialogComponent implements OnInit {
   updateForm: FormGroup;
   // current user id
   userId: number;
+  customerUserId: number
 
   // user details
   userDetail: User;
@@ -99,7 +102,7 @@ export class ViewDialogComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ViewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private userservice: UserService,
+    private userservice: AccountStaffService,
     private orderService: OrderService,
     private orderStatusService: OrderStatusService,
     private staffService: StaffService,
@@ -112,6 +115,7 @@ export class ViewDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.user = {};
     // get current staff Id
     this.userId = JSON.parse(localStorage.getItem(CURRENTSTAFFORADMINID) || '0');
     this.customerId = JSON.parse(localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0');
@@ -121,6 +125,8 @@ export class ViewDialogComponent implements OnInit {
     }
     if (this.data.title === ORDERCUSTOMERSDIALOG) {
       this.customer = this.data.resData;
+      this.customerUserId = this.customer.userId;
+        this.getUserByCustomerUserId();
       this.isCustomer = true;
     }
     if (this.data.title === ORDERSSTAFFDIALOG) {
@@ -154,6 +160,7 @@ export class ViewDialogComponent implements OnInit {
     this.buildForm1();
     this.getAllOrderStatus();
     this.getAllTableTypess();
+
   }
 
   getAllTableTypess() {
@@ -299,8 +306,11 @@ export class ViewDialogComponent implements OnInit {
   }
 
 
-
-
+  getUserByCustomerUserId() {
+        this.userservice.findAccountById(this.customerUserId).subscribe( res => {
+          this.user = res;
+        })
+    }
 }
 
 

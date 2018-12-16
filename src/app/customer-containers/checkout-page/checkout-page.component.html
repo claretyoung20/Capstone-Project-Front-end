@@ -65,50 +65,69 @@
          <button class="btn btn-primary updatBtn">Update Cart</button>
       </div> -->
         </div>
-        <div class="row" [hidden]="true">
+        <div class="row" *ngIf="carts.length >= 1">
             <div class="col-md-6 coupon-div">
-                <form>
+                <form [formGroup]="couponForm">
                     <div class="input-group mb-3">
-                        <input type="text" class="updateCart" placeholder="Enter Coupon" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input formControlName="couponCode" type="text" class="updateCart" placeholder="Enter Coupon" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <br>
+                        <br>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Apply Coupon</button>
+                            <button (click)="applyCoupon()" class="btn btn-outline-secondary" type="button">Apply Coupon</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div *ngIf="errorMessageCoupon" class="alert alert-danger ">
+                            {{errorMessageCoupon}}
                         </div>
                     </div>
                 </form>
             </div>
 
             <div class="col-md-6 total-div">
-                <p>BASE TOTAL: $53.95</p>
-                <p>Coupon: AXSDERN - $10</p>
-                <p>TOTAL: $40.95</p>
+                <p>BASE TOTAL: {{ totalPriceSave | currency }}</p>
+                <p>Coupon: {{couponCode}} - {{couponAmount | currency}}</p>
+                <p>TOTAL: {{totalPriceSave - couponAmount | currency}}</p>
             </div>
 
         </div>
 
-        <div class="row" style="padding-top: 30px">
-            <form [formGroup]="tableForm">
-                <div class="col-lg-3 col-md-3 col-sm-3 sasa">
-                    <div class="form-group" [class.has-error]="tableForm.get('tableId').invalid && submitForm || (tableForm.get('tableId')?.errors && tableForm.get('tableId').touched)">
-                        <!-- <label>Choose table<span class="spanRequired">*</span>:</label> -->
-                        <div class="form-group">
-                            <label class="form-control-label" for="field_tableId">Choose Table Number</label>
-                            <mat-select placeholder="Select Table" class="form-control" id="field_tableId" name="tableId" formControlName="tableId" required>
-                                <mat-option [value]="table.id" *ngFor="let table of tables;">{{table.id}}</mat-option>
-                            </mat-select>
+        <div *ngIf="carts.length > 1" class="row" style="padding-top: 30px">
+           <div class="haveOrderOrReservation" *ngIf="currentOrder.length >= 1">
+               <p>Current Table Number: {{ currentOrder[0].bookTableId }}</p>
+           </div>
+            <br>
+            <br>
+            <div class="doNotHaveOrderOrReservation" *ngIf="currentOrder.length < 1">
+                <form [formGroup]="tableForm">
+                    <div class="col-lg-3 col-md-3 col-sm-3 sasa">
+                        <div class="form-group" [class.has-error]="tableForm.get('tableId').invalid && submitForm || (tableForm.get('tableId')?.errors && tableForm.get('tableId').touched)">
+                            <!-- <label>Choose table<span class="spanRequired">*</span>:</label> -->
+                            <div class="form-group">
+                                <label class="form-control-label" for="field_tableId">Choose Table Number</label>
+                                <mat-select placeholder="Select Table" class="form-control" id="field_tableId" name="tableId" formControlName="tableId" required>
+                                    <mat-option [value]="table.id" *ngFor="let table of tables;">{{table.id}}</mat-option>
+                                </mat-select>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div class="row">
-            <div *ngIf="errorMessage " class="alert alert-danger ">
+            <div *ngIf="errorMessage" class="alert alert-danger ">
                 {{errorMessage}}
             </div>
         </div>
 
-        <div class="bttn">
+        <div class="bttn" *ngIf="carts.length >= 1">
             <button (click)="orderNow()" name="Submit" class="button uppercase">
                 Order Now</button>
         </div>
+    </div>
+
+    <div *ngIf="carts.length < 1">
+        <h2>No Item..</h2>
     </div>
 </div>

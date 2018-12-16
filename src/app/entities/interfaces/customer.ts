@@ -30,4 +30,5 @@ export interface Customer extends Entity {
     restaurantId?: number,
     status?: boolean,
     login?: string,
+    userId?: number;
 }

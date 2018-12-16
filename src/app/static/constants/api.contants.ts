@@ -78,8 +78,8 @@ export const HH_ORDER = {
     HISTORYORDER: `${SERVER_API_URL}/api/happy-orders/history`,
     ACTIVEORDER: `${SERVER_API_URL}/api/happy-orders/active`,
     TODAYSORDER: `${SERVER_API_URL}/api/happy-orders/todayOrder`,
-    CURRENTORDERHISTORY: `${SERVER_API_URL}/api/happy-orders/currentHistory`
-
+    CURRENTORDERHISTORY: `${SERVER_API_URL}/api/happy-orders/currentHistory`,
+    CURRENTCUSTOMERORDER: `${SERVER_API_URL}/api/happy-orders/currentCustomerOrders`
 
 }
 
@@ -89,6 +89,7 @@ export const HH_COUPON = {
     VALIDCOUPON: `${SERVER_API_URL}/api/coupons/valid`,
     ACTIVE: `${SERVER_API_URL}/api/coupons/active`,
     HISTORY: `${SERVER_API_URL}/api/coupons/history`,
+    APPLYCOUPON: `${SERVER_API_URL}/api/coupons/applyCoupon`,
 }
 
 // ORDER STATUS

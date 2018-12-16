@@ -19,7 +19,6 @@ export class HistoryReservationComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'dateCreated',
-    'dateUpdated',
     'tableNumber',
     'time',
     'comment',
