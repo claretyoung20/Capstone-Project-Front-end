@@ -22,6 +22,7 @@ export const HH_CUSTOMER = {
     NEWCUSTOMER: `${SERVER_API_URL}/api/customers/new`,
     BYUSERID: `${SERVER_API_URL}/api/customers/userId`,
     UPDATEUSECUSTOMER: `${SERVER_API_URL}/api/customers/users`,
+    ALLCUSTOMER: `${SERVER_API_URL}/api/customers/allUser`
 }
 
 export const HH_SOCIAL_MEDIA = {
@@ -40,6 +41,7 @@ export const HH_STAFF = {
 
 export const HH_STAFF_ACCOUNT = {
     BASE: `${SERVER_API_URL}/api/staff/account`,
+    ALLSTAFFS: `${SERVER_API_URL}/api/staff/allUser`
 }
 
 export const HH_ACCOUNT = {

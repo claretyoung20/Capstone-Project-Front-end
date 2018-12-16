@@ -4,7 +4,7 @@
     <div class="col-8">
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <h2 id="myUserLabel">
-          My Details
+         View and Update Profile Details
         </h2>
         <div>
 
@@ -95,11 +95,9 @@
 
         </div>
         <div>
-          <button type="button" class="btn btn-secondary" (click)="previousState()">
-            &nbsp;<span>Cancel</span>
-          </button>
-          <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            &nbsp;<span>Save</span>
+          <button type="submit" [disabled]="editForm.form.invalid || isSaving ||
+          !editForm.form.touched" class="btn btn-primary">
+            &nbsp;<span>Update</span>
           </button>
         </div>
       </form>

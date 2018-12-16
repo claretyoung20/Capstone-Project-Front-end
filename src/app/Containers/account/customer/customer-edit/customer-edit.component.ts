@@ -73,14 +73,6 @@ export class CustomerEditComponent implements OnInit {
     const oldData = this.customers;
     const newData = this.customerForm.value;
 
-    // oldData.firstName = newData.firstName;
-    // oldData.lastName = newData.lastName;
-    // oldData.address = newData.address;
-    // oldData.email = newData.email;
-    // oldData.phoneNumber = newData.phoneNumber;
-    // oldData.status = newData.status;
-    // oldData.dateOfBirth = newData.dateOfBirth;
-
     this.customerService.update(oldData).subscribe(res => {
       this.router.navigate(['admin/account/customer']);
     })

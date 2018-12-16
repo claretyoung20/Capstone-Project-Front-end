@@ -1,12 +1,13 @@
-import { HH_ACCOUNT } from './../../../static/constants/api.contants';
+import {HH_ACCOUNT, HH_STAFF_ACCOUNT} from './../../../static/constants/api.contants';
 import { IUser } from './../../../core/user/user.model';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { HH_CUSTOMER } from 'app/static/constants/api.contants';
-import { EntityService } from '../entity.service';
+import {EntityService, QueryOption} from '../entity.service';
 import { Customer, UserCustomer } from 'app/entities/interfaces/customer';
 import { tap } from 'rxjs/operators';
 import { LocalStorage } from 'ngx-webstorage';
+import {Staff} from '../../interfaces/staff';
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,12 @@ export class CustomerService extends EntityService<UserCustomer> {
         tap(this.onResponse.bind(this)
        ));
   }
+
+    getAllCustomer(option: QueryOption): Observable<any> {
+        // const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_CUSTOMER.ALLCUSTOMER;
+        return this.http.get<IUser>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 }

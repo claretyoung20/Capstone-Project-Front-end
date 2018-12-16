@@ -4,6 +4,7 @@ import {MaterialModule} from '../../material/material.module';
 import {FormsModule} from '@angular/forms';
 import {AdminProfileComponent} from './admin-profile.component';
 import {NgJhipsterModule} from 'ng-jhipster';
+import { AlertSuccessComponent } from './alert-success/alert-success.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,11 @@ import {NgJhipsterModule} from 'ng-jhipster';
       NgJhipsterModule
   ],
   declarations: [
-      AdminProfileComponent
-  ]
+      AdminProfileComponent,
+      AlertSuccessComponent
+  ],
+    entryComponents: [
+        AlertSuccessComponent
+    ]
 })
 export class AdminProfileModule { }
