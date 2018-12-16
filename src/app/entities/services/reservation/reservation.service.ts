@@ -1,9 +1,10 @@
 import { tap } from 'rxjs/internal/operators';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
-import { EntityService } from 'app/entities/services/entity.service';
+import {EntityService, QueryOption} from 'app/entities/services/entity.service';
 import { Injectable } from '@angular/core';
-import {  HH_RESERVATION } from 'app/static/constants/api.contants';
+import {HH_ORDER, HH_RESERVATION} from 'app/static/constants/api.contants';
 import { Reservation } from 'app/entities/interfaces/reservation';
+import {Order} from '../../interfaces/order';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +42,24 @@ export class ReservationService extends EntityService<Reservation> {
       return this.http.get<Reservation>(url, reqOptions).pipe(
         tap(this.onResponse.bind(this)));
   }
+
+    getCurrentReervation(option: QueryOption): Observable<any> {
+        const reqOptions = this.buildQueryRequestOption(option);
+        // const option = this.buildFindAllOption();
+        // const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_RESERVATION.CURRENTLYACTIVE;
+        return this.http.get<Order>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
+
+    getHistoryReservation(option: QueryOption): Observable<any> {
+        // const option = this.buildFindAllOption();
+        // const reqOptions = this.buildQueryRequestOption(option);
+        // const url = HH_RESERVATION.HSITORY;
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = this.buildQueryUrl(option);
+
+        return this.http.get<Order>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 }

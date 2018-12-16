@@ -32,6 +32,7 @@ import { Reservation } from 'app/entities/interfaces/reservation';
 import { ReservationService } from 'app/entities/services/reservation/reservation.service';
 import { TableType } from 'app/entities/interfaces/tableType';
 import { TableTypeService } from 'app/entities/services/tableType/table-type.service';
+import {TableService} from '../../../entities/services/table/table.service';
 
 @Component({
   selector: 'app-view-dialog',
@@ -78,7 +79,8 @@ export class ViewDialogComponent implements OnInit {
   subOrders: SaleOrder[] = [];
 
   // table detail
-  table: Table
+  table: Table;
+  isTableFreeze = false;
   isTable = false;
 
   //  UPDATE RESVERSATION
@@ -105,7 +107,8 @@ export class ViewDialogComponent implements OnInit {
     public dialog: MatDialog,
     private productSErvice: ProductService,
     private reserveService: ReservationService,
-    private tableTypeService: TableTypeService
+    private tableTypeService: TableTypeService,
+    private tableService: TableService
   ) {}
 
   ngOnInit() {
@@ -194,6 +197,19 @@ export class ViewDialogComponent implements OnInit {
     });
   }
 
+  freeze() {
+    this.table.isAvaliable = false;
+    this.tableService.update(this.table).subscribe( res => {
+      this.dialogRef.close();
+    })
+  }
+
+  Unfreeze() {
+        this.table.isAvaliable = true;
+        this.tableService.update(this.table).subscribe( res => {
+            this.dialogRef.close();
+        })
+    }
   pathValue(data) {
     this.updateForm.patchValue({
       id: data.id || ''
@@ -250,7 +266,8 @@ export class ViewDialogComponent implements OnInit {
   // update reservation
   buildForm1() {
     this.reserveForm = this.fb.group({
-      status: ['']
+      status: [this.statusReserve[0]],
+      comment: [null]
     });
   }
 
@@ -270,8 +287,9 @@ export class ViewDialogComponent implements OnInit {
     if (this.userId !== 0) {
       const formData = this.reserveForm.value;
       const data = this.reservation;
+       // use this User id to get staff id
       data.staffId = staffId;
-      // use this User id to get staff id
+      data.comment = formData.comment;
       data.status = formData.status;
       this.reserveService.update(data).subscribe(res => {
         console.log(res);

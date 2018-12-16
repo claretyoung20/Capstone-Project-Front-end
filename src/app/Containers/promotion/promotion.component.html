@@ -21,6 +21,11 @@
                     <td mat-cell *matCellDef="let element"> {{element.code}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
+                </ng-container>
+
                 <!-- Name Column -->
                 <ng-container matColumnDef="startFromDate">
                     <th mat-header-cell *matHeaderCellDef> startFromDate </th>
@@ -41,7 +46,7 @@
 
                 <ng-container matColumnDef="maxAmountToApply">
                     <th mat-header-cell *matHeaderCellDef> maxAmountToApply </th>
-                    <td mat-cell *matCellDef="let element"> {{element.maxAmountToApply}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.maxAmountToApply | currency}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="isActive">

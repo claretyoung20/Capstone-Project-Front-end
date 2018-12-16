@@ -11,10 +11,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-label" for="field_description">Description</label>
-                        <textarea type="text" class="form-control" name="description" id="field_description" [(ngModel)]="product.description"></textarea>
-                    </div>
-                    <div class="form-group">
                         <label class="form-control-label" for="field_name">Name</label>
                         <input type="text" class="form-control" name="name" id="field_name" [(ngModel)]="product.name" required/>
                         <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
@@ -23,15 +19,23 @@
                             </small>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="form-control-label" for="field_price">Price</label>
-                        <input type="number" class="form-control" name="price" id="field_price" [(ngModel)]="product.price" required/>
+                        <label class="form-control-label" for="field_description">Description</label>
+                        <textarea type="text" class="form-control" name="description" id="field_description" [(ngModel)]="product.description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_price">Price: USD ($)</label>
+                        <input type="number" class="form-control" name="price" id="field_price" [(ngModel)]="product.price" required min="1" jhiMin="1"/>
                         <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
                             <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.required">
                             This field is required.
                             </small>
                             <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.number">
                                 This field should be a number.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.min" translateValues="{ min: 1 }">
+                                This field should be at least 1.
                             </small>
                         </div>
                     </div>
@@ -46,11 +50,18 @@
 
                     <div class="form-group">
                         <label class="form-control-label" for="field_category">Category</label>
-                        <select class="form-control" id="field_category" name="category" [(ngModel)]="product.categoryId">
-                            <option [ngValue]="null"></option>
+                        <select class="form-control" id="field_category" name="category" [(ngModel)]="product.categoryId"  required>
+                            <option *ngIf="!editForm.value.category" [ngValue]="null" selected></option>
                             <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.name}}</option>
                         </select>
                     </div>
+                    <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
+                        <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.category?.errors?.required">
+                            This field is required.
+                        </small>
+                    </div>
+
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">

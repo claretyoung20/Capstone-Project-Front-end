@@ -13,7 +13,7 @@ import { PaginationService } from 'app/shared/pagination/pagination.service';
 })
 export class PromotionComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'code', 'startFromDate', 'endDate', 'noPerUser',
+  displayedColumns: string[] = ['id', 'code', 'price', 'startFromDate', 'endDate', 'noPerUser',
   'maxAmountToApply', 'isActive', 'edit', 'action'];
 
   dataSource;

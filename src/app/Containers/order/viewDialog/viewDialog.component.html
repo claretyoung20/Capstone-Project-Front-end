@@ -120,6 +120,14 @@
                 <dt><span>Id: </span><span class="data">{{table.id}}</span></dt>
                 <dt><span>Nuber of Person: </span><span class="data">{{ getTableType(table.tableTypeId) }}</span></dt>
             </dl>
+            <br>
+            <br>
+            <br>
+            <div class="example-button-row">
+                <button *ngIf="table.isAvaliable" mat-raised-button color="primary" (click)="freeze()">Freeze</button>
+                <button *ngIf="!table.isAvaliable" mat-raised-button color="primary" (click)="Unfreeze()">UnFreeze</button>
+                <button class="example-button-padd" mat-stroked-button (click)="cancel()">Cancel</button>
+            </div>
         </div>
     </div>
 </div>
@@ -135,6 +143,9 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <br>
+        <br>
+        <textarea placeholder="Enter Coment here" formControlName="comment"></textarea>
         <br>
         <br>
         <div class="example-button-row">

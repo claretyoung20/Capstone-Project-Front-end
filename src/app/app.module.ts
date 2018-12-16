@@ -44,6 +44,7 @@ import { MenuAddCartComponent } from './customer-containers/customer-menu/menu-a
 import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.component';
 import { ViewProductDetailComponent } from './Containers/order/viewProductDetail/viewProductDetail.component';
 import { TableDialogComponent } from './Containers/table/table-dialog/table-dialog.component';
+import {NgJhipsterModule} from 'ng-jhipster';
 
 @NgModule({
   declarations: [
@@ -87,9 +88,16 @@ import { TableDialogComponent } from './Containers/table/table-dialog/table-dial
     HttpClientModule,
     ContainersModule,
     CustomerContainersModule,
+      NgJhipsterModule.forRoot({
+          // set below to true to make alerts look like toast
+          alertAsToast: false,
+          i18nEnabled: true,
+          defaultI18nLang: 'en'
+      }),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE' })
 
   ],
+  exports: [NgJhipsterModule],
   entryComponents: [
     CancelOrderComponent,
     OrderSucessComponent,

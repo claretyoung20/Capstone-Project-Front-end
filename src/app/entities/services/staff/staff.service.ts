@@ -33,6 +33,14 @@ export class StaffService extends EntityService<User> {
       return this.http.get<Staff>(url, reqOptions).pipe(
         tap(this.onResponse.bind(this)));
     }
+
+    getAllStaff(option: QueryOption): Observable<any> {
+        // const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_STAFF_ACCOUNT.ALLSTAFFS;
+        return this.http.get<Staff>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 }
 
 

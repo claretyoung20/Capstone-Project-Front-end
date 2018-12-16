@@ -11,7 +11,7 @@ import { PaginationService } from 'app/shared/pagination/pagination.service';
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'activated', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'activated', 'edit'];
 
     dataSource;
     user: User[] = [];
@@ -37,7 +37,7 @@ export class StaffComponent implements OnInit {
       size: this.pageSize,
       page: this.currentPage
     }
-    this.staffService.getStaffAccount(query).subscribe(res => {
+    this.staffService.getAllStaff(query).subscribe(res => {
       this.processToShow(res);
     });
   }
@@ -70,8 +70,5 @@ export class StaffComponent implements OnInit {
   }
   editStaff(id) {
     this.router.navigate(['admin/account/staff/edit', id]);
-  }
-
-  cirnfirmDelete() {
   }
 }

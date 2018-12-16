@@ -32,6 +32,7 @@ import { LogoutComponent } from './customer-containers/logout/logout.component';
 import { CategoryEditComponent } from './Containers/category/category-edit/category-edit.component';
 import { TableComponent } from './Containers/table/table.component';
 import { EditTableComponent } from './Containers/table/edit-table/edit-table.component';
+import {AdminProfileComponent} from './Containers/admin-profile/admin-profile.component';
 
 
 
@@ -91,8 +92,8 @@ export const AppRoutes: Routes = [
                 component: DashboardComponent,
             },
             {
-                path: 'user',
-                component: UserComponent
+                path: 'profile',
+                component: AdminProfileComponent
             },
             {
                 path: '',

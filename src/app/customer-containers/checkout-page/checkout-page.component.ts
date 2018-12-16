@@ -1,3 +1,6 @@
+import { ERROR_MESSAGE } from './../../static/constants/site.constants';
+import { Table } from './../../entities/interfaces/table';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SaleOrder } from './../../entities/interfaces/saleOrder';
 import { SaleOrderService } from 'app/entities/services/saleOrder/sale-order.service';
 import { OrderService } from './../../entities/services/order/order.service';
@@ -12,6 +15,7 @@ import { Product } from 'app/entities/interfaces/product';
 import { RemoveConfirmComponent } from './remove-confirm/remove-confirm.component';
 import { Order } from 'app/entities/interfaces/order';
 import { OrderSucessComponent } from './order-sucess/order-sucess.component';
+import { TableService } from 'app/entities/services/table/table.service';
 
 @Component({
   selector: 'app-checkout-page',
@@ -20,7 +24,8 @@ import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 })
 export class CheckoutPageComponent implements OnInit {
 
-
+  tableForm: FormGroup;
+  submitForm = false;
 
   displayedColumns: string[] = ['id', 'name', 'productPrice', 'totalItem', 'totalPrice', 'action'];
 
@@ -42,16 +47,23 @@ export class CheckoutPageComponent implements OnInit {
 
   totalPriceSave: number;
 
+  tables: Table[] = [];
+
+  errorMessage = '';
+
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     public dialog: MatDialog,
     private productServices: ProductService,
     private cartServices: CartService,
     private orderService: OrderService,
-    private orderSaleService: SaleOrderService
+    private orderSaleService: SaleOrderService,
+    private tableServces: TableService
   ) { }
 
   ngOnInit() {
+    this.buildForm();
     this.customerId = JSON.parse(localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0');
     this.isCustomerLoggedIn = JSON.parse(localStorage.getItem(ISCUSTOMERLOGGED) || 'false');
 
@@ -60,9 +72,21 @@ export class CheckoutPageComponent implements OnInit {
     } else {
       this.getAllCartItemsByCustomerId(this.customerId)
     }
+
+    this.getAllTable();
+  }
+  getAllTable(): any {
+    this.tableServces.getIsAvialableTable().subscribe( res => {
+      this.tables = res;
+      console.log(this.tables);
+    })
   }
 
-
+  buildForm() {
+    this.tableForm = this.fb.group({
+      tableId: [null, [Validators.required]]
+    });
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -125,11 +149,20 @@ export class CheckoutPageComponent implements OnInit {
     // add to order
     // total price
 
+    console.log(this.tableForm.value);
+    this.submitForm = true;
+    this.errorMessage = '';
+    if (this.tableForm.invalid) {
+      this.errorMessage = ERROR_MESSAGE.REQUIRED_FIELD;
+      return;
+    }
+
     this.orderSave.baseTotal = this.totalPrice();
     this.orderSave.totalPrice = this.totalPrice();
     this.orderSave.customerId = this.customerId;
     this.orderSave.restaurantId = 1;
     this.orderSave.orderStatusId = 1;
+    this.orderSave.bookTableId = this.tableForm.value.tableId;
 
     this.orderService.create(this.orderSave).subscribe( res => {
       console.log('successful');

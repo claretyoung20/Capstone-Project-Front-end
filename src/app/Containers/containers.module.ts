@@ -7,9 +7,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigComponent } from './config/config.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { PromotionComponent } from './promotion/promotion.component';
-import { CategoryComponent } from './category/category.component';
-import { MenuComponent } from './menu/menu.component';
 import { OrderComponent } from './order/order.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { SocialMediaComponent } from './config/SocialMedia/social-media.component';
@@ -23,6 +20,10 @@ import { AppRoutes } from './../app.routing';
 import { AddressComponent } from './config/address/address.component';
 import { AccountModule } from './account/account.module';
 import { CustomerComponent } from './Customers/customer/customer.component';
+import { ReservationHistoryComponent } from './reservation/reservation-history/reservation-history.component';
+import { OrderHistoryComponent } from './order/order-history/order-history.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import {AdminProfileModule} from './admin-profile/admin-profile.module';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { CustomerComponent } from './Customers/customer/customer.component';
     AccountModule,
     MenuModule,
     PromotionModule,
-    TableModule
+    TableModule,
+    AdminProfileModule
   ],
   declarations: [
     ConfigComponent,
@@ -48,7 +50,9 @@ import { CustomerComponent } from './Customers/customer/customer.component';
     TimeManagerComponent,
     SocialMediaComponent,
     AddressComponent,
-    CustomerComponent
+    CustomerComponent,
+    ReservationHistoryComponent,
+    OrderHistoryComponent,
   ]
 })
 export class ContainersModule { }

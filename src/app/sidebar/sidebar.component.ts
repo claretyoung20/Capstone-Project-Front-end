@@ -16,16 +16,20 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     {user: 'ROLE_ADMIN', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
+    {user: 'ROLE_ADMIN', path: 'profile', title: 'My Profile',  icon: 'ti-user', class: '' },
     {user: 'ROLE_ADMIN', path: '/admin/config', title: 'Manage Configuration',  icon: 'ti-settings', class: '' },
     {user: 'ROLE_ADMIN', path: '/admin/account', title: 'Manage Account',  icon: 'ti-user', class: '' },
+
     {user: 'ROLE_MANAGER', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
+    {user: 'ROLE_MANAGER', path: 'profile', title: 'My Profile',  icon: 'ti-user', class: '' },
     {user: 'ROLE_MANAGER', path: 'table', title: 'Table List',  icon: 'ti-view-list-alt', class: '' },
     {user: 'ROLE_MANAGER', path: '/admin/promotion', title: 'Manage Promotion',  icon: 'ti-plus ', class: '' },
     {user: 'ROLE_MANAGER', path: '/admin/category', title: 'Manage Category',  icon: 'ti-view-list-alt', class: '' },
     {user: 'ROLE_MANAGER', path: '/admin/menu', title: 'Manage Menu',  icon: 'ti-menu-alt', class: '' },
+
     {user: 'ROLE_STAFF', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
-    {user: 'ROLE_STAFF', path: 'user', title: 'User Profile',  icon: 'ti-user', class: '' },
-    {user: 'ROLE_STAFF', path: '/admin/statistics', title: 'Statistics',  icon: 'ti-stats-up', class: '' },
+    {user: 'ROLE_STAFF', path: 'profile', title: 'My Profile',  icon: 'ti-user', class: '' },
+    {user: 'ROLE_STAFF', path: '/admin/statistics', title: 'sales',  icon: 'ti-stats-up', class: '' },
     {user: 'ROLE_STAFF', path: '/admin/Order', title: 'Process Order',  icon: 'ti-shopping-cart-full', class: '' },
     {user: 'ROLE_STAFF', path: '/admin/reservation', title: 'Process Reservation',  icon: 'ti-crown', class: '' }
 ];

@@ -19,6 +19,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="form-control-label" for="field_price">Discount Amount (USD $)</label>
+                        <input type="number" class="form-control" name="price" id="field_price" [(ngModel)]="coupon.price" required min="1" jhiMin="1"  />
+                        <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.min" translateValues="{ min: 1 }">
+                                This field should be at least 1.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>Start Date:</label>
                         <div class="input-group">
                             <span class="input-group-btn">
@@ -26,12 +42,20 @@
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </button>
                             </span>
-                            <input class="form-control" id="field_startFromDate" style="float:none" ngx-mydatepicker name="startFromDate" [(ngModel)]="coupon.startFromDate" [options]="dateOptions" #desc="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="desc.toggleCalendar()" />
+                            <input class="form-control" id="field_startFromDate" style="float:none" ngx-mydatepicker name="startFromDate" [(ngModel)]="coupon.startFromDate"
+                                   required [options]="dateOptions" #desc="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="desc.toggleCalendar()"
+                            />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" (click)="desc.clearDate()">
                                 <i class="fa fa-times" aria-hidden="true" title="Clear"></i>
                                 </button>
                             </span>
+
+                            <div [hidden]="!(editForm.controls.startFromDate?.dirty && editForm.controls.startFromDate?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!editForm.controls.startFromDate?.errors?.required">
+                                    This field is required.
+                                </small>
+                            </div>
                         </div>
                     </div>
 
@@ -43,12 +67,20 @@
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </button>
                             </span>
-                            <input class="form-control" id="field_endDate" style="float:none" ngx-mydatepicker name="endDate" [(ngModel)]="coupon.endDate" [options]="dateOptions" #descEnd="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="descEnd.toggleCalendar()" />
+                            <input class="form-control" id="field_endDate" style="float:none" ngx-mydatepicker name="endDate" [(ngModel)]="coupon.endDate"
+                                   required [options]="dateOptions" #descEnd="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (click)="descEnd.toggleCalendar()"
+                            />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" (click)="descEnd.clearDate()">
                                 <i class="fa fa-times" aria-hidden="true" title="Clear"></i>
                                 </button>
                             </span>
+
+                            <div [hidden]="!(editForm.controls.endDate?.dirty && editForm.controls.endDate?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!editForm.controls.endDate?.errors?.required">
+                                    This field is required.
+                                </small>
+                            </div>
                         </div>
                     </div>
 
@@ -58,14 +90,44 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="field_noPerUser">No Per User</label>
-                        <input type="number" class="form-control" name="noPerUser" id="field_noPerUser" [(ngModel)]="coupon.noPerUser" />
+                        <input type="number" class="form-control" name="noPerUser" id="field_noPerUser" [(ngModel)]="coupon.noPerUser" required min="1" jhiMin="1" />
+                        <div [hidden]="!(editForm.controls.noPerUser?.dirty && editForm.controls.noPerUser?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.noPerUser?.errors?.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.noPerUser?.errors?.min" translateValues="{ min: 1 }">
+                                This field should be at least 1.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.noPerUser?.errors?.number">
+                                This field should be a number.
+                            </small>
+                        </div>
                     </div>
 
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="form-control-label" for="field_maxAmountToApply">Max Amount To Apply</label>
                         <input type="number" class="form-control" name="maxAmountToApply" id="field_maxAmountToApply" [(ngModel)]="coupon.maxAmountToApply" />
+                    </div> -->
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_maxAmountToApply">Max Amount To Apply (USD $)</label>
+                        <input type="number" class="form-control" name="maxAmountToApply" id="field_maxAmountToApply" [(ngModel)]="coupon.maxAmountToApply" required min="1" jhiMin="1"  />
+                        <div [hidden]="!(editForm.controls.maxAmountToApply?.dirty && editForm.controls.maxAmountToApply?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.maxAmountToApply?.errors?.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.maxAmountToApply?.errors?.min" translateValues="{ min: 1 }">
+                                This field should be at least 1.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.maxAmountToApply?.errors?.number">
+                                This field should be a number.
+                            </small>
+                        </div>
                     </div>
+
+
+
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">

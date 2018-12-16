@@ -1,4 +1,4 @@
-import { TimeService } from 'app/shared/util/time.service';
+import {TimeDate, TimeService} from 'app/shared/util/time.service';
 import { NgModule } from '@angular/core';
 
 
@@ -7,7 +7,8 @@ import { NgModule } from '@angular/core';
     declarations: [],
     exports: [],
     providers: [
-        TimeService
+        TimeService,
+       // TimeDate
     ]
 })
 export class UtilsModule { }

@@ -6,6 +6,7 @@ import { Customer } from 'app/entities/interfaces/customer';
 import { PaginationService } from 'app/shared/pagination/pagination.service';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { ConformDeleteDialogComponent } from './conform-delete-dialog/conform-delete-dialog.component';
+import {User} from '../../../entities/interfaces/user';
 
 @Component({
   selector: 'app-customer',
@@ -14,12 +15,13 @@ import { ConformDeleteDialogComponent } from './conform-delete-dialog/conform-de
 })
 export class CustomerComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'dateOfBirth', 'address', 'phoneNumber',
-    'email', 'status', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName',
+    'email', 'status', 'edit'];
 
   dataSource;
 
   customers: Customer[] = [];
+  user: User[] = [];
   /* paganation */
   pageSize = 10;
   currentPage = 0;
@@ -42,7 +44,7 @@ export class CustomerComponent implements OnInit {
       size: this.pageSize,
       page: this.currentPage
     }
-    this.customerService.query(query).subscribe(res => {
+    this.customerService.getAllCustomer(query).subscribe(res => {
       this.processToShow(res);
     });
   }
