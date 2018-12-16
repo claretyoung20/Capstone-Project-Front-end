@@ -217,7 +217,7 @@ export class CheckoutPageComponent implements OnInit {
     this.orderSave.customerId = this.customerId;
     this.orderSave.restaurantId = 1;
     this.orderSave.orderStatusId = 1;
-    if (this.coupounToApply){
+    if (this.coupounToApply) {
         this.orderSave.couponId = this.coupounToApply.id || null ;
     }
     this.orderSave.bookTableId = this.tableForm.value.tableId;

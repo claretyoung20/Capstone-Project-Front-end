@@ -9,8 +9,18 @@
         <label>ID</label>
         <input type="text" class="form-control" name="id" [(ngModel)]="user.id" readonly>
       </div>
+
+
       <div class="row">
-        <div class="form-group col-md-6">
+
+
+        <div class="form-group col-md-6" [hidden]="!user.id">
+          <label class="form-control-label">User Name</label>
+          <input readonly type="text" placeholder="Enter User Name" class="form-control" name="login" #loginInput="ngModel"
+                 [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+        </div>
+
+        <div class="form-group col-md-6" [hidden]="user.id">
           <label class="form-control-label">User Name</label>
           <input type="text" placeholder="Enter User Name" class="form-control" name="login" #loginInput="ngModel"
             [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
