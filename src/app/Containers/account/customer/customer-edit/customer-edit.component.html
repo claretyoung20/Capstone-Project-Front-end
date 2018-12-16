@@ -4,41 +4,38 @@
     <mat-card-title>View Customer</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form [formGroup]="customerForm">
-      <mat-form-field>
-        <input matInput placeholder="First Name" formControlName="firstName">
-      </mat-form-field>
+    <p>UserName: {{user.login}}</p>
+    <br>
+    <p>First Name: {{user.firstName}}</p>
+    <br>
+    <p>Last Name: {{user.lastName}}</p>
+    <br>
+    <p>Email: {{user.email}}</p>
+    <br>
+    <p>Date of birth: {{customers.dateOfBirth}}</p>
+    <br>
+    <p>Phone Number: {{customers.phoneNumber}}</p><br>
+    <p>Address: {{customers.address}}</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+      <div class="form-check">
+        <label class="form-check-label" for="activated">
+          <input class="form-check-input" [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
+          <span jhiTranslate="userManagement.activated">Activated</span>
+        </label>
+      </div>
 
-      <mat-form-field class="left">
-        <input matInput placeholder="Last Name" disabled="true" formControlName="lastName">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput type="email" placeholder="Email" formControlName="email">
-      </mat-form-field>
-
-      <mat-form-field class="left">
-        <input matInput type="tel" placeholder="Phone Number" formControlName="phoneNumber">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="address">
-      </mat-form-field>
-
-      <mat-form-field class="left">
-        <input matInput [matDatepicker]="picker1" placeholder="Date Of Birth" formControlName="dateOfBirth">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-      <br>
-      <mat-checkbox formControlName="status">IsActive</mat-checkbox>
-      <!-- <mat-form-field>
-        <input matInput placeholder="Status" formControlName="status">
-      </mat-form-field> -->
-
+      <div>
+        <button type="button" class="btn btn-secondary" (click)="previousState()">&nbsp;<span
+                jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+          &nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
     </form>
   </mat-card-content>
-  <div mat-dialog-actions>
-    <button mat-button class="btn btn-success" (click)="editCustomer()">Edit</button>
-  </div>
 </mat-card>
