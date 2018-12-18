@@ -19,7 +19,11 @@ export const RESERVATIONSTATUTSPENDING = 'pending';
 export const RESERVATIONSTATUTSCANCEL = 'cancel';
 export const RESERVATIONSTATUTsAPPROVE = 'approved';
 export const ERROR_MESSAGE = {
-    REQUIRED_FIELD: 'Please Enter Correct and Required Information!'
+    REQUIRED_FIELD: 'Please Enter Correct and Required Information!',
+    FIED_INFO: ' First and Last Name can only be letters '
   }
-  export const DATE_FORMAT = 'YYYY-MM-DD';
-  export const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm';
+export const DATE_FORMAT = 'YYYY-MM-DD';
+export const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm';
+export  const AUTHETICATIONMESSAGE = 'Authentication not successful, please check your user name and password and try again';
+export  const ALREADYEXISTINGUSER = 'User name or email is already is use. Please try new user name and email';
+

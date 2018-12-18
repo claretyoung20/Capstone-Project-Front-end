@@ -22,6 +22,11 @@
         <p></p>
         <div class="row">
             <div class="col-lg-12 col-md-12">
+                <div class="alert alert-info ">
+                    <p>To view Available Product Click on the Category Icon <span class="glyph-icon flaticon-food-36"></span></p>
+                </div>
+                <br>
+                <br>
                 <div class="tabs clearfix">
                     <!-- Nav tabs CATEGORY-->
                     <ul class="tabs-link white text-center">
@@ -58,12 +63,12 @@
                             </div>
                         </div>
 
+                        <div *ngIf="noProductMeesage" class="alert alert-warning ">
+                            <p>{{ noProductMeesage }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div *ngIf="category">
-            <p>Not Dishes available</p>
         </div>
     </div>
 </section>

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { AccountStaffService } from 'app/entities/services/account/account.service';
 import { User } from 'app/core';
 import { HttpResponse } from '@angular/common/http';
-import { CURRENTADMINROLE, CURRENTSTAFFORADMINID } from 'app/static/constants/site.constants';
+import {AUTHETICATIONMESSAGE, CURRENTADMINROLE, CURRENTSTAFFORADMINID} from 'app/static/constants/site.constants';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   accounts: IAccount[] = [];
 
   user: User;
+  authenticationMessage = '';
 
   constructor(
     private loginService: LoginService,
@@ -71,6 +72,8 @@ export class LoginComponent implements OnInit {
         .catch(() => {
           this.router.navigateByUrl('/admin/login');
           console.log(' not successful');
+          // open dialog
+          this.authenticationMessage = AUTHETICATIONMESSAGE
         });
 }
 
@@ -89,17 +92,26 @@ getAccount(login, password) {
 private onSuccess(data) {
   this.user = data;
   console.log(this.user);
-
+  let  currentRole = ''
   let role = ''
   const userN = this.user.authorities;
   for (role in userN) {
       if (userN[role]) {
+          currentRole = userN[role];
         localStorage.setItem(CURRENTADMINROLE, userN[role]);
       }
   }
   localStorage.setItem(CURRENTSTAFFORADMINID, this.user.id);
 
-   this.router.navigateByUrl('/admin/dashboard');
+  if (currentRole === 'ROLE_CUSTOMER' ||
+      currentRole === 'ROLE_ANONYMOUS' ||
+      currentRole === 'ROLE_USER' ||
+      currentRole === '') {
+      this.router.navigateByUrl('/login');
+  } else {
+      this.router.navigateByUrl('/admin/dashboard');
+  }
+
 }
 
 private onError(error) {
