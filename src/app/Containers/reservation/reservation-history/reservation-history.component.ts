@@ -56,7 +56,8 @@ export class ReservationHistoryComponent implements OnInit {
         private customerService: CustomerService,
         private staffServices: StaffService,
         private tableServices: TableService
-    ) { }
+    ) {
+    }
 
     ngOnInit() {
         // chck if staff is logged in
@@ -152,26 +153,5 @@ export class ReservationHistoryComponent implements OnInit {
             this.getAllReservation();
         });
     }
-
-    allReservation() {
-        this.getAllReservation();
-    }
-
-    pendingReservation() {
-        this.reservationService.getByStatus(RESERVATIONSTATUTSPENDING).subscribe(res => {
-            this.processToShow(res);
-        });
-    }
-
-    canceledReservation() {
-        this.reservationService.getByStatus(RESERVATIONSTATUTSCANCEL).subscribe(res => {
-            this.processToShow(res);
-        });
-    }
-
-    approvedReservation() {
-        this.reservationService.getByStatus(RESERVATIONSTATUTsAPPROVE).subscribe(res => {
-            this.processToShow(res);
-        });
-    }
 }
+
