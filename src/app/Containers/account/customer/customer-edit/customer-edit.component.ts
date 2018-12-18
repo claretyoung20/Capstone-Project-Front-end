@@ -17,7 +17,7 @@ export class CustomerEditComponent implements OnInit {
   id: any;
   isSaving: boolean;
   user: User = {};
-  customers: UserCustomer
+  customers: UserCustomer = {};
   customerForm: FormGroup;
   constructor(
     private fb: FormBuilder,

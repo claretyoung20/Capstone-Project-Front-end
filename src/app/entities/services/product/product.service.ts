@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EntityService } from '../entity.service';
+import {EntityService, QueryOption} from '../entity.service';
 import { Product } from 'app/entities/interfaces/product';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { HH_PRODUCT } from 'app/static/constants/api.contants';
@@ -25,8 +25,7 @@ export class ProductService extends EntityService<Product> {
       tap(this.onResponse.bind(this)));
   }
 
-  public findProductsByShowOnHomepage(): Observable<any> {
-    const option = this.buildFindAllOption();
+  public findProductsByShowOnHomepage(option: QueryOption): Observable<any> {
     const reqOptions = this.buildQueryRequestOption(option);
     const url = HH_PRODUCT.BYSHOWONPAGE;
     return this.http.get<Product>(url, reqOptions).pipe(
@@ -34,16 +33,14 @@ export class ProductService extends EntityService<Product> {
   }
 
 
-  public isAvailable(): Observable<any> {
-    const option = this.buildFindAllOption();
+  public isAvailable(option: QueryOption): Observable<any> {
     const reqOptions = this.buildQueryRequestOption(option);
     const url = HH_PRODUCT.ISAVAILABLE;
     return this.http.get<Product>(url, reqOptions).pipe(
       tap(this.onResponse.bind(this)));
   }
 
-  public isNotAvailable(): Observable<any> {
-    const option = this.buildFindAllOption();
+  public isNotAvailable(option: QueryOption): Observable<any> {
     const reqOptions = this.buildQueryRequestOption(option);
     const url = HH_PRODUCT.ISNOTAVAILABLE;
     return this.http.get<Product>(url, reqOptions).pipe(

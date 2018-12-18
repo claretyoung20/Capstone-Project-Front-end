@@ -33,10 +33,10 @@ export class PromotionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllProduct();
+    this.getAllCoupon();
   }
 
-  getAllProduct() {
+  getAllCoupon() {
     // const query = {
     //   size: this.pageSize,
     //   page: this.currentPage
@@ -57,7 +57,7 @@ export class PromotionComponent implements OnInit {
 
   setPage(number) {
     this.currentPage = number;
-    this.getAllProduct();
+    this.getAllCoupon();
   }
 
   changePageSize(value) {
@@ -80,7 +80,7 @@ export class PromotionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      this.getAllProduct();
+      this.getAllCoupon();
     });
 
   }

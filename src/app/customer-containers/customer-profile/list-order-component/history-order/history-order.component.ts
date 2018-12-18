@@ -141,17 +141,6 @@ export class HistoryOrderComponent implements OnInit {
     });
   }
 
-  viewOrderByStatus(id) {
-    this.orderService.getbyStatusId(id).subscribe(res => {
-      this.processToShow(res)
-    },
-    (error: HttpErrorResponse) => {
-      console.log('jjdjdjdj' + error.message);
-    })
-  }
-  allOrder() {
-    this.getAllOrder();
-  }
 
   filterStatus(id) {
     let item;

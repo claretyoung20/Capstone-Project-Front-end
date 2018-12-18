@@ -53,8 +53,8 @@ export class MenuComponent implements OnInit {
     this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
     console.log('pager', this.pager);
     console.log(res);
-    this.dataSource = new MatTableDataSource(res);
-    this.products = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.products = res.content;
     this.totalItems = res.totalElements;
   }
 
@@ -106,21 +106,33 @@ export class MenuComponent implements OnInit {
   }
 
   isAvailable() {
-    this.productService.isAvailable().subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      }
+    this.productService.isAvailable(query).subscribe(res => {
       this.processToShow(res);
       console.log('IS AVAILABLE');
     });
   }
 
   isNotAvailable() {
-    this.productService.isNotAvailable().subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      }
+    this.productService.isNotAvailable(query).subscribe(res => {
       this.processToShow(res);
       console.log('IS NOT AVAILABLE');
     });
   }
 
   isOnHomePage() {
-    this.productService.findProductsByShowOnHomepage().subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      }
+    this.productService.findProductsByShowOnHomepage(query).subscribe(res => {
       this.processToShow(res);
       console.log('IS ON HOMEPAGE');
     });

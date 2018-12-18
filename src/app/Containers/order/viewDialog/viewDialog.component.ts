@@ -94,7 +94,8 @@ export class ViewDialogComponent implements OnInit {
   statusReserve: Status[] = [
     {value: 'pending', name: 'pending'},
     {value: 'cancel', name: 'cancel'},
-    {value: 'approved', name: 'approved'}
+    {value: 'approved', name: 'approved'},
+    {value: 'complete', name: 'complete'}
   ];
 
 

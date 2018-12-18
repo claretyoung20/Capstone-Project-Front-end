@@ -45,8 +45,8 @@ export class StaffComponent implements OnInit {
   processToShow(res) {
     this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
     console.log('pager', this.pager);
-    this.dataSource = new MatTableDataSource(res);
-    this.user = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.user = res.content;
     this.totalItems = res.totalElements;
   }
 

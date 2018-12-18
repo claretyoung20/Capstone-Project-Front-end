@@ -19,6 +19,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 })
 export class CustomerMenuComponent implements OnInit {
 
+    /* paganation */
+    pageSize = 10;
+    currentPage = 0;
+    pager: any = {};
+    totalItems: any = 0;
+
   category: Category[] = [];
   products: Product[] = [];
   productTypes: ProductType[] = [];
@@ -60,9 +66,13 @@ export class CustomerMenuComponent implements OnInit {
 
   // get all product by product type
   getAllCategory() {
-    this.categoryServices.findAll().subscribe(res => {
-      this.category = res;
-      this.stCurrentTable(res);
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      }
+    this.categoryServices.query(query).subscribe(res => {
+      this.category = res.content;
+      this.stCurrentTable(res.content);
       console.log(res);
     })
     return this.category;

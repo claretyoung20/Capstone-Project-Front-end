@@ -67,8 +67,8 @@ export class TableComponent implements OnInit {
   processToShow(res) {
     this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
     console.log('pager', this.pager);
-    this.dataSource = new MatTableDataSource(res);
-    this.tables = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.tables = res.content;
     this.totalItems = res.totalElements;
   }
 
