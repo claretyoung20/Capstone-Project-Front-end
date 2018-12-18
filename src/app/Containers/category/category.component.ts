@@ -49,8 +49,8 @@ export class CategoryComponent implements OnInit {
   processToShow(res) {
     this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
     console.log('pager', this.pager);
-    this.dataSource = new MatTableDataSource(res);
-    this.categories = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.categories = res.content;
     this.totalItems = res.totalElements;
   }
 

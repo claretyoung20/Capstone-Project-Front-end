@@ -51,9 +51,11 @@ export class HomeComponent implements OnInit {
   }
 
   getAllShowOnHpageProduct() {
-    this.productServices.findProductsByShowOnHomepage().subscribe(res => {
+      const query = {
+      }
+    this.productServices.findProductsByShowOnHomepage(query).subscribe(res => {
       console.log(res);
-      this.products = res;
+      this.products = res.content;
     });
   }
 

@@ -35,8 +35,7 @@ export class ReservationService extends EntityService<Reservation> {
         tap(this.onResponse.bind(this)));
   }
 
-  getByStatus(status: string): Observable<any> {
-    const option = this.buildFindAllOption();
+  getByStatus(status: string, option: QueryOption): Observable<any> {
     const reqOptions = this.buildQueryRequestOption(option);
     const url = HH_RESERVATION.BYSTATUS + '?status=' + status;
       return this.http.get<Reservation>(url, reqOptions).pipe(
@@ -55,10 +54,9 @@ export class ReservationService extends EntityService<Reservation> {
     getHistoryReservation(option: QueryOption): Observable<any> {
         // const option = this.buildFindAllOption();
         // const reqOptions = this.buildQueryRequestOption(option);
-        // const url = HH_RESERVATION.HSITORY;
+        // const url = this.buildQueryUrl(option);
+        const url = HH_RESERVATION.HSITORY;
         const reqOptions = this.buildQueryRequestOption(option);
-        const url = this.buildQueryUrl(option);
-
         return this.http.get<Order>(url, reqOptions).pipe(
             tap(this.onResponse.bind(this)));
     }

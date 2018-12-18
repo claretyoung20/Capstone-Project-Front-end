@@ -119,8 +119,8 @@ export class OrderComponent implements OnInit {
     );
     console.log('pager', this.pager);
     console.log(res);
-    this.dataSource = new MatTableDataSource(res);
-    this.orders = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.orders = res.content;
     this.totalItems = res.totalElements;
   }
 
@@ -205,7 +205,13 @@ export class OrderComponent implements OnInit {
   }
 
   viewOrderByStatus(id) {
-    this.orderService.getbyStatusId(id).subscribe(res => {
+
+    const query = {
+        size: this.pageSize,
+        page: this.currentPage
+    };
+
+    this.orderService.getbyStatusId(id, query).subscribe(res => {
       this.processToShow(res)
     },
     (error: HttpErrorResponse) => {

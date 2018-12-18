@@ -83,8 +83,8 @@ export class ReservationComponent implements OnInit {
     );
     console.log('pager', this.pager);
     console.log(res);
-    this.dataSource = new MatTableDataSource(res);
-    this.reservation = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.reservation = res.content;
     this.totalItems = res.totalElements;
   }
 
@@ -153,19 +153,32 @@ export class ReservationComponent implements OnInit {
   }
 
   pendingReservation() {
-    this.reservationService.getByStatus(RESERVATIONSTATUTSPENDING).subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      };
+
+    this.reservationService.getByStatus(RESERVATIONSTATUTSPENDING, query).subscribe(res => {
       this.processToShow(res);
     });
   }
 
   canceledReservation() {
-    this.reservationService.getByStatus(RESERVATIONSTATUTSCANCEL).subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      };
+    this.reservationService.getByStatus(RESERVATIONSTATUTSCANCEL, query).subscribe(res => {
       this.processToShow(res);
     });
   }
 
   approvedReservation() {
-    this.reservationService.getByStatus(RESERVATIONSTATUTsAPPROVE).subscribe(res => {
+      const query = {
+          size: this.pageSize,
+          page: this.currentPage
+      };
+    this.reservationService.getByStatus(RESERVATIONSTATUTsAPPROVE, query).subscribe(res => {
       this.processToShow(res);
     });
   }

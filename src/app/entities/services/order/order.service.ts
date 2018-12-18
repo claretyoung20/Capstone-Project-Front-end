@@ -18,8 +18,7 @@ export class OrderService extends EntityService<Order> {
     super();
   }
 
-  getbyStatusId(id: number | string) {
-    const option = this.buildFindAllOption();
+  getbyStatusId(id: number | string, option: QueryOption) {
     const reqOptions = this.buildQueryRequestOption(option);
     const url = HH_ORDER.BYSTATUSID + '/' + id;
       return this.http.get<Order>(url, reqOptions).pipe(
@@ -54,10 +53,10 @@ export class OrderService extends EntityService<Order> {
   getHistoryOrder(option: QueryOption): Observable<any> {
       // const option = this.buildFindAllOption();
       // const reqOptions = this.buildQueryRequestOption(option);
-      // const url = HH_ORDER.CURRENTORDERHISTORY;
+      // const url = this.buildQueryUrl(option);
 
+      const url = HH_ORDER.CURRENTORDERHISTORY;
       const reqOptions = this.buildQueryRequestOption(option);
-      const url = this.buildQueryUrl(option);
       return this.http.get<Order>(url, reqOptions).pipe(
           tap(this.onResponse.bind(this)));
   }

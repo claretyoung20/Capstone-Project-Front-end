@@ -52,8 +52,8 @@ export class CustomerComponent implements OnInit {
   processToShow(res) {
     this.pager = this.pagination.getPager(this.currentPage, this.pageSize, res.totalElements);
     console.log('pager', this.pager);
-    this.dataSource = new MatTableDataSource(res);
-    this.customers = res;
+    this.dataSource = new MatTableDataSource(res.content);
+    this.customers = res.content;
     this.totalItems = res.totalElements;
   }
 

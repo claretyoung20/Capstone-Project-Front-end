@@ -116,8 +116,8 @@ export class OrderHistoryComponent implements OnInit {
         );
         console.log('pager', this.pager);
         console.log(res);
-        this.dataSource = new MatTableDataSource(res);
-        this.orders = res;
+        this.dataSource = new MatTableDataSource(res.content);
+        this.orders = res.content;
         this.totalItems = res.totalElements;
     }
 
@@ -199,18 +199,6 @@ export class OrderHistoryComponent implements OnInit {
         this.saleServices.getbyOrderId(id).subscribe(res => {
             this.opendialog(res, ORDERVIEWSUBORDERDIALOG);
         });
-    }
-
-    viewOrderByStatus(id) {
-        this.orderService.getbyStatusId(id).subscribe(res => {
-                this.processToShow(res)
-            },
-            (error: HttpErrorResponse) => {
-                console.log('jjdjdjdj' + error.message);
-            })
-    }
-    allOrder() {
-        this.getAllOrder();
     }
 
     filterStatus(id) {

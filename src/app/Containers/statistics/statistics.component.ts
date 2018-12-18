@@ -72,8 +72,8 @@ processToShow(res) {
   );
   console.log('pager', this.pager);
   console.log(res);
-  this.dataSource = new MatTableDataSource(res);
-  this.saleOrders = res;
+  this.dataSource = new MatTableDataSource(res.content);
+  this.saleOrders = res.content;
   this.totalItems = res.totalElements;
 }
 

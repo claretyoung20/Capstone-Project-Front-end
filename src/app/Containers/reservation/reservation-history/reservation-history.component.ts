@@ -88,8 +88,8 @@ export class ReservationHistoryComponent implements OnInit {
         );
         console.log('pager', this.pager);
         console.log(res);
-        this.dataSource = new MatTableDataSource(res);
-        this.reservation = res;
+        this.dataSource = new MatTableDataSource(res.content);
+        this.reservation = res.content;
         this.totalItems = res.totalElements;
     }
 
