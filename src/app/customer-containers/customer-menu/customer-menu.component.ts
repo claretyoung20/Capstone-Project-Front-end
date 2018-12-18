@@ -22,13 +22,15 @@ export class CustomerMenuComponent implements OnInit {
   category: Category[] = [];
   products: Product[] = [];
   productTypes: ProductType[] = [];
-  currentTab1 = 1;
+  currentTab1: number;
   customerId: number;
   productId: number;
   isCustomerLoggedIn: Boolean;
   cart: ICart;
   isfindSuccessFull = false;
   isfindError = false;
+
+  noProductMeesage = '';
 
   constructor(
     private productTypeServices: ProductTypeService,
@@ -41,6 +43,7 @@ export class CustomerMenuComponent implements OnInit {
   ngOnInit() {
     this.getAllProductType();
     this.getAllCategory();
+
   }
 
   // check if customer is login
@@ -59,15 +62,21 @@ export class CustomerMenuComponent implements OnInit {
   getAllCategory() {
     this.categoryServices.findAll().subscribe(res => {
       this.category = res;
+      this.stCurrentTable(res);
       console.log(res);
     })
     return this.category;
+
   }
 
   // get all product by category
   getAllProductByCategory() {
+      this.noProductMeesage = '';
     this.productServices.findAllByCategory(this.currentTab1).subscribe(res => {
       this.products = res;
+        if (res.length < 1 ) {
+            this.noProductMeesage = 'Not Dishes available at the moment. '
+        }
       console.log(res);
     })
   }
@@ -143,5 +152,10 @@ export class CustomerMenuComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+    private stCurrentTable(res: any) {
+        this.currentTab1 = res[0].id
+        this.getAllProductByCategory();
+    }
 }
 
