@@ -16,6 +16,8 @@ import { RemoveConfirmComponent } from './remove-confirm/remove-confirm.componen
 import { Order } from 'app/entities/interfaces/order';
 import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 import { TableService } from 'app/entities/services/table/table.service';
+import {CouponService} from '../../entities/services/coupon/coupon.service';
+import {Coupon} from '../../entities/interfaces/coupon';
 
 @Component({
   selector: 'app-checkout-page',
@@ -25,21 +27,19 @@ import { TableService } from 'app/entities/services/table/table.service';
 export class CheckoutPageComponent implements OnInit {
 
   tableForm: FormGroup;
+  couponForm: FormGroup;
   submitForm = false;
 
   displayedColumns: string[] = ['id', 'name', 'productPrice', 'totalItem', 'totalPrice', 'action'];
 
   dataSource;
 
-  orders: {};
   orderSave: Order = {};
   saleOrdersSave: SaleOrder = {}
   savedOrder = false;
   customerId: number;
   isCustomerLoggedIn: Boolean;
   iCart: ICart[] = [];
-  ELEMENT_DATA = [];
-  testCart = 0;
 
   products: Product[] = [];
 
@@ -50,7 +50,13 @@ export class CheckoutPageComponent implements OnInit {
   tables: Table[] = [];
 
   errorMessage = '';
+  errorMessageCoupon = ''
+  couponCode = '';
+  couponAmount = 0;
+  coupounToApply: Coupon;
+  currentTotalPrice = 0;
 
+  currentOrder: Order[] = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -59,11 +65,13 @@ export class CheckoutPageComponent implements OnInit {
     private cartServices: CartService,
     private orderService: OrderService,
     private orderSaleService: SaleOrderService,
-    private tableServces: TableService
+    private tableServces: TableService,
+    private couponService: CouponService
   ) { }
 
   ngOnInit() {
     this.buildForm();
+    this.buildForm2();
     this.customerId = JSON.parse(localStorage.getItem(LOCALSTORAGEFORCUSTOMER) || '0');
     this.isCustomerLoggedIn = JSON.parse(localStorage.getItem(ISCUSTOMERLOGGED) || 'false');
 
@@ -73,6 +81,7 @@ export class CheckoutPageComponent implements OnInit {
       this.getAllCartItemsByCustomerId(this.customerId)
     }
 
+    this.getCurrentCustomerrder();
     this.getAllTable();
   }
   getAllTable(): any {
@@ -87,8 +96,21 @@ export class CheckoutPageComponent implements OnInit {
       tableId: [null, [Validators.required]]
     });
   }
+
+  buildForm2() {
+      this.couponForm = this.fb.group({
+          couponCode: [null, [Validators.required]]
+      });
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getCurrentCustomerrder() {
+    this.orderService.getCurrentCustomerActiveOrder(this.customerId).subscribe( res => {
+      this.currentOrder = res;
+      console.log(this.currentOrder);
+    })
   }
 
   getTotalPrice(price, item) {
@@ -111,6 +133,7 @@ export class CheckoutPageComponent implements OnInit {
     console.log(res);
     this.dataSource = new MatTableDataSource(res);
     this.carts = res;
+    this.totalPrice();
   }
 
 
@@ -140,28 +163,63 @@ export class CheckoutPageComponent implements OnInit {
         this.totalPriceSave += this.carts[cartItems].productPrice * this.carts[cartItems].totalItem;
       }
     }
-
+    this.currentTotalPrice  = this.totalPriceSave;
     return this.totalPriceSave;
+  }
+
+  applyCoupon() {
+
+      if (this.couponForm.invalid) {
+          this.errorMessageCoupon = 'Coupon can\'\t be empty';
+          return;
+      }
+      const code = this.couponForm.value.couponCode;
+
+      this.couponService.applyCoupon(this.totalPriceSave, code, this.customerId).subscribe( res => {
+        this.applyCouponData(res);
+        this.errorMessageCoupon = '';
+      },
+          () => {
+              this.applyCouponData({});
+              this.errorMessageCoupon = 'Invalid Coupon: ' + code;
+          })
+
+      console.log('couponnnnn');
+
+  }
+
+  applyCouponData(data) {
+      this.coupounToApply = data;
+      console.log(this.coupounToApply);
+
+      this.couponCode = this.coupounToApply.code || '';
+      this.couponAmount = this.coupounToApply.price || 0;
   }
 
   orderNow() {
     // this.totalPrice();
     // add to order
     // total price
-
+    if (this.currentOrder.length >= 1) {
+        this.tableForm.value.tableId = this.currentOrder[0].bookTableId;
+    }
     console.log(this.tableForm.value);
     this.submitForm = true;
     this.errorMessage = '';
-    if (this.tableForm.invalid) {
+
+    if (this.tableForm.invalid && this.tableForm.value.tableId === null) {
       this.errorMessage = ERROR_MESSAGE.REQUIRED_FIELD;
       return;
     }
 
     this.orderSave.baseTotal = this.totalPrice();
-    this.orderSave.totalPrice = this.totalPrice();
+    this.orderSave.totalPrice = this.totalPriceSave - this.couponAmount;
     this.orderSave.customerId = this.customerId;
     this.orderSave.restaurantId = 1;
     this.orderSave.orderStatusId = 1;
+    if (this.coupounToApply) {
+        this.orderSave.couponId = this.coupounToApply.id || null ;
+    }
     this.orderSave.bookTableId = this.tableForm.value.tableId;
 
     this.orderService.create(this.orderSave).subscribe( res => {

@@ -3,6 +3,9 @@ import { User } from 'app/entities/interfaces/user';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { StaffService } from 'app/entities/services/staff/staff.service';
 import { AccountStaffService } from 'app/entities/services/account/account.service';
+import {OrderSucessComponent} from '../../../../customer-containers/checkout-page/order-sucess/order-sucess.component';
+import {ErrorStaffDialogComponent} from '../error-staff-dialog/error-staff-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-staff-edit',
@@ -18,7 +21,8 @@ export class StaffEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private staffService: StaffService,
-    private accountService: AccountStaffService
+    private accountService: AccountStaffService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -45,13 +49,27 @@ export class StaffEditComponent implements OnInit {
     if (this.user.id) {
       this.staffService.update(data).subscribe(res => {
         this.router.navigate(['admin/account/staff']);
-      });
+      },
+          () => {
+        // open Dialog
+              this.openErrorDialog();
+          });
     } else {
       this.staffService.create(data).subscribe(res => {
         this.router.navigate(['admin/account/staff']);
-      });
+      },
+          () => {
+              // open Dialog
+              this.openErrorDialog();
+          });
     }
 
   }
 
+  openErrorDialog() {
+      const dialogRef = this.dialog.open(ErrorStaffDialogComponent);
+      dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+      });
+  }
 }

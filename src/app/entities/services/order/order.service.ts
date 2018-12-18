@@ -62,4 +62,11 @@ export class OrderService extends EntityService<Order> {
           tap(this.onResponse.bind(this)));
   }
 
+    getCurrentCustomerActiveOrder(id: number | string): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_ORDER.CURRENTCUSTOMERORDER + '/' + id;
+        return this.http.get<Order>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 }

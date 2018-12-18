@@ -20,15 +20,15 @@
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="dateCreated">
-                    <th mat-header-cell *matHeaderCellDef> Date Created </th>
+                    <th mat-header-cell *matHeaderCellDef> Reservation Date </th>
                     <td mat-cell *matCellDef="let element"> {{element.reserverDate | date: 'dd/MM/yyyy'}} </td>
                 </ng-container>
 
                 <!-- Last Name Column -->
-                <ng-container matColumnDef="dateUpdated">
-                    <th mat-header-cell *matHeaderCellDef> Updated Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.updatedDate | date: 'dd/MM/yyyy'}} </td>
-                </ng-container>
+                <!--<ng-container matColumnDef="dateUpdated">-->
+                    <!--<th mat-header-cell *matHeaderCellDef> Updated Date </th>-->
+                    <!--<td mat-cell *matCellDef="let element"> {{element.updatedDate | date: 'dd/MM/yyyy'}} </td>-->
+                <!--</ng-container>-->
 
                 <ng-container matColumnDef="tableNumber">
                     <th mat-header-cell *matHeaderCellDef> Table Number </th>
