@@ -48,14 +48,14 @@ export class RegisterCustomerComponent implements OnInit {
   buildForm() {
     this.customerForm = this.fb.group({
       id: [''],
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
+      firstName: [null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      lastName: [null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       address: [''],
       email: [null, [Validators.required, Validators.email]],
-      phoneNumber: [''],
+      phoneNumber: [null, [Validators.maxLength(11), Validators.minLength(6), Validators.pattern('[0-9]*')]],
       status: [''],
       dateOfBirth: [''],
-      login: [null, [Validators.required]],
+      login: [null, [Validators.required, Validators.pattern('[a-zA-Z0-9-]*')]],
     })
   }
   addCustomer() {

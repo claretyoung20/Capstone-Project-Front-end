@@ -44,7 +44,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="totalPrice">
-                                <th mat-header-cell *matHeaderCellDef> Total Price </th>
+                                <th mat-header-cell *matHeaderCellDef> Sub Total Price </th>
                                 <td mat-cell *matCellDef="let element"> {{ getTotalPrice(element.productPrice, element.totalItem) | currency: '$' }} </td>
                             </ng-container>
 
@@ -93,13 +93,13 @@
 
         </div>
 
-        <div *ngIf="carts.length > 1" class="row" style="padding-top: 30px">
+        <div  class="row" style="padding-top: 30px">
            <div class="haveOrderOrReservation" *ngIf="currentOrder.length >= 1">
                <p>Current Table Number: {{ currentOrder[0].bookTableId }}</p>
            </div>
             <br>
             <br>
-            <div class="doNotHaveOrderOrReservation" *ngIf="currentOrder.length < 1">
+            <div class="doNotHaveOrderOrReservation" >
                 <form [formGroup]="tableForm">
                     <div class="col-lg-3 col-md-3 col-sm-3 sasa">
                         <div class="form-group" [class.has-error]="tableForm.get('tableId').invalid && submitForm || (tableForm.get('tableId')?.errors && tableForm.get('tableId').touched)">
