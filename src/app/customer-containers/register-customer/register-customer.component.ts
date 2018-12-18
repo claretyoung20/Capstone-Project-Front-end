@@ -2,7 +2,7 @@ import { MatDialog } from '@angular/material';
 import { IUser } from './../../entities/model/user/user.model';
 import { Customer, UserCustomer } from 'app/entities/interfaces/customer';
 import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
-import { ERROR_MESSAGE } from './../../static/constants/site.constants';
+import {ALREADYEXISTINGUSER, ERROR_MESSAGE} from './../../static/constants/site.constants';
 import { MyErrorStateMatcher } from './../../Containers/login/login.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -62,7 +62,7 @@ export class RegisterCustomerComponent implements OnInit {
     this.submitForm = true;
     this.errorMessage = '';
     if (this.customerForm.invalid) {
-      this.errorMessage = ERROR_MESSAGE.REQUIRED_FIELD;
+      this.errorMessage = ERROR_MESSAGE.REQUIRED_FIELD + ERROR_MESSAGE.FIED_INFO;
       return;
     }
     const data = this.customerForm.value;
@@ -89,6 +89,7 @@ export class RegisterCustomerComponent implements OnInit {
     console.log(this.userCustomer);
     // call api to create new user
     this.customerService.customerCreate(this.user).subscribe(res => {
+      this.errorMessage = '';
       this.userCustomer.userId = res.id;
       this.customerService.create(this.userCustomer).subscribe(result => {
         console.log('User and customer successfully created');
@@ -103,7 +104,7 @@ export class RegisterCustomerComponent implements OnInit {
       })
     },
     error => {
-      console.log(error.message);
+      this.errorMessage = ALREADYEXISTINGUSER;
     })
   }
 

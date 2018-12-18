@@ -53,6 +53,9 @@
           </label>
         </div>
       </div>
+      <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+        &nbsp;<span>Cancel</span>
+      </button>
       <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
         Save 
     </button>

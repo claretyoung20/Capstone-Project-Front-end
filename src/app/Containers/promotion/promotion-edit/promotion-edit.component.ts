@@ -73,6 +73,10 @@ export class PromotionEditComponent implements OnInit {
     const data = this.prepareToSave(this.coupon);
       this.coupon.endDate = data.endDate;
       this.coupon.startFromDate = data.startFromDate;
+
+      if (!this.coupon.isActive) {
+          this.coupon.isActive = false;
+      }
     console.log(this.coupon);
     if (this.coupon.id !== undefined) {
       this.subscribeToSaveResponse(this.couponService.update(this.coupon));
@@ -115,8 +119,10 @@ export class PromotionEditComponent implements OnInit {
   }
 
     private convertDateFromServer(res): Coupon {
-        res.endDate = res.endDate != null ? moment(res.endDate) : null;
-        res.startFromDate = res.startFromDate != null ? moment(res.startFromDate) : null;
+        // res.endDate = res.endDate != null ? moment(res.endDate) : null;
+        // res.startFromDate = res.startFromDate != null ? moment(res.startFromDate) : null;
+        res.endDate = this.timeService.fromString(res.endDate).toTimeDatePickerValue();
+        res.startFromDate = this.timeService.fromString(res.startFromDate).toTimeDatePickerValue();
         console.log('hdhdhdhdhdh');
         console.log(res);
         return res;

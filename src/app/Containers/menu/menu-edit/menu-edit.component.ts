@@ -62,6 +62,10 @@ export class MenuEditComponent implements OnInit {
   save() {
       this.isSaving = true;
       this._product.restaurantId = 1;
+
+      if (!this.product.isAvailable) {
+          this.product.isAvailable = false;
+      }
       if (this.product.id !== undefined) {
           this.subscribeToSaveResponse(this.productService.update(this.product));
       } else {

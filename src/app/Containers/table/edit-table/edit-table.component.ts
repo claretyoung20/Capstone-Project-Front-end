@@ -60,6 +60,9 @@ export class EditTableComponent implements OnInit {
   }
   save() {
       this.isSaving = true;
+    if (!this.bookTable.isAvaliable) {
+        this.bookTable.isAvaliable = false;
+    }
       if (this.bookTable.id !== undefined) {
           this.subscribeToSaveResponse(this.bookTableService.update(this.bookTable));
       } else {

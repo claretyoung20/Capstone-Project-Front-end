@@ -93,7 +93,8 @@
 
         </div>
 
-        <div  class="row" style="padding-top: 30px">
+        <!-- Choose table Div-->
+        <div  class="row" style="padding-top: 30px" *ngIf="carts.length >= 1">
            <div class="haveOrderOrReservation" *ngIf="currentOrder.length >= 1">
                <p>Current Table Number: {{ currentOrder[0].bookTableId }}</p>
            </div>
@@ -115,6 +116,9 @@
                 </form>
             </div>
         </div>
+
+
+       <!-- error message div -->
         <div class="row">
             <div *ngIf="errorMessage" class="alert alert-danger ">
                 {{errorMessage}}

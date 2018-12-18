@@ -65,7 +65,9 @@ export class StaffEditComponent implements OnInit {
     }
 
   }
-
+    previousState() {
+        window.history.back();
+    }
   openErrorDialog() {
       const dialogRef = this.dialog.open(ErrorStaffDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
