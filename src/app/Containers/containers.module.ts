@@ -24,6 +24,7 @@ import { ReservationHistoryComponent } from './reservation/reservation-history/r
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import {AdminProfileModule} from './admin-profile/admin-profile.module';
+import {SalesReportModule} from './sales-report/sales-report.module';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import {AdminProfileModule} from './admin-profile/admin-profile.module';
     MenuModule,
     PromotionModule,
     TableModule,
-    AdminProfileModule
+    AdminProfileModule,
+    SalesReportModule
   ],
   declarations: [
     ConfigComponent,

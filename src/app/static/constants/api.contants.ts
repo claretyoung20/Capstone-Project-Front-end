@@ -100,7 +100,10 @@ export const HH_ORDER_STATUS = {
 // sale order
 export const HH_SALE_ORDER = {
     BASE: `${SERVER_API_URL}/api/sale-orders`,
-    BYORDERID: `${SERVER_API_URL}/api/sale-orders/order`
+    BYORDERID: `${SERVER_API_URL}/api/sale-orders/order`,
+    CHART: `${SERVER_API_URL}/api/sale-orders/charts`,
+    FILTERBYDATEADNPRICE: `${SERVER_API_URL}/api/sale-orders/filter-one`,
+    FILTERBYPRICE: `${SERVER_API_URL}/api/sale-orders/filter-two`
 }
 
 // TABLE

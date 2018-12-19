@@ -1,6 +1,7 @@
 import { CancelOrderComponent } from './customer-containers/customer-profile/list-order-component/cancel-order/cancel-order.component';
 import { OrderSucessComponent } from './customer-containers/checkout-page/order-sucess/order-sucess.component';
-import { CancelResevatioDialogComponent } from './customer-containers/customer-profile/cancel-resevatio-dialog/cancel-resevatio-dialog.component';
+import { CancelResevatioDialogComponent }
+from './customer-containers/customer-profile/cancel-resevatio-dialog/cancel-resevatio-dialog.component';
 import { ConfirmDeleteComponent } from './Containers/category/confirm-delete/confirm-delete.component';
 import { PromotionDialogComponent } from './Containers/promotion/promotion-dialog/promotion-dialog.component';
 import { MenuDialogComponent } from './Containers/menu/menu-dialog/menu-dialog.component';
@@ -45,6 +46,7 @@ import { ViewDialogComponent } from './Containers/order/viewDialog/viewDialog.co
 import { ViewProductDetailComponent } from './Containers/order/viewProductDetail/viewProductDetail.component';
 import { TableDialogComponent } from './Containers/table/table-dialog/table-dialog.component';
 import {NgJhipsterModule} from 'ng-jhipster';
+import {ExcelService} from './entities/services/excel.service';
 
 @NgModule({
   declarations: [
@@ -120,7 +122,7 @@ import {NgJhipsterModule} from 'ng-jhipster';
     ConfirmDeleteComponent,
     CancelResevatioDialogComponent
   ],
-  providers: [AppInjector, AuthServerProvider, LoginService],
+  providers: [AppInjector, AuthServerProvider, LoginService, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

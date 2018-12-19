@@ -33,6 +33,7 @@ import { CategoryEditComponent } from './Containers/category/category-edit/categ
 import { TableComponent } from './Containers/table/table.component';
 import { EditTableComponent } from './Containers/table/edit-table/edit-table.component';
 import {AdminProfileComponent} from './Containers/admin-profile/admin-profile.component';
+import {SalesReportComponent} from './Containers/sales-report/sales-report.component';
 
 
 
@@ -246,6 +247,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'reservation',
                 component: ReservationComponent
+            },
+            {
+                path: 'reports',
+                component: SalesReportComponent
             }
         ]
     },
