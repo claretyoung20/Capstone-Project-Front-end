@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-label" for="field_name">Name</label>
+                        <label class="form-control-label" for="field_name">Name<span style="color: red">*(Required)</span></label>
                         <input type="text" class="form-control" name="name" id="field_name" [(ngModel)]="product.name" required/>
                         <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                             <small class="form-text text-danger" [hidden]="!editForm.controls.name?.errors?.required">
@@ -25,7 +25,7 @@
                         <textarea type="text" class="form-control" name="description" id="field_description" [(ngModel)]="product.description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="field_price">Price: USD ($)</label>
+                        <label class="form-control-label" for="field_price">Price: USD ($) <span style="color: red">*(Required)</span></label>
                         <input type="number" class="form-control" name="price" id="field_price" [(ngModel)]="product.price" required min="1" jhiMin="1"/>
                         <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
                             <small class="form-text text-danger" [hidden]="!editForm.controls.price?.errors?.required">
@@ -47,6 +47,33 @@
                         <label class="form-control-label" for="field_showOnHomepage">Show On Homepage</label>
                         <input type="checkbox" class="form-control" name="showOnHomepage" id="field_showOnHomepage" [(ngModel)]="product.showOnHomepage" />
                     </div>
+
+
+
+                    <div class="form-group">
+                        <label class="form-control-label"for="field_prodct_image">Prodct Image: <span style="color: red">*(Required)</span></label>
+                        <div>
+                            <img [src]="'data:' + product.prodct_imageContentType + ';base64,' + product.prodct_image" style="max-height: 100px;" *ngIf="product.prodct_image" alt="product image"/>
+                            <div *ngIf="product.prodct_image" class="form-text text-danger clearfix">
+                                <span class="pull-left">{{product.prodct_imageContentType}}, {{byteSize(product.prodct_image)}}</span>
+                                <button type="button" (click)="clearInputImage('prodct_image', 'prodct_imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+
+                                </button>
+                            </div>
+                            <input type="file" id="file_prodct_image" (change)="setFileData($event, product, 'prodct_image', true)" accept="image/*"/>
+                        </div>
+                        <input type="hidden" class="form-control" name="prodct_image" required id="field_prodct_image"
+                                [(ngModel)]="product.prodct_image" />
+                        <input type="hidden" class="form-control" name="prodct_imageContentType" id="field_prodct_imageContentType"
+                                [(ngModel)]="product.prodct_imageContentType" />
+
+                        <div [hidden]="!(editForm.controls.prodct_image?.dirty && editForm.controls.prodct_image?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.prodct_image?.errors?.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <label class="form-control-label" for="field_category">Category</label>
