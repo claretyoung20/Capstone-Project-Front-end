@@ -26,6 +26,7 @@ export const ROUTES: RouteInfo[] = [
     {user: 'ROLE_MANAGER', path: '/admin/promotion', title: 'Manage Promotion',  icon: 'ti-plus ', class: '' },
     {user: 'ROLE_MANAGER', path: '/admin/category', title: 'Manage Category',  icon: 'ti-view-list-alt', class: '' },
     {user: 'ROLE_MANAGER', path: '/admin/menu', title: 'Manage Menu',  icon: 'ti-menu-alt', class: '' },
+    {user: 'ROLE_MANAGER', path: '/admin/reports', title: 'Manage Sales Report',  icon: 'ti-stats-up', class: '' },
 
     {user: 'ROLE_STAFF', path: '/admin/dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
     {user: 'ROLE_STAFF', path: 'profile', title: 'My Profile',  icon: 'ti-user', class: '' },
