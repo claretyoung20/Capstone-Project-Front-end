@@ -41,7 +41,7 @@ export class MenuEditComponent implements OnInit {
 
       this.categoryService.findAll().subscribe(
           res => {
-            this.categories = res;
+            this.categories = res.content;
             console.log(res)
           },
           (res: HttpErrorResponse) => this.onError(res.message)

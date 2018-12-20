@@ -55,6 +55,7 @@ export const HH_PRODUCT = {
     BYSHOWONPAGE: `${SERVER_API_URL}/api/products/showOnHomepage`,
     ISAVAILABLE: `${SERVER_API_URL}/api/products/isAvailable`,
     ISNOTAVAILABLE: `${SERVER_API_URL}/api/products/isNotAvailable`,
+    NOPAGING: `${SERVER_API_URL}/api/products/noPage`,
 }
 
 export const HH_PRODUCT_TYPE = {

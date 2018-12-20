@@ -26,9 +26,9 @@ export class SaleOrderService extends EntityService<SaleOrder> {
         tap(this.onResponse.bind(this)));
   }
 
-    getChart(option: QueryOption): Observable<any> {
+    getChart(): Observable<any> {
+        const option = this.buildFindAllOption();
         const reqOptions = this.buildQueryRequestOption(option);
-        // const option = this.buildFindAllOption();
         // const reqOptions = this.buildQueryRequestOption(option);
         const url = HH_SALE_ORDER.CHART;
         return this.http.get<Order>(url, reqOptions).pipe(

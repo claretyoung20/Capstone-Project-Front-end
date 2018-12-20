@@ -23,6 +23,8 @@ export class ExportSalesComponent implements OnInit {
     currentPage = 0;
     pager: any = {};
     totalItems: any = 0;
+    isAllOrder = false;
+    isFilterOrder = false;
 
     dataSource;
     saleOrders: SaleOrder[] = [];
@@ -73,6 +75,8 @@ export class ExportSalesComponent implements OnInit {
     }
 
     getAllSales() {
+        this.isAllOrder = true;
+        this.isFilterOrder  = false;
         const query = {
             size: this.pageSize,
             page: this.currentPage
@@ -97,7 +101,13 @@ export class ExportSalesComponent implements OnInit {
 
     setPage(number) {
         this.currentPage = number;
-        this.getAllSales();
+        if (this.isAllOrder) {
+            this.getAllSales();
+        }
+
+        if (this.isFilterOrder) {
+            this.searchValue();
+        }
     }
 
     changePageSize(value) {
@@ -120,6 +130,8 @@ export class ExportSalesComponent implements OnInit {
     }
 
     searchValue() {
+        this.isAllOrder = false;
+        this.isFilterOrder  = true;
         const data = this.filterForm.value;
         console.log(data)
 
@@ -127,11 +139,6 @@ export class ExportSalesComponent implements OnInit {
             size: this.pageSize,
             page: this.currentPage
         };
-        this.saleOrdeService.query(query).subscribe(res => {
-            this.processToShow(res);
-        });
-
-        console.log(data);
 
         if (data.dateCreated === null || data.dateCreated.formatted === '') {
             this.saleOrdeService.findAllByPrice(query, data.minValue, data.maxValue).subscribe(res => {
@@ -161,10 +168,4 @@ export interface Options {
     floor: number;
     ceil: number,
     step: number
-}
-
-export interface ChartValue {
-    totalPrice: number;
-    name: string
-
 }
