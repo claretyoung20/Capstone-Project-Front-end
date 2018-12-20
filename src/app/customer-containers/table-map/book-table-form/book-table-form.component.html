@@ -88,10 +88,13 @@
 <section class="our-team white-bg page-section-pt" *ngIf="tables">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4" *ngFor="let table of tables">
+            <div class="col-lg-4 col-md-4 tbla" *ngFor="let table of tables">
                 <div class="team">
                     <div class="team-images">
-                        <img class="img-responsive center-block" src="../../../assets/images/table/table01.jpg" alt="">
+
+                        <!--<img class="img-responsive center-block" src="../../../assets/images/table/table01.jpg" alt="">-->
+                        <img class="img-responsive responsive center-block" [src]="'data:' + table.table_imageContentType + ';base64,' + table.table_image"  alt="bookTable image"/>
+                        <div class="top-left">Table Number: {{table.id}}</div>
                     </div>
                     <div class="team-content">
                         <div class="team-description">

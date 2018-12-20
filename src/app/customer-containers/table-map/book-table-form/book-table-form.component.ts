@@ -21,6 +21,7 @@ import { TimeService } from 'app/shared/util/time.service';
 import { ConfirmReservationComponent } from '../confirm-reservation/confirm-reservation.component';
 import { TableType } from 'app/entities/interfaces/tableType';
 import { TableTypeService } from 'app/entities/services/tableType/table-type.service';
+import { JhiDataUtils } from 'ng-jhipster';
 
 @Component({
   selector: 'app-book-table-form',
@@ -65,7 +66,8 @@ export class BookTableFormComponent implements OnInit {
     private timeService: TimeService,
     public dialog: MatDialog,
     private router: Router,
-    private tableTypeService: TableTypeService
+    private tableTypeService: TableTypeService,
+    private dataUtils: JhiDataUtils
   ) {}
 
   ngOnInit() {
@@ -108,6 +110,14 @@ export class BookTableFormComponent implements OnInit {
   formValue(s) {
     console.log(s.value);
   }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
 
   viewTable() {
     console.log(this.tableForm.value);
