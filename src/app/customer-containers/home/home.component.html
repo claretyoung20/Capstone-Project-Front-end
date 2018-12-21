@@ -626,7 +626,7 @@ special-menu -->
 
                         <!-- sssss -->
                         <div *ngFor="let product of products">
-                        <div class="item">
+                        <div class="item" *ngIf="product.isAvailable">
                             <div class="menu-body menu-center">
                                 <div class="menu-thumbnail">
                                     <!--<img class="img-responsive center-block" src="../../../assets/images/dish/05.png"-->
