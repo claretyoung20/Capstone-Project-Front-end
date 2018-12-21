@@ -4,12 +4,14 @@ import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditTableComponent } from './edit-table/edit-table.component';
+import {NgJhipsterModule} from 'ng-jhipster';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    NgJhipsterModule
   ],
   declarations: [
     TableComponent,

@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TableService } from 'app/entities/services/table/table.service';
 import { Table } from 'app/entities/interfaces/table';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { TableType } from 'app/entities/interfaces/tableType';
 import { TableTypeService } from 'app/entities/services/tableType/table-type.service';
+import { JhiDataUtils } from 'ng-jhipster';
 
 @Component({
   selector: 'app-edit-table',
@@ -24,7 +25,9 @@ export class EditTableComponent implements OnInit {
       private bookTableService: TableService,
       private activatedRoute: ActivatedRoute,
       private router: Router,
-      private tableTypeService: TableTypeService
+      private tableTypeService: TableTypeService,
+      private dataUtils: JhiDataUtils,
+      private elementRef: ElementRef
   ) {}
 
   ngOnInit() {
@@ -94,4 +97,20 @@ export class EditTableComponent implements OnInit {
   set bookTable(bookTable: Table) {
       this._bookTable = bookTable;
   }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, entity, field, isImage) {
+        this.dataUtils.setFileData(event, entity, field, isImage);
+    }
+
+    clearInputImage(field: string, fieldContentType: string, idInput: string) {
+        this.dataUtils.clearInputImage(this.bookTable, this.elementRef, field, fieldContentType, idInput);
+    }
 }

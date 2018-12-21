@@ -45,7 +45,10 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let product of products">
                                     <div class="menu-body menu-left menu-white">
                                         <div class="menu-thumbnail">
-                                            <img class="img-responsive center-block" src="../../../assets/images/dish/01.png" alt="">
+
+                                            <!--<img class="img-responsive center-block" src="../../../assets/images/dish/01.png" alt="">-->
+                                            <img class="img-responsive center-block" [src]="'data:' + product.prodct_imageContentType + ';base64,' + product.prodct_image"  alt="product image"/>
+
                                         </div>
                                         <div class="menu-details">
                                             <div class="menu-title clearfix">

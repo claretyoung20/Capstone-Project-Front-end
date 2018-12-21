@@ -11,4 +11,6 @@ export interface Product extends Entity {
     showOnHomepage?: boolean;
     restaurantId?: number;
     categoryId?: number;
+    prodct_imageContentType?: string;
+    prodct_image?: any;
 }

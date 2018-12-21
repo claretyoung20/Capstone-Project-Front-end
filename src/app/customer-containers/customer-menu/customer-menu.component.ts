@@ -11,7 +11,7 @@ import { MenuAddCartComponent } from './menu-add-cart/menu-add-cart.component';
 import { CartService } from 'app/entities/services/cart/cart.service';
 import { ICart } from 'app/entities/interfaces/cart';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-
+import { JhiDataUtils } from 'ng-jhipster';
 @Component({
   selector: 'app-customer-menu',
   templateUrl: './customer-menu.component.html',
@@ -43,7 +43,8 @@ export class CustomerMenuComponent implements OnInit {
     private productServices: ProductService,
     private categoryServices: CategoryService,
     private cartServices: CartService,
-    public dialog: MatDialog
+    public  dialog: MatDialog,
+    private dataUtils: JhiDataUtils,
   ) { }
 
   ngOnInit() {
@@ -166,6 +167,13 @@ export class CustomerMenuComponent implements OnInit {
     private stCurrentTable(res: any) {
         this.currentTab1 = res[0].id
         this.getAllProductByCategory();
+    }
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
     }
 }
 

@@ -5,5 +5,7 @@ export interface Table extends Entity {
     price?: number;
     imageUrl?: string;
     restaurantId?: number;
+    table_imageContentType?: string;
+    table_image?: any;
     tableTypeId?: number;
 }

@@ -13,7 +13,7 @@
                         <input type="checkbox" class="form-control" name="isAvaliable" id="field_isAvaliable" [(ngModel)]="bookTable.isAvaliable" />
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" jhiTranslate="happybourBackEndApp.bookTable.tableType" for="field_tableType">Table Type</label>
+                        <label class="form-control-label" for="field_tableType">Table Type</label>
                         <select class="form-control" id="field_tableType" name="tableType" [(ngModel)]="bookTable.tableTypeId" required>
                             <option *ngIf="!editForm.value.tableType" [ngValue]="null" selected></option>
                             <option [ngValue]="tableTypeOption.id" *ngFor="let tableTypeOption of tabletypes; trackBy: trackTableTypeById">{{tableTypeOption.description}}</option>
@@ -24,8 +24,26 @@
                         <input type="number" class="form-control" name="price" id="field_price" [(ngModel)]="bookTable.price" />
                     </div> -->
                     <div class="form-group">
-                        <label class="form-control-label" for="field_imageUrl">Image Url</label>
-                        <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" [(ngModel)]="bookTable.imageUrl" />
+                        <label class="form-control-label" for="field_table_image">Table Image</label>
+                        <div>
+                            <img [src]="'data:' + bookTable.table_imageContentType + ';base64,' + bookTable.table_image" style="max-height: 100px;" *ngIf="bookTable.table_image" alt="bookTable image"/>
+                            <div *ngIf="bookTable.table_image" class="form-text text-danger clearfix">
+                                <span class="pull-left">{{bookTable.table_imageContentType}}, {{byteSize(bookTable.table_image)}}</span>
+                                <button type="button" (click)="clearInputImage('table_image', 'table_imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                </button>
+                            </div>
+                            <input type="file" id="file_table_image" (change)="setFileData($event, bookTable, 'table_image', true)" accept="image/*" />
+                        </div>
+                        <input type="hidden" class="form-control" name="table_image" id="field_table_image"
+                               [(ngModel)]="bookTable.table_image" required/>
+                        <input type="hidden" class="form-control" name="table_imageContentType" id="field_table_imageContentType"
+                               [(ngModel)]="bookTable.table_imageContentType" />
+                        <div [hidden]="!(editForm.controls.table_image?.dirty && editForm.controls.table_image?.invalid)">
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.controls.table_image?.errors?.required" >
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <div>

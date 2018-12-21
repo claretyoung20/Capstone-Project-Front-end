@@ -21,6 +21,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import {NgJhipsterModule} from 'ng-jhipster';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgJhipsterModule,
     NgxMyDatePickerModule.forRoot(),
   ],
   declarations: [

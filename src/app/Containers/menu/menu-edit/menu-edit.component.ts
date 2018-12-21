@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'app/entities/services/category/category.service';
 import { Category } from 'app/entities/interfaces/category';
 import { Product } from './../../../entities/interfaces/product';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductService } from 'app/entities/services/product/product.service';
+import { JhiDataUtils } from 'ng-jhipster';
 
 @Component({
   selector: 'app-menu-edit',
@@ -23,7 +24,9 @@ export class MenuEditComponent implements OnInit {
   constructor(
       private productService: ProductService,
       private categoryService: CategoryService,
-      private activatedRoute: ActivatedRoute
+      private activatedRoute: ActivatedRoute,
+      private dataUtils: JhiDataUtils,
+      private elementRef: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -54,6 +57,22 @@ export class MenuEditComponent implements OnInit {
       this._product = res;
     })
   }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, entity, field, isImage) {
+        this.dataUtils.setFileData(event, entity, field, isImage);
+    }
+
+    clearInputImage(field: string, fieldContentType: string, idInput: string) {
+        this.dataUtils.clearInputImage(this.product, this.elementRef, field, fieldContentType, idInput);
+    }
 
   previousState() {
       window.history.back();
