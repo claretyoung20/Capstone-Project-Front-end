@@ -1,8 +1,8 @@
 <!--=================================
 slider -->
 
-<section class="slider" style="background-image: url(../../assets/revolution/assets/a617d-slider2-bg.jpg);width: 100%;
-height: -webkit-fill-available;">
+<section class="slider" style="background-image: url(../../assets/revolution/assets/a617d-slider21-bg.png);width: 100%;
+height: -webkit-fill-available;background-size: contain;background-position: inherit;">
     <div id="rev_slider_3_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="the-The Zayka2"
         style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
         <!-- START REVOLUTION SLIDER 5.2.6 fullwidth mode -->
@@ -12,11 +12,10 @@ height: -webkit-fill-available;">
         </div>
 
         <div class="bgText-wel">
-            welcome to Happy Hour
+
         </div>
         <div class="bgText">
-            We are Happy Hour temporibus autem quibusdam et aut <br>officiis debitis aut rerum necessitatibus saepe
-            eveniet.
+
         </div>
     </div>
     <!-- END REVOLUTION SLIDER -->
@@ -630,8 +629,12 @@ special-menu -->
                         <div class="item">
                             <div class="menu-body menu-center">
                                 <div class="menu-thumbnail">
-                                    <img class="img-responsive center-block" src="../../../assets/images/dish/05.png"
-                                        alt="">
+                                    <!--<img class="img-responsive center-block" src="../../../assets/images/dish/05.png"-->
+                                        <!--alt="">-->
+
+                                    <img class="img-responsive center-block" [src]="'data:' + product.prodct_imageContentType + ';base64,' + product.prodct_image"  alt="product image"/>
+
+
                                 </div>
                                 <div class="menu-details">
                                     <div class="menu-title clearfix">

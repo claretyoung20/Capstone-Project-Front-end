@@ -11,6 +11,7 @@ import { LOCALSTORAGEFORCUSTOMER } from 'app/static/constants/site.constants';
 import { ProductService } from 'app/entities/services/product/product.service';
 import { Product } from 'app/entities/interfaces/product';
 import { formatDate } from '@angular/common';
+import { JhiDataUtils } from 'ng-jhipster';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,8 @@ export class HomeComponent implements OnInit {
     private productServices: ProductService,
     private couponServices: CouponService,
     private cartServices: CartService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private dataUtils: JhiDataUtils,
   ) {}
 
   ngOnInit() {
