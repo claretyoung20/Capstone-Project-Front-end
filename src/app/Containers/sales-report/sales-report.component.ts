@@ -57,11 +57,10 @@ export class SalesReportComponent implements OnInit {
       this.saleOrders = res;
       let sale = 0;
       for (sale ; sale < this.saleOrders.length; sale++) {
-          console.log('ssssss ' + sale);
               // newData.y = this.saleOrders[sale].basePrice;
               let label = this.getProductName(this.saleOrders[sale].productId);
               // this.allChartData.push(newData);
-
+          console.log('ssssss ' + sale);
           chart.options.data[0].dataPoints.push({ y: this.saleOrders[sale].basePrice, label: label});
           }
 
