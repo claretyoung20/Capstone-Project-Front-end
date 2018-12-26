@@ -28,24 +28,30 @@ export class SalesReportComponent implements OnInit {
 
   getAllProduct() {
       this.productService.noPaging().subscribe( res => {
-          this.products = res;
+          this.processToSave(res);
       })
+  }
+
+
+  processToSave(res) {
+      this.products = res;
+
   }
 
   getCharValue() {
       this.saleOrderServices.getChart().subscribe( res => {
           this.processChart(res);
-          console.log('jjjj')
           console.log(res)
       })
   }
   processChart(res: any) {
 
+      this.getAllProduct();
       const chart = new CanvasJS.Chart('chartContainer', {
           animationEnabled: true,
           exportEnabled: true,
           title: {
-              text: 'HappyHour top sales Report'
+              text: 'HappyHour  sales Report'
           },
           data: [{
               type: 'column',
@@ -58,10 +64,10 @@ export class SalesReportComponent implements OnInit {
       let sale = 0;
       for (sale ; sale < this.saleOrders.length; sale++) {
               // newData.y = this.saleOrders[sale].basePrice;
-              let label = this.getProductName(this.saleOrders[sale].productId);
+              const label = this.getProductName(this.saleOrders[sale].productId);
               // this.allChartData.push(newData);
-          console.log('ssssss ' + sale);
           chart.options.data[0].dataPoints.push({ y: this.saleOrders[sale].basePrice, label: label});
+
           }
 
       chart.render();
@@ -71,6 +77,8 @@ export class SalesReportComponent implements OnInit {
   getProductName(id) {
       let product;
       let name;
+      console.log('ssssssssssssssssssssssssssss');
+      console.log(this.products);
       for (product in this.products) {
           if (this.products[product].id === id) {
             name =  this.products[product].name;
