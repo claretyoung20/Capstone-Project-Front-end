@@ -80,8 +80,12 @@ export const HH_ORDER = {
     ACTIVEORDER: `${SERVER_API_URL}/api/happy-orders/active`,
     TODAYSORDER: `${SERVER_API_URL}/api/happy-orders/todayOrder`,
     CURRENTORDERHISTORY: `${SERVER_API_URL}/api/happy-orders/currentHistory`,
-    CURRENTCUSTOMERORDER: `${SERVER_API_URL}/api/happy-orders/currentCustomerOrders`
-
+    CURRENTCUSTOMERORDER: `${SERVER_API_URL}/api/happy-orders/currentCustomerOrders`,
+    SUMCOMPLETEORDER: `${SERVER_API_URL}/api/happy-orders/sumComplete`,
+    COUNTCOMPLETEORDER: `${SERVER_API_URL}/api/happy-orders/countComplete`,
+    SUMCANCELORDER: `${SERVER_API_URL}/api/happy-orders/sumCancel`,
+    COUNTCANCELORDER: `${SERVER_API_URL}/api/happy-orders/countCancel`,
+    ORDERREPORT: `${SERVER_API_URL}/api/happy-orders/order-report`,
 }
 
 // Status

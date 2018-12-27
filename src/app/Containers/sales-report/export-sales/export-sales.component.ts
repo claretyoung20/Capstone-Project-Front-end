@@ -133,6 +133,7 @@ export class ExportSalesComponent implements OnInit {
         this.isAllOrder = false;
         this.isFilterOrder  = true;
         const data = this.filterForm.value;
+        console.log('TTTTTTTTTTTTTTTTTTTTTTTTTTTT');
         console.log(data)
 
         const query = {
@@ -142,11 +143,13 @@ export class ExportSalesComponent implements OnInit {
 
         if (data.dateCreated === null || data.dateCreated.formatted === '') {
             this.saleOrdeService.findAllByPrice(query, data.minValue, data.maxValue).subscribe(res => {
+                console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
                 this.processToShow(res);
             });
         } else {
             const  dateCheck =  data.dateCreated.formatted;
             this.saleOrdeService.findAllByDateAndPrice(query, dateCheck, data.minValue, data.maxValue).subscribe(res => {
+                console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO');
                 this.processToShow(res);
             });
         }

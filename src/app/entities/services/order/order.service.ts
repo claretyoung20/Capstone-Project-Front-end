@@ -51,15 +51,18 @@ export class OrderService extends EntityService<Order> {
   }
 
   getHistoryOrder(option: QueryOption): Observable<any> {
-      // const option = this.buildFindAllOption();
-      // const reqOptions = this.buildQueryRequestOption(option);
-      // const url = this.buildQueryUrl(option);
-
       const url = HH_ORDER.CURRENTORDERHISTORY;
       const reqOptions = this.buildQueryRequestOption(option);
       return this.http.get<Order>(url, reqOptions).pipe(
           tap(this.onResponse.bind(this)));
   }
+
+    getOrderReport(option: QueryOption): Observable<any> {
+        const url = HH_ORDER.ORDERREPORT;
+        const reqOptions = this.buildQueryRequestOption(option);
+        return this.http.get<Order>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
 
     getCurrentCustomerActiveOrder(id: number | string): Observable<any> {
         const option = this.buildFindAllOption();
@@ -68,4 +71,36 @@ export class OrderService extends EntityService<Order> {
         return this.http.get<Order>(url, reqOptions).pipe(
             tap(this.onResponse.bind(this)));
     }
+
+    getSumCompleteOrder(): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_ORDER.SUMCOMPLETEORDER;
+        return this.http.get<Number>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
+
+    getCountCompleteOrder(): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_ORDER.COUNTCOMPLETEORDER;
+        return this.http.get<Number>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
+
+    getSumCancelOrder(): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_ORDER.SUMCANCELORDER;
+        return this.http.get<Number>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
+    getCountCancelOrder(): Observable<any> {
+        const option = this.buildFindAllOption();
+        const reqOptions = this.buildQueryRequestOption(option);
+        const url = HH_ORDER.COUNTCANCELORDER;
+        return this.http.get<Number>(url, reqOptions).pipe(
+            tap(this.onResponse.bind(this)));
+    }
+
 }

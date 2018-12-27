@@ -8,6 +8,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {Ng5SliderModule} from 'ng5-slider';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { OrderReportComponent } from './order-report/order-report.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
   ],
   declarations: [
       SalesReportComponent,
-      ExportSalesComponent
+      ExportSalesComponent,
+      OrderReportComponent
   ]
 })
 export class SalesReportModule { }
