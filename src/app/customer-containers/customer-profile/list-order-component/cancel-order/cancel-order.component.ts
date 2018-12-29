@@ -35,7 +35,7 @@ export class CancelOrderComponent implements OnInit {
   }
 
   cancelOrder() {
-    this.order.orderStatusId = 5;
+    this.order.orderStatusId = 4;
     this.orderService.update(this.order).subscribe((res) =>
       this.dialogRef.close(),
     (res: HttpErrorResponse) => {
