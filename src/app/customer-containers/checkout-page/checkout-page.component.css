@@ -98,3 +98,18 @@ p {
 .bttn {
     margin-top: 50px;
 }
+
+.minus {
+    padding-right: 10px;
+    padding-left: 10px;
+    border: 2px #d48214 solid;
+    margin-right: 15px;
+}
+
+.add {
+    padding-right: 10px;
+    padding-left: 10px;
+    border: 2px #d48214 solid;
+    margin-left: 15px;
+}
+
