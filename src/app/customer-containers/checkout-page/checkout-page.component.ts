@@ -90,7 +90,7 @@ export class CheckoutPageComponent implements OnInit {
     getAllTable(): any {
         this.tableServces.getIsAvialableTable().subscribe(res => {
             this.tables = res;
-            console.log(this.tables);
+            // console.log(this.tables);
         })
     }
 
@@ -113,7 +113,7 @@ export class CheckoutPageComponent implements OnInit {
     getCurrentCustomerrder() {
         this.orderService.getCurrentCustomerActiveOrder(this.customerId).subscribe(res => {
             this.currentOrder = res;
-            console.log(this.currentOrder);
+           // console.log(this.currentOrder);
         })
     }
 
@@ -134,7 +134,7 @@ export class CheckoutPageComponent implements OnInit {
     }
 
     show(res) {
-        console.log(res);
+        console.log('VVVV');
         this.dataSource = new MatTableDataSource(res);
         this.carts = res;
         this.totalPrice();
@@ -154,7 +154,7 @@ export class CheckoutPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
+           // console.log(`Dialog result: ${result}`);
             this.getAllCartItemsByCustomerId(this.customerId);
         });
     }
@@ -188,13 +188,12 @@ export class CheckoutPageComponent implements OnInit {
                 this.errorMessageCoupon = 'Invalid Coupon: ' + code;
             })
 
-        console.log('couponnnnn');
 
     }
 
     applyCouponData(data) {
         this.coupounToApply = data;
-        console.log(this.coupounToApply);
+        // console.log(this.coupounToApply);
 
         this.couponCode = this.coupounToApply.code || '';
         this.couponAmount = this.coupounToApply.price || 0;
@@ -207,7 +206,7 @@ export class CheckoutPageComponent implements OnInit {
         if (this.currentOrder.length >= 1) {
             this.tableForm.value.tableId = this.currentOrder[0].bookTableId;
         }
-        console.log(this.tableForm.value);
+       // console.log(this.tableForm.value);
         this.submitForm = true;
         this.errorMessage = '';
 
@@ -227,7 +226,7 @@ export class CheckoutPageComponent implements OnInit {
         this.orderSave.bookTableId = this.tableForm.value.tableId;
 
         this.orderService.create(this.orderSave).subscribe(res => {
-            console.log('successful');
+           // console.log('successful');
 
             const orderId = res.id;
             let cartItems;
@@ -243,7 +242,7 @@ export class CheckoutPageComponent implements OnInit {
                     this.orderSaleService.create(this.saleOrdersSave).subscribe(result => {
                     })
                     this.cartServices.delete(this.carts[cartItems].id).subscribe(resultDelete => {
-                        console.log('succesfully deleted');
+                       //  console.log('succesfully deleted');
                     })
                 }
             }
@@ -253,7 +252,7 @@ export class CheckoutPageComponent implements OnInit {
         const dialogRef = this.dialog.open(OrderSucessComponent);
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
+            // console.log(`Dialog result: ${result}`);
             this.router.navigate(['/profile']);
         });
     }
@@ -265,18 +264,16 @@ export class CheckoutPageComponent implements OnInit {
         let currentCart: ICart = {};
         this.cartServices.find(id).subscribe(res => {
             currentCart = res;
-
             // minus by one
             currentCart.totalItem = currentCart.totalItem - 1;
             if (currentCart.totalItem !== 0) {
-                this.cartServices.update(currentCart).subscribe(res => {
+                this.cartServices.update(currentCart).subscribe(result => {
                     this.getAllCartItemsByCustomerId(this.customerId);
                     this.getCurrentCustomerrder();
                     this.getAllTable();
                 })
             }
         });
-
     }
 
     addItem(id) {
@@ -289,7 +286,7 @@ export class CheckoutPageComponent implements OnInit {
             // add by one
             currentCart.totalItem = currentCart.totalItem + 1;
             if (currentCart.totalItem  !== 0 ) {
-                this.cartServices.update(currentCart).subscribe(res => {
+                this.cartServices.update(currentCart).subscribe(result => {
                     this.getAllCartItemsByCustomerId(this.customerId);
                     this.getCurrentCustomerrder();
                     this.getAllTable();
